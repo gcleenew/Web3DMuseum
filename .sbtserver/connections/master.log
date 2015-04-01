@@ -1,0 +1,25 @@
+New log file opened at Wed Apr 01 09:52:01 CEST 2015 by 9678@archy
+Taking next connection to: 33850
+New client attempting to connect on port: 55127-33850
+  Address = /172.16.238.255:33850
+This client on port 55127 has uuid 30bdaa55-ab8c-45f2-b68d-e5df0b2a1bf7 configName activator humanReadableName Activator protocolVersion 1 featureTags Vector()
+Connected Clients: activator-30bdaa55-ab8c-45f2-b68d-e5df0b2a1bf7
+Taking next connection to: 33850
+New client attempting to connect on port: 55128-33850
+  Address = /172.16.238.255:33850
+Handshake exception on socket: 55128
+sbt.impl.ipc.HandshakeException: Unable to perform handshake
+	at sbt.impl.ipc.Peer.handshake(IPC.scala:46)
+	at sbt.impl.ipc.MultiClientServer.<init>(IPC.scala:150)
+	at sbt.server.SbtServerSocketHandler$$anon$1.run(SbtServerSocketHandler.scala:43)
+Caused by: java.io.EOFException
+	at java.io.DataInputStream.readInt(DataInputStream.java:392)
+	at sbt.impl.ipc.Peer.receive(IPC.scala:95)
+	at sbt.impl.ipc.Peer.handshake(IPC.scala:49)
+	... 2 more
+Taking next connection to: 33850
+New client attempting to connect on port: 55129-33850
+  Address = /172.16.238.255:33850
+This client on port 55129 has uuid 3e3233b3-15b7-4bf7-90e2-0aee2b629946 configName play-fork-run humanReadableName Play Fork Run protocolVersion 1 featureTags Vector()
+Connected Clients: activator-30bdaa55-ab8c-45f2-b68d-e5df0b2a1bf7, play-fork-run-3e3233b3-15b7-4bf7-90e2-0aee2b629946
+Taking next connection to: 33850
