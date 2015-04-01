@@ -1,5 +1,5 @@
-New log file opened at Wed Apr 01 09:49:47 CEST 2015 by 9324@archy
-jvm 9324@archy
+New log file opened at Wed Apr 01 09:52:01 CEST 2015 by 9678@archy
+jvm 9678@archy
 jvm vmName=OpenJDK 64-Bit Server VM vmVendor=Oracle Corporation vmVersion=24.75-b04
 jvm specName=Java Virtual Machine Specification specVendor=Oracle Corporation specVersion=1.7
 jvm arguments: [-Xms256m, -Xmx1024m, -XX:PermSize=64m, -XX:MaxPermSize=256m]
@@ -27,7 +27,7 @@ sorting: ns: List(sbt.plugins.CorePlugin, sbt.plugins.IvyPlugin, sbt.plugins.Jvm
   :: sorted deduced result: List(sbt.plugins.CorePlugin, sbt.plugins.IvyPlugin, sbt.plugins.JvmPlugin, sbt.plugins.JUnitXmlReportPlugin)
 [Loading] Done in /home/guillaume/Web3Dmuseum/activator-1.3.2-minimal/Web3DMuseum/project, returning: (web3dmuseum-build)
 Loading project definition from /home/guillaume/Web3Dmuseum/activator-1.3.2-minimal/Web3DMuseum/project
-Running task... Cancel: sbt.TaskCancellationStrategy$Null$@555ec5e8, check cycles: false
+Running task... Cancel: sbt.TaskCancellationStrategy$Null$@38db6d9, check cycles: false
 
 Initial source changes: 
 	removed:Set()
@@ -67,7 +67,7 @@ Set current project to Web3DMuseum (in build file:/home/guillaume/Web3Dmuseum/ac
 > server-handle-next-server-request
 > {file:/home/guillaume/Web3Dmuseum/activator-1.3.2-minimal/Web3DMuseum/}root/compile:discoveredMainClasses
 Evaluating tasks: compile:discoveredMainClasses
-Running task... Cancel: sbt.server.ServerTaskCancellation@23d5a63b, check cycles: false
+Running task... Cancel: sbt.server.ServerTaskCancellation@4151b7fd, check cycles: false
 
 Initial source changes: 
 	removed:Set()
@@ -84,18 +84,18 @@ Sources indirectly invalidated by:
 	external source: Set()
 All initially invalidated sources: Set()
 
-Total time: 1 s, completed 1 avr. 2015 09:49:53
+Total time: 1 s, completed 1 avr. 2015 09:52:07
 > server-post-command-cleanup
 > server-handle-next-server-request
 > {file:/home/guillaume/Web3Dmuseum/activator-1.3.2-minimal/Web3DMuseum/}root/compile:mainClass
 Evaluating tasks: compile:mainClass
-Running task... Cancel: sbt.server.ServerTaskCancellation@71c37e41, check cycles: false
-Total time: 0 s, completed 1 avr. 2015 09:49:53
+Running task... Cancel: sbt.server.ServerTaskCancellation@5de034e, check cycles: false
+Total time: 0 s, completed 1 avr. 2015 09:52:07
 > server-post-command-cleanup
 > server-handle-next-server-request
 > {file:/home/guillaume/Web3Dmuseum/activator-1.3.2-minimal/Web3DMuseum/}root/compile:discoveredMainClasses
 Evaluating tasks: compile:discoveredMainClasses
-Running task... Cancel: sbt.server.ServerTaskCancellation@49f2b143, check cycles: false
+Running task... Cancel: sbt.server.ServerTaskCancellation@4d729e87, check cycles: false
 
 Initial source changes: 
 	removed:Set()
@@ -112,18 +112,18 @@ Sources indirectly invalidated by:
 	external source: Set()
 All initially invalidated sources: Set()
 
-Total time: 0 s, completed 1 avr. 2015 09:49:54
+Total time: 0 s, completed 1 avr. 2015 09:52:08
 > server-post-command-cleanup
 > server-handle-next-server-request
 > {file:/home/guillaume/Web3Dmuseum/activator-1.3.2-minimal/Web3DMuseum/}root/compile:mainClass
 Evaluating tasks: compile:mainClass
-Running task... Cancel: sbt.server.ServerTaskCancellation@245456eb, check cycles: false
-Total time: 0 s, completed 1 avr. 2015 09:49:54
+Running task... Cancel: sbt.server.ServerTaskCancellation@2eaadd5b, check cycles: false
+Total time: 0 s, completed 1 avr. 2015 09:52:08
 > server-post-command-cleanup
 > server-handle-next-server-request
 > {file:/home/guillaume/Web3Dmuseum/activator-1.3.2-minimal/Web3DMuseum/}root/*:playForkConfig
 Evaluating tasks: *:playForkConfig
-Running task... Cancel: sbt.server.ServerTaskCancellation@5a552ff6, check cycles: false
+Running task... Cancel: sbt.server.ServerTaskCancellation@1a579e3e, check cycles: false
 Read from stdout: Updating {file:/home/guillaume/Web3Dmuseum/activator-1.3.2-minimal/Web3DMuseum/}root...
 Updating {file:/home/guillaume/Web3Dmuseum/activator-1.3.2-minimal/Web3DMuseum/}root...
 Other repositories:
@@ -138,7 +138,7 @@ resolving dependencies for configuration 'compile'
 == resolving dependencies web3dmuseum#web3dmuseum_2.11;1.0-SNAPSHOT->org.scala-lang#scala-library;2.11.1 [compile->default(compile)]
 Read from stdout: Resolving org.scala-lang#scala-library;2.11.1 ...
 Resolving org.scala-lang#scala-library;2.11.1 ...
-sbt-chain: Checking cache for: sbt.ivyint.MergedDescriptors@13923154
+sbt-chain: Checking cache for: sbt.ivyint.MergedDescriptors@3a4360d5
 sbt-chain: module revision found in cache: org.scala-lang#scala-library;2.11.1
 	found org.scala-lang#scala-library;2.11.1 in sbt-chain
 	[2.11.1] org.scala-lang#scala-library;2.11.1
@@ -7696,7 +7696,7 @@ all callers are evicted for commons-logging#commons-logging;1.1.1: evicting too
 	[NOT REQUIRED] org.scala-sbt#control_2.11;0.13.8-M3!control_2.11.jar
 	[NOT REQUIRED] com.typesafe.akka#akka-actor_2.11;2.3.8!akka-actor_2.11.jar
 	[NOT REQUIRED] com.typesafe.akka#akka-testkit_2.11;2.3.8!akka-testkit_2.11.jar
-:: resolution report :: resolve 4896ms :: artifacts dl 127ms
+:: resolution report :: resolve 4010ms :: artifacts dl 105ms
 	report for web3dmuseum#web3dmuseum_2.11;1.0-SNAPSHOT compile produced in /home/guillaume/Web3Dmuseum/activator-1.3.2-minimal/Web3DMuseum/target/resolution-cache/reports/web3dmuseum-web3dmuseum_2.11-compile.xml
 	report for web3dmuseum#web3dmuseum_2.11;1.0-SNAPSHOT runtime produced in /home/guillaume/Web3Dmuseum/activator-1.3.2-minimal/Web3DMuseum/target/resolution-cache/reports/web3dmuseum-web3dmuseum_2.11-runtime.xml
 	report for web3dmuseum#web3dmuseum_2.11;1.0-SNAPSHOT test produced in /home/guillaume/Web3Dmuseum/activator-1.3.2-minimal/Web3DMuseum/target/resolution-cache/reports/web3dmuseum-web3dmuseum_2.11-test.xml
@@ -7711,16 +7711,41 @@ all callers are evicted for commons-logging#commons-logging;1.1.1: evicting too
 	report for web3dmuseum#web3dmuseum_2.11;1.0-SNAPSHOT pom produced in /home/guillaume/Web3Dmuseum/activator-1.3.2-minimal/Web3DMuseum/target/resolution-cache/reports/web3dmuseum-web3dmuseum_2.11-pom.xml
 	report for web3dmuseum#web3dmuseum_2.11;1.0-SNAPSHOT scala-tool produced in /home/guillaume/Web3Dmuseum/activator-1.3.2-minimal/Web3DMuseum/target/resolution-cache/reports/web3dmuseum-web3dmuseum_2.11-scala-tool.xml
 	report for web3dmuseum#web3dmuseum_2.11;1.0-SNAPSHOT fork-run produced in /home/guillaume/Web3Dmuseum/activator-1.3.2-minimal/Web3DMuseum/target/resolution-cache/reports/web3dmuseum-web3dmuseum_2.11-fork-run.xml
-	resolve done (4896ms resolve - 127ms download)
+	resolve done (4010ms resolve - 105ms download)
 Read from stdout: Done updating.
 Done updating.
-Total time: 6 s, completed 1 avr. 2015 09:50:31
+Total time: 5 s, completed 1 avr. 2015 09:55:45
 > server-post-command-cleanup
 > server-handle-next-server-request
 > root/playForkNotifyStart http://localhost:9000
 Evaluating tasks: *:playForkNotifyStart
-Running task... Cancel: sbt.server.ServerTaskCancellation@575f0182, check cycles: false
-Total time: 0 s, completed 1 avr. 2015 09:50:31
+Running task... Cancel: sbt.server.ServerTaskCancellation@1354afb7, check cycles: false
+Total time: 0 s, completed 1 avr. 2015 09:55:46
+> server-post-command-cleanup
+> server-handle-next-server-request
+> {file:/home/guillaume/Web3Dmuseum/activator-1.3.2-minimal/Web3DMuseum/}root/*:playForkReload
+Evaluating tasks: *:playForkReload
+Running task... Cancel: sbt.server.ServerTaskCancellation@56a0bd91, check cycles: false
+
+Initial source changes: 
+	removed:Set()
+	added: Set()
+	modified: Set()
+Removed products: Set()
+External API changes: API Changes: Set()
+Modified binary dependencies: Set()
+Initial directly invalidated sources: Set()
+
+Sources indirectly invalidated by:
+	product: Set()
+	binary dep: Set()
+	external source: Set()
+All initially invalidated sources: Set()
+
+Copy resource mappings: 
+	(/home/guillaume/Web3Dmuseum/activator-1.3.2-minimal/Web3DMuseum/conf/application.conf,/home/guillaume/Web3Dmuseum/activator-1.3.2-minimal/Web3DMuseum/target/scala-2.11/classes/application.conf)
+	(/home/guillaume/Web3Dmuseum/activator-1.3.2-minimal/Web3DMuseum/conf/routes,/home/guillaume/Web3Dmuseum/activator-1.3.2-minimal/Web3DMuseum/target/scala-2.11/classes/routes)
+Total time: 0 s, completed 1 avr. 2015 09:55:49
 > server-post-command-cleanup
 > server-handle-next-server-request
 Done executing sbt server engine, result Right(Exit(0))
@@ -7729,4 +7754,4 @@ Waiting for socket thread
 Waiting for request processor thread
 Waiting for command engine result
 Returning control to sbt launcher with result Exit(0)
-Closing the 9324@archy logs at Wed Apr 01 09:51:56 CEST 2015, goodbye.
+Closing the 9678@archy logs at Wed Apr 01 09:58:40 CEST 2015, goodbye.
