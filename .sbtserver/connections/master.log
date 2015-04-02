@@ -1,0 +1,31 @@
+New log file opened at Wed Apr 01 10:00:48 CEST 2015 by 10191@archy
+Taking next connection to: 60788
+New client attempting to connect on port: 56304-60788
+  Address = /172.16.238.255:60788
+This client on port 56304 has uuid e61c202e-af69-4e68-b2fb-deeead841f67 configName play-fork-run humanReadableName Play Fork Run protocolVersion 1 featureTags Vector()
+Connected Clients: play-fork-run-e61c202e-af69-4e68-b2fb-deeead841f67
+Taking next connection to: 60788
+Checking to see if clients are empty...
+We have 1 non-daemon clients, continuing serving connections.
+Taking next connection to: 60788
+Checking to see if clients are empty...
+We have 1 non-daemon clients, continuing serving connections.
+Taking next connection to: 60788
+Checking to see if clients are empty...
+We have 1 non-daemon clients, continuing serving connections.
+Taking next connection to: 60788
+Checking to see if clients are empty...
+We have 1 non-daemon clients, continuing serving connections.
+Taking next connection to: 60788
+Checking to see if clients are empty...
+We have 1 non-daemon clients, continuing serving connections.
+Taking next connection to: 60788
+Checking to see if clients are empty...
+We have 1 non-daemon clients, continuing serving connections.
+Taking next connection to: 60788
+Checking to see if clients are empty...
+We have 1 non-daemon clients, continuing serving connections.
+Taking next connection to: 60788
+Checking to see if clients are empty...
+We have 1 non-daemon clients, continuing serving connections.
+Taking next connection to: 60788
