@@ -2,8 +2,80 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
+
+
+
+
+### Front routes ###
+
 # Home page
 GET     /                           controllers.Application.index()
+
+# Recherche page
+GET     /search                     controllers.Application.search()
+
+# Resultat recherche page
+GET     /searchResult               controllers.Application.searchResult()
+
+# Carte du monde page
+GET     /map                        controllers.Application.map()
+
+# Parcours list page
+GET     /parcoursList               controllers.Application.parcoursList()
+
+# Parcours page
+GET     /parcours/:id               controllers.Application.parcours(id : Long)
+
+# Parcours page
+GET     /objet/:id                  controllers.Application.objet(id : Long)
+
+# Nuage de mot page
+GET     /random                     controllers.Application.random()
+
+# Nuage de mot page
+GET     /contact                    controllers.Application.contact()
+
+# Nuage de mot page
+GET     /login                      controllers.Application.login()
+
+# Nuage de mot page
+GET     /register                   controllers.Application.register()
+
+
+
+
+### Static routes ###
+
+# Nuage de mot page
+GET     /aboutUs                    controllers.Static.aboutUs()
+
+# Nuage de mot page
+GET     /FAQ                        controllers.Static.faq()
+
+
+
+
+
+
+### BackOffice routes ###
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
