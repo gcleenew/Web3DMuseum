@@ -16,12 +16,26 @@ create table contenu_site (
   constraint pk_contenu_site primary key (id))
 ;
 
+create table favori (
+  id                        bigint auto_increment not null,
+  utilisateur_id            bigint,
+  objet_id                  bigint,
+  constraint pk_favori primary key (id))
+;
+
 create table feedback (
   id                        bigint auto_increment not null,
   contenu                   TEXT,
   email                     varchar(255),
   due_date                  datetime,
   constraint pk_feedback primary key (id))
+;
+
+create table historique (
+  id                        bigint auto_increment not null,
+  utilisateur_id            bigint,
+  objet_id                  bigint,
+  constraint pk_historique primary key (id))
 ;
 
 create table image (
@@ -54,6 +68,7 @@ create table objet (
 
 create table parcours (
   id                        bigint auto_increment not null,
+  nom                       varchar(255),
   constraint pk_parcours primary key (id))
 ;
 
@@ -62,6 +77,16 @@ create table parcours_objet (
   objet_id                  bigint,
   parcours_id               bigint,
   constraint pk_parcours_objet primary key (id))
+;
+
+create table utilisateur (
+  id                        bigint auto_increment not null,
+  email                     varchar(255),
+  password                  varchar(255),
+  username                  varchar(255),
+  rights                    varchar(255),
+  due_date                  datetime,
+  constraint pk_utilisateur primary key (id))
 ;
 
 create table video (
@@ -85,14 +110,22 @@ create table oeuvre_composite (
 ;
 alter table audio add constraint fk_audio_objet_1 foreign key (objet_id) references objet (id) on delete restrict on update restrict;
 create index ix_audio_objet_1 on audio (objet_id);
-alter table image add constraint fk_image_objet_2 foreign key (objet_id) references objet (id) on delete restrict on update restrict;
-create index ix_image_objet_2 on image (objet_id);
-alter table parcours_objet add constraint fk_parcours_objet_objet_3 foreign key (objet_id) references objet (id) on delete restrict on update restrict;
-create index ix_parcours_objet_objet_3 on parcours_objet (objet_id);
-alter table parcours_objet add constraint fk_parcours_objet_parcours_4 foreign key (parcours_id) references parcours (id) on delete restrict on update restrict;
-create index ix_parcours_objet_parcours_4 on parcours_objet (parcours_id);
-alter table video add constraint fk_video_objet_5 foreign key (objet_id) references objet (id) on delete restrict on update restrict;
-create index ix_video_objet_5 on video (objet_id);
+alter table favori add constraint fk_favori_utilisateur_2 foreign key (utilisateur_id) references utilisateur (id) on delete restrict on update restrict;
+create index ix_favori_utilisateur_2 on favori (utilisateur_id);
+alter table favori add constraint fk_favori_objet_3 foreign key (objet_id) references objet (id) on delete restrict on update restrict;
+create index ix_favori_objet_3 on favori (objet_id);
+alter table historique add constraint fk_historique_utilisateur_4 foreign key (utilisateur_id) references utilisateur (id) on delete restrict on update restrict;
+create index ix_historique_utilisateur_4 on historique (utilisateur_id);
+alter table historique add constraint fk_historique_objet_5 foreign key (objet_id) references objet (id) on delete restrict on update restrict;
+create index ix_historique_objet_5 on historique (objet_id);
+alter table image add constraint fk_image_objet_6 foreign key (objet_id) references objet (id) on delete restrict on update restrict;
+create index ix_image_objet_6 on image (objet_id);
+alter table parcours_objet add constraint fk_parcours_objet_objet_7 foreign key (objet_id) references objet (id) on delete restrict on update restrict;
+create index ix_parcours_objet_objet_7 on parcours_objet (objet_id);
+alter table parcours_objet add constraint fk_parcours_objet_parcours_8 foreign key (parcours_id) references parcours (id) on delete restrict on update restrict;
+create index ix_parcours_objet_parcours_8 on parcours_objet (parcours_id);
+alter table video add constraint fk_video_objet_9 foreign key (objet_id) references objet (id) on delete restrict on update restrict;
+create index ix_video_objet_9 on video (objet_id);
 
 
 
@@ -112,7 +145,11 @@ drop table audio;
 
 drop table contenu_site;
 
+drop table favori;
+
 drop table feedback;
+
+drop table historique;
 
 drop table image;
 
@@ -125,6 +162,8 @@ drop table oeuvre_composite;
 drop table parcours;
 
 drop table parcours_objet;
+
+drop table utilisateur;
 
 drop table video;
 
