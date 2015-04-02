@@ -208,95 +208,22 @@
 					</button>
 				</div>
 				<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
-					<ul class="nav navbar-nav">
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Home <b class="caret"></b></a>
-							<ul class="dropdown-menu">
-								<li><a href="index.html">Home #1</a></li>
-								<li><a href="index-rslider.html">Home #2</a></li>
-							</ul>
-						</li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
-							<ul class="dropdown-menu">
-								<li><a href="myaccount.html">My Account</a></li>
-								<li><a href="view-cart.html">View Cart</a></li>
-								<li><a href="checkout.html">Checkout</a></li>
-								<li><a href="wish-list.html">Wish List</a></li>
-								<li><a href="order-history.html">Order History</a></li>
-								<li><a href="edit-profile.html">Edit Profile</a></li>
-								<li><a href="confirmation.html">Confirmation</a></li>
-							</ul>
-						</li>                   
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <b class="caret"></b></a>
-							<ul class="dropdown-menu">
-								<li><a href="general.html">General</a></li>
-								<li><a href="login.html">Login</a></li>
-								<li><a href="register.html">Register</a></li>
-								<li><a href="blog.html">Blog</a></li>
-								<li><a href="blog-single.html">Blog Single</a></li>
-								<li><a href="404.html">404</a></li>
-							</ul>
-						</li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Smartphones <b class="caret"></b></a>
-							<ul class="dropdown-menu">
-								<li><a href="items.html">HTC</a></li>
-								<li><a href="items.html">Samsung</a></li>
-								<li><a href="items.html">Apple</a></li>
-								<li><a href="items.html">Motorola</a></li>
-								<li><a href="items.html">Nokia</a></li>
-							</ul>
-						</li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Tablets <b class="caret"></b></a>
-							<ul class="dropdown-menu">
-								<li><a href="items.html">Samsung</a></li>
-								<li><a href="items.html">Micromax</a></li>
-								<li><a href="items.html">Apple</a></li>
-							</ul>
-						</li>                                      
-						<li><a href="support.html">Support</a></li>
-						<li><a href="contact.html">Contact</a></li>
+					<ul class="nav navbar-nav">                                  
+						<li><a href="/">Accueil</a></li>
+						<li><a href="/search">Recherche</a></li>          
+						<li><a href="/map">Carte du monde</a></li>
+						<li><a href="/parcoursList">Visite guidée</a></li>          
+						<li><a href="/random">Nuage de mots</a></li>
+						<li><a href="/aboutUs">A propos</a></li>          
+						<li><a href="/contact">Contact</a></li>
 					</ul>
 				</nav>
 			</div>
 		</div>
 		<!--/ Navigation End -->
+
+        @content
 		
-		<!-- Page heading starts -->
-		<div class="page-head">
-			<div class="container">
-        		@content
-			</div>
-		</div>
-		<!--/ Page Heading ends -->
-
-		<!-- Page content starts -->
-		<div class="content blog">
-		</div>
-		<!--/ Page content ends -->
-
-		<!-- Newsletter starts -->
-		<div class="container newsletter">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="well">
-						<h5><i class="fa fa-envelope"></i> Hot Offers - Don't Miss Anything!!!</h5>
-						<p>Nulla facilisi. Sed justo dui, scelerisque ut consectetur vel, eleifend id erat. Morbi auctor adipiscing tempor. Phasellus condimentum rutrum aliquet.</p>
-						<form class="form-inline" role="form">
-							<div class="form-group">
-								<input type="email" class="form-control" id="search" placeholder="Subscribe">
-							</div>
-							<button type="submit" class="btn btn-default">Subscribe</button>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!--/ Newsletter ends -->
-
 		<!-- Footer starts -->
 		<footer>
 			<div class="container">
@@ -314,26 +241,13 @@
 										<a href="#"><i class="fa fa-google-plus google-plus"></i></a> 
 									</div>
 									<hr />
-									<i class="fa fa-home"></i> &nbsp; 123, Some Area. Los Angeles, CA, 54321.
+									<i class="fa fa-home"></i> &nbsp; 21 rue d'Assas, Paris, 75006.
 									<hr />
-									<i class="fa fa-phone"></i> &nbsp; +239-3823-3434
+									<i class="fa fa-phone"></i> &nbsp; 01 45 44 09 55
 									<hr />
-									<i class="fa fa-envelope-o"></i> &nbsp; <a href="mailto:#">someonecompany.com</a>
+									<i class="fa fa-envelope-o"></i> &nbsp; <a href="mailto:#">asurmendi.jesus@@gmail.com</a>
 									<hr />
-									<div class="payment-icons">
-										<img src="img/payment/americanexpress.gif" alt="" />
-										<img src="img/payment/visa.gif" alt="" />
-										<img src="img/payment/mastercard.gif" alt="" />
-										<img src="img/payment/discover.gif" alt="" />
-										<img src="img/payment/paypal.gif" alt="" />
-									</div>
-								</div>
-							</div>
-							<div class="col-md-4">
-								<div class="widget">
-									<h5>About Us</h5>
-									<hr />
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras elementum dolor eget nisi fermentum 	quis hendrerit magna vestibulum. Curabitur pulvinar ornare vulputate scelerisque scelerisque ut consectetur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras elementum dolor eget nisi fermentum quis hendrerit magna vestibulum.</p> 
+									<i class="fa fa-link"></i> &nbsp; <a href="mailto:#">http://www.icp.fr/fr/Culture/Musee-Bible-Terre-Sainte</a>
 								</div>
 							</div>
 							<div class="col-md-4">
@@ -368,7 +282,7 @@
 						</div>
 						<hr />
 						<!-- Copyright info -->
-						<p class="copy">Copyright &copy; 2012 | <a href="#">Your Site</a> - <a href="#">Home</a> | <a href="#">About Us</a> | <a href="#">Service</a> | <a href="#">Contact Us</a></p>
+						<p class="copy">Copyright &copy; 2015 | <a href="#">FAQ</a> | <a href="#">Service</a> | <a href="#">Contact Us</a></p>
 					</div>
 				</div>
 				<div class="clearfix"></div>

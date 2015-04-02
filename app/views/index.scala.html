@@ -1,8 +1,19 @@
-@(message: String)
+@(header: String,body: String)
 
 @main("Welcome to Play") {
 
-    Ceci est un test, je repete, ceci est un test
-    @(message)
+<!-- Page heading starts -->
+<div class="page-head">
+	<div class="container">
+    	@(header)
+	</div>
+</div>
+<!--/ Page Heading ends -->
+
+<!-- Page content starts -->
+<div class="content blog">
+    @(body)
+</div>
+<!--/ Page content ends -->
 
 }
