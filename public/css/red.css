@@ -51,7 +51,7 @@ border: 1px solid #303030;
    border-right: 1px solid #303030;
 }
 .navbar .nav > li > a:hover{
-	background: #303030 !important;
+	background: #4fa65a !important;
 }
 
 .navbar .nav .active > a,
