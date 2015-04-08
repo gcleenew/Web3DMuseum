@@ -56,11 +56,17 @@ GET     /profil          			controllers.User.profil()
 
 ### Static routes ###
 
-# Nuage de mot page
+# About us page
 GET     /aboutUs                    controllers.Static.aboutUs()
 
 # Nuage de mot page
 GET     /FAQ                        controllers.Static.faq()
+
+# Informations diverses page
+GET     /informations               controllers.Static.informations()
+
+# Condition générales page
+GET     /conditionsGenerales        controllers.Static.conditionsGenerales()
 
 
 
