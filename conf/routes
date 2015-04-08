@@ -69,6 +69,8 @@ GET     /FAQ                        controllers.Static.faq()
 
 ### BackOffice routes ###
 
+# Admin index page
+GET     /mod         				controllers.BackOffice.index()
 
 # Search objet page
 GET     /mod/searchObject          	controllers.BackOffice.searchObject()

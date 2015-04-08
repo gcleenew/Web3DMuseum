@@ -21,6 +21,9 @@ background:#303030;
 }
 
 /* Header */
+header{
+	background: #2b5a30 url("../img/cream.png") repeat;
+}
 
 header .hlinks > span{
 background: #303030;
