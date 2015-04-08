@@ -311,7 +311,7 @@ text-decoration:none;
 .title{
 	margin-bottom: 8px;
 	padding-bottom: 3px;
-	border-bottom: 1px solid #f3f3f3;
+	border-bottom: 1px solid #a6a6a6;
 }
 
 .title i{
@@ -323,7 +323,6 @@ text-decoration:none;
 header{
 	color: #777;
 	padding: 8px 0px 20px 0px;
-	background: #2b5a30 url("../img/cream.png") repeat;
 }
 
 header .logo{
@@ -333,7 +332,7 @@ header .logo{
 
 header .logo h1 a, header .logo h1 a:visited, header .logo h1 a:hover{
 	font-size: 35px;
-	color: #777;
+	color: #303030;
 	text-decoration: none;
 	font-weight: 400;
 }
