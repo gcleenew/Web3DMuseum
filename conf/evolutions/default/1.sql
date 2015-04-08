@@ -27,7 +27,7 @@ create table feedback (
   id                        bigint auto_increment not null,
   contenu                   TEXT,
   email                     varchar(255),
-  due_date                  datetime,
+  creation_date             datetime,
   constraint pk_feedback primary key (id))
 ;
 
@@ -58,11 +58,11 @@ create table objet (
   poids                     double,
   localisation_actuelle     varchar(255),
   localisation_origine      varchar(255),
-  archéologue               varchar(255),
+  archeologue               varchar(255),
   date_decouverte           datetime,
   civilisation              varchar(255),
   model3d                   varchar(255),
-  due_date                  datetime,
+  creation_date             datetime,
   constraint pk_objet primary key (id))
 ;
 
@@ -85,7 +85,7 @@ create table utilisateur (
   password                  varchar(255),
   username                  varchar(255),
   rights                    varchar(255),
-  due_date                  datetime,
+  creation_date             datetime,
   constraint pk_utilisateur primary key (id))
 ;
 

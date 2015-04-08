@@ -22,4 +22,20 @@ public class ContenuSite extends Model {
     Long.class, ContenuSite.class
   ); 
 
+  
+  public Long getId() {
+      return id;
+  }
+  
+  public void setId(Long id) {
+      this.id = id;
+  }
+  
+  public String getContenu() {
+      return contenu;
+  }
+  
+  public void setContenu(String contenu) {
+      this.contenu = contenu;
+  }
 }

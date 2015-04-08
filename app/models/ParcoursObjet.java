@@ -24,4 +24,29 @@ public class ParcoursObjet extends Model {
     Long.class, ParcoursObjet.class
   ); 
 
+  
+  public Long getId() {
+      return id;
+  }
+  
+  public void setId(Long id) {
+      this.id = id;
+  }
+  
+  public Objet getObjet() {
+      return objet;
+  }
+  
+  public void setObjet(Objet objet) {
+      this.objet = objet;
+  }
+  
+  public Parcours getParcours() {
+      return parcours;
+  }
+  
+  public void setParcours(Parcours parcours) {
+      this.parcours = parcours;
+  }
+
 }
