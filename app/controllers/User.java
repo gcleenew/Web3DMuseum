@@ -18,4 +18,8 @@ public class User extends Controller {
     public static Result passwordForgotten(){
         return ok(index.render("This is the header !!!!!", "This is the body !!!!!"));
     }
+
+    public static Result profil(){
+        return ok(index.render("This is the header !!!!!", "This is the body !!!!!"));
+    }
 }

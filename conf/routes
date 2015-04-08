@@ -26,27 +26,30 @@ GET     /parcoursList               controllers.Application.parcoursList()
 # Parcours page
 GET     /parcours/:id               controllers.Application.parcours(id : Long)
 
-# Parcours page
+# Objet page
 GET     /objet/:id                  controllers.Application.objet(id : Long)
 
 # Nuage de mot page
 GET     /random                     controllers.Application.random()
 
-# Nuage de mot page
+# Contact page
 GET     /contact                    controllers.Application.contact()
 
 
 
 ### User routes ###
 
-# Nuage de mot page
+# Login page
 GET     /login                      controllers.User.login()
 
-# Nuage de mot page
+# Register page
 GET     /register                   controllers.User.register()
 
-# Nuage de mot page
+# Mot de passe oublié page
 GET     /passwordForgotten          controllers.User.passwordForgotten()
+
+# Personel page
+GET     /profil          			controllers.User.profil()
 
 
 
@@ -67,8 +70,42 @@ GET     /FAQ                        controllers.Static.faq()
 ### BackOffice routes ###
 
 
+# Search objet page
+GET     /mod/searchObject          	controllers.BackOffice.searchObject()
+
+# Resultat recherche objet page
+GET     /mod/searchObjectResult     controllers.BackOffice.searchObjectResult()
+
+# Objet page
+GET     /mod/objet/:id            	controllers.BackOffice.objet(id : Long)
+
+# Add Objet page
+GET     /mod/addObjet             	controllers.BackOffice.addObjet()
+
+# Modify text page
+GET     /mod/modifyText             controllers.BackOffice.modifyText()
+
+# Commentaire/Fait historique recherche page
+GET     /mod/searchAdd             	controllers.BackOffice.searchAdd()
+
+# Modify text page
+GET     /mod/searchAddResult       	controllers.BackOffice.searchAddResult()
+
+# Commentaire/Fait historique modification page
+GET     /mod/feedback             	controllers.BackOffice.feedback()
+
+# Liste parcours page
+GET     /mod/listParcours          	controllers.BackOffice.listParcours()
+
+# Search parcours page
+GET     /mod/parcours/:id           controllers.BackOffice.parcours(id : Long)
 
 
+# Liste parcours page
+GET     /admin/stats             	controllers.BackOffice.stats()
+
+# Liste parcours page
+GET     /admin/users             	controllers.BackOffice.users()
 
 
 
