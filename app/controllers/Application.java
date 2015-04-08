@@ -42,13 +42,4 @@ public class Application extends Controller {
     public static Result contact() {
         return ok(index.render("This is the header !!!!!", "This is the body !!!!!"));
     }
-
-    public static Result login() {
-        return ok(index.render("This is the header !!!!!", "This is the body !!!!!"));
-    }
-
-    public static Result register() {
-        return ok(index.render("This is the header !!!!!", "This is the body !!!!!"));
-    }
-
 }

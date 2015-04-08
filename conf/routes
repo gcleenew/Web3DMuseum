@@ -35,11 +35,18 @@ GET     /random                     controllers.Application.random()
 # Nuage de mot page
 GET     /contact                    controllers.Application.contact()
 
-# Nuage de mot page
-GET     /login                      controllers.Application.login()
+
+
+### User routes ###
 
 # Nuage de mot page
-GET     /register                   controllers.Application.register()
+GET     /login                      controllers.User.login()
+
+# Nuage de mot page
+GET     /register                   controllers.User.register()
+
+# Nuage de mot page
+GET     /passwordForgotten          controllers.User.passwordForgotten()
 
 
 

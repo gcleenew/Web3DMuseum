@@ -24,4 +24,29 @@ public class Image extends Model {
     Long.class, Image.class
   ); 
 
+  
+  public Long getId() {
+      return id;
+  }
+  
+  public void setId(Long id) {
+      this.id = id;
+  }
+  
+  public String getLien() {
+      return lien;
+  }
+  
+  public void setLein(String lien) {
+      this.lien = lien;
+  }
+  
+  public Objet getObjet() {
+      return objet;
+  }
+  
+  public void setObjet(Objet objet) {
+      this.objet = objet;
+  }
+
 }
