@@ -53,14 +53,14 @@ public class Objet extends Model {
    joinColumns=@JoinColumn(name="objet1"),
    inverseJoinColumns=@JoinColumn(name="objet2")
   )
-  private List<Objet> statEnfants;
+  public List<Objet> statEnfants;
 
   @ManyToMany
   @JoinTable(name="statistique_objet",
    joinColumns=@JoinColumn(name="objet2"),
    inverseJoinColumns=@JoinColumn(name="objet1")
   )
-  private List<Objet> statParents;
+  public List<Objet> statParents;
 
 
   @ManyToMany
@@ -68,25 +68,38 @@ public class Objet extends Model {
    joinColumns=@JoinColumn(name="oeuvre_principale"),
    inverseJoinColumns=@JoinColumn(name="oeuvre_inspiree")
   )
-  private List<Objet> enfants;
+  public List<Objet> enfants;
 
   @ManyToMany
   @JoinTable(name="oeuvre_composite",
    joinColumns=@JoinColumn(name="oeuvre_inspiree"),
    inverseJoinColumns=@JoinColumn(name="oeuvre_principale")
   )
-  private List<Objet> parents;
-
-
+  public List<Objet> parents;
 
   @OneToMany(cascade=CascadeType.ALL, mappedBy="objet")
-  List<Image> images = new ArrayList<Image>();
+  public List<Favori> favoris = new ArrayList<Favori>();
 
   @OneToMany(cascade=CascadeType.ALL, mappedBy="objet")
-  List<Video> videos = new ArrayList<Video>();
+  public List<Historique> historiques = new ArrayList<Historique>();
 
   @OneToMany(cascade=CascadeType.ALL, mappedBy="objet")
-  List<Audio> audios = new ArrayList<Audio>();
+  public List<Image> images = new ArrayList<Image>();
+
+  @OneToMany(cascade=CascadeType.ALL, mappedBy="objet")
+  public List<Video> videos = new ArrayList<Video>();
+
+  @OneToMany(cascade=CascadeType.ALL, mappedBy="objet")
+  public List<Audio> audios = new ArrayList<Audio>();
+
+  @OneToMany(cascade=CascadeType.ALL, mappedBy="objet")
+  public List<PropositionModification> propositionModifications = new ArrayList<PropositionModification>();
+
+  @OneToMany(cascade=CascadeType.ALL, mappedBy="objet")
+  public List<FaitHistorique> faitHistoriques = new ArrayList<FaitHistorique>();
+
+  @OneToMany(cascade=CascadeType.ALL, mappedBy="objet")
+  public List<Commentaire> commentaires = new ArrayList<Commentaire>();
 
   @Formats.DateTime(pattern="dd/MM/yyyy")
   public Date creationDate = new Date();
@@ -275,7 +288,21 @@ public class Objet extends Model {
       this.parents = parents;
   }
 
+  public List<Favori> getFavoris() {
+      return favoris;
+  }
+  
+  public void setFavoris(List<Favori> favoris) {
+      this.favoris = favoris;
+  }
 
+  public List<Historique> getHistoriques() {
+      return historiques;
+  }
+  
+  public void setHistoriques(List<Historique> historiques) {
+      this.historiques = historiques;
+  }
   
   public List<Image> getImages() {
       return images;
@@ -285,8 +312,6 @@ public class Objet extends Model {
       this.images = images;
   }
 
-
-  
   public List<Video> getVideos() {
       return videos;
   }
@@ -295,8 +320,6 @@ public class Objet extends Model {
       this.videos = videos;
   }
 
-
-  
   public List<Audio> getAudios() {
       return audios;
   }
@@ -305,6 +328,29 @@ public class Objet extends Model {
       this.audios = audios;
   }
 
+  public List<PropositionModification> getPropositionModifications() {
+      return propositionModifications;
+  }
+  
+  public void setPropositionModifications(List<PropositionModification> propositionModifications) {
+      this.propositionModifications = propositionModifications;
+  }
+
+  public List<FaitHistorique> getFaitHistoriques() {
+      return faitHistoriques;
+  }
+  
+  public void setFaitHistoriques(List<FaitHistorique> faitHistoriques) {
+      this.faitHistoriques = faitHistoriques;
+  }
+
+  public List<Commentaire> getCommentaires() {
+      return commentaires;
+  }
+  
+  public void setCommentaires(List<Commentaire> commentaires) {
+      this.commentaires = commentaires;
+  }
 
   public Date getCreationDate() {
       return creationDate;
