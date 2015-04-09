@@ -15,10 +15,10 @@ public class ParcoursObjet extends Model {
   public Long id;
 
   @ManyToOne
-  private Objet objet;
+  public Objet objet;
 
   @ManyToOne
-  private Parcours parcours;
+  public Parcours parcours;
   
   public static Finder<Long,ParcoursObjet> find = new Finder<Long,ParcoursObjet>(
     Long.class, ParcoursObjet.class
