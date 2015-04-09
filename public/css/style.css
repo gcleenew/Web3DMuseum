@@ -1405,6 +1405,7 @@ footer .widget{
 footer .copy{
 	margin-bottom: 5px;
 	font-size: 11px;
+	text-align: center;
 }
 
 footer .payment-icons img{
