@@ -15,10 +15,10 @@ public class Historique extends Model {
   public Long id;
 
   @ManyToOne
-  private Utilisateur utilisateur;
+  public Utilisateur utilisateur;
 
   @ManyToOne
-  private Objet objet;
+  public Objet objet;
   
   public static Finder<Long,Historique> find = new Finder<Long,Historique>(
     Long.class, Historique.class

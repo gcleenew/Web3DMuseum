@@ -8,11 +8,17 @@ import play.data.format.*;
 import play.data.validation.*;
 
 @Entity 
-public class Favori extends Model {
+public class FaitHistorique extends Model {
 
   @Id
   @Constraints.Min(10)
   public Long id;
+
+  @Constraints.Required
+  @Column(columnDefinition = "TEXT")
+  public String contenu;
+
+  public boolean valide;
 
   @ManyToOne
   public Utilisateur utilisateur;
@@ -20,8 +26,8 @@ public class Favori extends Model {
   @ManyToOne
   public Objet objet;
   
-  public static Finder<Long,Favori> find = new Finder<Long,Favori>(
-    Long.class, Favori.class
+  public static Finder<Long,FaitHistorique> find = new Finder<Long,FaitHistorique>(
+    Long.class, FaitHistorique.class
   ); 
 
   
@@ -32,7 +38,23 @@ public class Favori extends Model {
   public void setId(Long id) {
       this.id = id;
   }
+
+  public String getContenu() {
+      return contenu;
+  }
   
+  public void setContenu(String contenu) {
+      this.contenu = contenu;
+  }
+
+  public boolean getValide() {
+      return valide;
+  }
+  
+  public void setValide(boolean valide) {
+      this.valide = valide;
+  }
+
   public Utilisateur getUtilisateur() {
       return utilisateur;
   }

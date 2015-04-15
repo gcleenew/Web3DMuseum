@@ -7,6 +7,9 @@ import views.html.*;
 
 public class BackOffice extends Controller {
 
+    public static Result index() {
+        return ok(indexAdmin.render("This is the ADMIN header !", "This is the ADMIN body !"));
+    }
 
     public static Result searchObject() {
         return ok(index.render("This is the header !!!!!", "This is the body !!!!!"));

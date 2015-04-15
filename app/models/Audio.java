@@ -18,7 +18,7 @@ public class Audio extends Model {
   public String lien;
 
   @ManyToOne
-  private Objet objet;
+  public Objet objet;
   
   public static Finder<Long,Audio> find = new Finder<Long,Audio>(
     Long.class, Audio.class

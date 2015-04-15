@@ -18,7 +18,7 @@ public class Video extends Model {
   public String lien;
 
   @ManyToOne
-  private Objet objet;
+  public Objet objet;
   
   public static Finder<Long,Video> find = new Finder<Long,Video>(
     Long.class, Video.class

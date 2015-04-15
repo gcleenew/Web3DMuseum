@@ -10,10 +10,28 @@ create table audio (
   constraint pk_audio primary key (id))
 ;
 
+create table commentaire (
+  id                        bigint auto_increment not null,
+  contenu                   TEXT,
+  valide                    tinyint(1) default 0,
+  utilisateur_id            bigint,
+  objet_id                  integer,
+  constraint pk_commentaire primary key (id))
+;
+
 create table contenu_site (
   id                        bigint auto_increment not null,
   contenu                   TEXT,
   constraint pk_contenu_site primary key (id))
+;
+
+create table fait_historique (
+  id                        bigint auto_increment not null,
+  contenu                   TEXT,
+  valide                    tinyint(1) default 0,
+  utilisateur_id            bigint,
+  objet_id                  integer,
+  constraint pk_fait_historique primary key (id))
 ;
 
 create table favori (
@@ -79,6 +97,15 @@ create table parcours_objet (
   constraint pk_parcours_objet primary key (id))
 ;
 
+create table proposition_modification (
+  id                        bigint auto_increment not null,
+  nom_champ                 varchar(255),
+  nouveau_contenu           TEXT,
+  utilisateur_id            bigint,
+  objet_id                  integer,
+  constraint pk_proposition_modification primary key (id))
+;
+
 create table utilisateur (
   id                        bigint auto_increment not null,
   email                     varchar(255),
@@ -110,22 +137,34 @@ create table oeuvre_composite (
 ;
 alter table audio add constraint fk_audio_objet_1 foreign key (objet_id) references objet (id) on delete restrict on update restrict;
 create index ix_audio_objet_1 on audio (objet_id);
-alter table favori add constraint fk_favori_utilisateur_2 foreign key (utilisateur_id) references utilisateur (id) on delete restrict on update restrict;
-create index ix_favori_utilisateur_2 on favori (utilisateur_id);
-alter table favori add constraint fk_favori_objet_3 foreign key (objet_id) references objet (id) on delete restrict on update restrict;
-create index ix_favori_objet_3 on favori (objet_id);
-alter table historique add constraint fk_historique_utilisateur_4 foreign key (utilisateur_id) references utilisateur (id) on delete restrict on update restrict;
-create index ix_historique_utilisateur_4 on historique (utilisateur_id);
-alter table historique add constraint fk_historique_objet_5 foreign key (objet_id) references objet (id) on delete restrict on update restrict;
-create index ix_historique_objet_5 on historique (objet_id);
-alter table image add constraint fk_image_objet_6 foreign key (objet_id) references objet (id) on delete restrict on update restrict;
-create index ix_image_objet_6 on image (objet_id);
-alter table parcours_objet add constraint fk_parcours_objet_objet_7 foreign key (objet_id) references objet (id) on delete restrict on update restrict;
-create index ix_parcours_objet_objet_7 on parcours_objet (objet_id);
-alter table parcours_objet add constraint fk_parcours_objet_parcours_8 foreign key (parcours_id) references parcours (id) on delete restrict on update restrict;
-create index ix_parcours_objet_parcours_8 on parcours_objet (parcours_id);
-alter table video add constraint fk_video_objet_9 foreign key (objet_id) references objet (id) on delete restrict on update restrict;
-create index ix_video_objet_9 on video (objet_id);
+alter table commentaire add constraint fk_commentaire_utilisateur_2 foreign key (utilisateur_id) references utilisateur (id) on delete restrict on update restrict;
+create index ix_commentaire_utilisateur_2 on commentaire (utilisateur_id);
+alter table commentaire add constraint fk_commentaire_objet_3 foreign key (objet_id) references objet (id) on delete restrict on update restrict;
+create index ix_commentaire_objet_3 on commentaire (objet_id);
+alter table fait_historique add constraint fk_fait_historique_utilisateur_4 foreign key (utilisateur_id) references utilisateur (id) on delete restrict on update restrict;
+create index ix_fait_historique_utilisateur_4 on fait_historique (utilisateur_id);
+alter table fait_historique add constraint fk_fait_historique_objet_5 foreign key (objet_id) references objet (id) on delete restrict on update restrict;
+create index ix_fait_historique_objet_5 on fait_historique (objet_id);
+alter table favori add constraint fk_favori_utilisateur_6 foreign key (utilisateur_id) references utilisateur (id) on delete restrict on update restrict;
+create index ix_favori_utilisateur_6 on favori (utilisateur_id);
+alter table favori add constraint fk_favori_objet_7 foreign key (objet_id) references objet (id) on delete restrict on update restrict;
+create index ix_favori_objet_7 on favori (objet_id);
+alter table historique add constraint fk_historique_utilisateur_8 foreign key (utilisateur_id) references utilisateur (id) on delete restrict on update restrict;
+create index ix_historique_utilisateur_8 on historique (utilisateur_id);
+alter table historique add constraint fk_historique_objet_9 foreign key (objet_id) references objet (id) on delete restrict on update restrict;
+create index ix_historique_objet_9 on historique (objet_id);
+alter table image add constraint fk_image_objet_10 foreign key (objet_id) references objet (id) on delete restrict on update restrict;
+create index ix_image_objet_10 on image (objet_id);
+alter table parcours_objet add constraint fk_parcours_objet_objet_11 foreign key (objet_id) references objet (id) on delete restrict on update restrict;
+create index ix_parcours_objet_objet_11 on parcours_objet (objet_id);
+alter table parcours_objet add constraint fk_parcours_objet_parcours_12 foreign key (parcours_id) references parcours (id) on delete restrict on update restrict;
+create index ix_parcours_objet_parcours_12 on parcours_objet (parcours_id);
+alter table proposition_modification add constraint fk_proposition_modification_utilisateur_13 foreign key (utilisateur_id) references utilisateur (id) on delete restrict on update restrict;
+create index ix_proposition_modification_utilisateur_13 on proposition_modification (utilisateur_id);
+alter table proposition_modification add constraint fk_proposition_modification_objet_14 foreign key (objet_id) references objet (id) on delete restrict on update restrict;
+create index ix_proposition_modification_objet_14 on proposition_modification (objet_id);
+alter table video add constraint fk_video_objet_15 foreign key (objet_id) references objet (id) on delete restrict on update restrict;
+create index ix_video_objet_15 on video (objet_id);
 
 
 
@@ -143,7 +182,11 @@ SET FOREIGN_KEY_CHECKS=0;
 
 drop table audio;
 
+drop table commentaire;
+
 drop table contenu_site;
+
+drop table fait_historique;
 
 drop table favori;
 
@@ -162,6 +205,8 @@ drop table oeuvre_composite;
 drop table parcours;
 
 drop table parcours_objet;
+
+drop table proposition_modification;
 
 drop table utilisateur;
 

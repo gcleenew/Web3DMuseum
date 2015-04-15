@@ -18,7 +18,7 @@ public class Parcours extends Model {
   public String nom;
 
   @OneToMany(cascade=CascadeType.ALL, mappedBy="parcours")
-  List<ParcoursObjet> parcoursObjets = new ArrayList<ParcoursObjet>();
+  public List<ParcoursObjet> parcoursObjets = new ArrayList<ParcoursObjet>();
   
   public static Finder<Long,Parcours> find = new Finder<Long,Parcours>(
     Long.class, Parcours.class

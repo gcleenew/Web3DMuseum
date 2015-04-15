@@ -18,7 +18,7 @@ public class Image extends Model {
   public String lien;
 
   @ManyToOne
-  private Objet objet;
+  public Objet objet;
   
   public static Finder<Long,Image> find = new Finder<Long,Image>(
     Long.class, Image.class

@@ -25,6 +25,21 @@ public class Utilisateur extends Model {
 
   public String rights;
 
+  @OneToMany(cascade=CascadeType.ALL, mappedBy="utilisateur")
+  public List<Favori> favoris = new ArrayList<Favori>();
+
+  @OneToMany(cascade=CascadeType.ALL, mappedBy="utilisateur")
+  public List<Historique> historiques = new ArrayList<Historique>();
+
+  @OneToMany(cascade=CascadeType.ALL, mappedBy="objet")
+  public List<PropositionModification> propositionModifications = new ArrayList<PropositionModification>();
+
+  @OneToMany(cascade=CascadeType.ALL, mappedBy="objet")
+  public List<FaitHistorique> faitHistoriques = new ArrayList<FaitHistorique>();
+
+  @OneToMany(cascade=CascadeType.ALL, mappedBy="objet")
+  public List<Commentaire> commentaires = new ArrayList<Commentaire>();
+
   @Formats.DateTime(pattern="dd/MM/yyyy")
   public Date creationDate = new Date();
   
@@ -70,6 +85,46 @@ public class Utilisateur extends Model {
   
   public void setRights(String rights) {
       this.rights = rights;
+  }
+
+  public List<Favori> getFavoris() {
+      return favoris;
+  }
+  
+  public void setFavoris(List<Favori> favoris) {
+      this.favoris = favoris;
+  }
+
+  public List<Historique> getHistoriques() {
+      return historiques;
+  }
+  
+  public void setHistoriques(List<Historique> historiques) {
+      this.historiques = historiques;
+  }
+
+  public List<PropositionModification> getPropositionModifications() {
+      return propositionModifications;
+  }
+  
+  public void setPropositionModifications(List<PropositionModification> propositionModifications) {
+      this.propositionModifications = propositionModifications;
+  }
+
+  public List<FaitHistorique> getFaitHistoriques() {
+      return faitHistoriques;
+  }
+  
+  public void setFaitHistoriques(List<FaitHistorique> faitHistoriques) {
+      this.faitHistoriques = faitHistoriques;
+  }
+
+  public List<Commentaire> getCommentaires() {
+      return commentaires;
+  }
+  
+  public void setCommentaires(List<Commentaire> commentaires) {
+      this.commentaires = commentaires;
   }
 
   public Date getCreationDate() {
