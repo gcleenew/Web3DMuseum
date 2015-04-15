@@ -6,7 +6,7 @@
 create table audio (
   id                        bigint auto_increment not null,
   lien                      varchar(255),
-  objet_id                  bigint,
+  objet_id                  integer,
   constraint pk_audio primary key (id))
 ;
 
@@ -15,7 +15,7 @@ create table commentaire (
   contenu                   TEXT,
   valide                    tinyint(1) default 0,
   utilisateur_id            bigint,
-  objet_id                  bigint,
+  objet_id                  integer,
   constraint pk_commentaire primary key (id))
 ;
 
@@ -30,14 +30,14 @@ create table fait_historique (
   contenu                   TEXT,
   valide                    tinyint(1) default 0,
   utilisateur_id            bigint,
-  objet_id                  bigint,
+  objet_id                  integer,
   constraint pk_fait_historique primary key (id))
 ;
 
 create table favori (
   id                        bigint auto_increment not null,
   utilisateur_id            bigint,
-  objet_id                  bigint,
+  objet_id                  integer,
   constraint pk_favori primary key (id))
 ;
 
@@ -52,19 +52,19 @@ create table feedback (
 create table historique (
   id                        bigint auto_increment not null,
   utilisateur_id            bigint,
-  objet_id                  bigint,
+  objet_id                  integer,
   constraint pk_historique primary key (id))
 ;
 
 create table image (
   id                        bigint auto_increment not null,
   lien                      varchar(255),
-  objet_id                  bigint,
+  objet_id                  integer,
   constraint pk_image primary key (id))
 ;
 
 create table objet (
-  id                        bigint auto_increment not null,
+  id                        integer auto_increment not null,
   nom                       varchar(255),
   reference                 varchar(255),
   description               TEXT,
@@ -92,7 +92,7 @@ create table parcours (
 
 create table parcours_objet (
   id                        bigint auto_increment not null,
-  objet_id                  bigint,
+  objet_id                  integer,
   parcours_id               bigint,
   constraint pk_parcours_objet primary key (id))
 ;
@@ -102,7 +102,7 @@ create table proposition_modification (
   nom_champ                 varchar(255),
   nouveau_contenu           TEXT,
   utilisateur_id            bigint,
-  objet_id                  bigint,
+  objet_id                  integer,
   constraint pk_proposition_modification primary key (id))
 ;
 
@@ -119,20 +119,20 @@ create table utilisateur (
 create table video (
   id                        bigint auto_increment not null,
   lien                      varchar(255),
-  objet_id                  bigint,
+  objet_id                  integer,
   constraint pk_video primary key (id))
 ;
 
 
 create table statistique_objet (
-  objet1                         bigint not null,
-  objet2                         bigint not null,
+  objet1                         integer not null,
+  objet2                         integer not null,
   constraint pk_statistique_objet primary key (objet1, objet2))
 ;
 
 create table oeuvre_composite (
-  oeuvre_principale              bigint not null,
-  oeuvre_inspiree                bigint not null,
+  oeuvre_principale              integer not null,
+  oeuvre_inspiree                integer not null,
   constraint pk_oeuvre_composite primary key (oeuvre_principale, oeuvre_inspiree))
 ;
 alter table audio add constraint fk_audio_objet_1 foreign key (objet_id) references objet (id) on delete restrict on update restrict;

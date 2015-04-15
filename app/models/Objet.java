@@ -7,12 +7,21 @@ import play.db.ebean.*;
 import play.data.format.*;
 import play.data.validation.*;
 
+class ObjetComparator implements Comparator<Objet> {
+  @Override
+  public int compare(Objet first, Objet second) {
+    return new Integer(first.getId()).compareTo(new Integer(second.getId()));
+  }
+  
+}
+
+
 @Entity 
 public class Objet extends Model {
 
   @Id
   @Constraints.Min(10)
-  public Long id;
+  public int id;
   
   @Constraints.Required
   public String nom;
@@ -92,7 +101,6 @@ public class Objet extends Model {
   @OneToMany(cascade=CascadeType.ALL, mappedBy="objet")
   public List<Audio> audios = new ArrayList<Audio>();
 
-  @OneToMany(cascade=CascadeType.ALL, mappedBy="objet")
   public List<PropositionModification> propositionModifications = new ArrayList<PropositionModification>();
 
   @OneToMany(cascade=CascadeType.ALL, mappedBy="objet")
@@ -104,16 +112,16 @@ public class Objet extends Model {
   @Formats.DateTime(pattern="dd/MM/yyyy")
   public Date creationDate = new Date();
   
-  public static Finder<Long,Objet> find = new Finder<Long,Objet>(
-    Long.class, Objet.class
+  public static Finder<Integer,Objet> find = new Finder<Integer,Objet>(
+    Integer.class, Objet.class
   ); 
 
   
-  public Long getId() {
+  public int getId() {
       return id;
   }
   
-  public void setId(Long id) {
+  public void setId(int id) {
       this.id = id;
   }
 
