@@ -18,24 +18,11 @@ public class ContenuSite extends Model {
   @Column(columnDefinition = "TEXT")
   public String contenu;
   
+  @Constraints.Required
+  public String emplacement;
+  
   public static Finder<Long,ContenuSite> find = new Finder<Long,ContenuSite>(
     Long.class, ContenuSite.class
-  ); 
+  );
 
-  
-  public Long getId() {
-      return id;
-  }
-  
-  public void setId(Long id) {
-      this.id = id;
-  }
-  
-  public String getContenu() {
-      return contenu;
-  }
-  
-  public void setContenu(String contenu) {
-      this.contenu = contenu;
-  }
 }

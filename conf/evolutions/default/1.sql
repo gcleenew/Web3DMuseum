@@ -22,6 +22,7 @@ create table commentaire (
 create table contenu_site (
   id                        bigint auto_increment not null,
   contenu                   TEXT,
+  emplacement               varchar(255),
   constraint pk_contenu_site primary key (id))
 ;
 
