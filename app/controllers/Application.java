@@ -36,7 +36,7 @@ public class Application extends Controller {
     }
 
     public static Result objet(Long id) {
-        return ok(index.render("This is the header !", "This is the body !"));
+        return ok(objet.render("Objet", "objet 1"));
     }
 
     public static Result contact() {
