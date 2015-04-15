@@ -4,6 +4,7 @@ import play.*;
 import play.mvc.*;
 
 import views.html.*;
+import models.*;
 
 public class Application extends Controller {
 
@@ -36,7 +37,9 @@ public class Application extends Controller {
     }
 
     public static Result objet(Long id) {
-        return ok(objet.render("Objet", "objet 1"));
+        Objet objet1 = Objet.find.byId(id);
+
+        return ok(objet.render("Objet", objet1));
     }
 
     public static Result contact() {

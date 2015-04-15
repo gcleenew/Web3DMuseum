@@ -68,7 +68,7 @@ create table objet (
   nom                       varchar(255),
   reference                 varchar(255),
   description               TEXT,
-  type                      varchar(255),
+  type_objet                varchar(255),
   matiere                   varchar(255),
   largeur                   double,
   longeur                   double,

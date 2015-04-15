@@ -1,4 +1,4 @@
-@(header: String,body: String)
+@(header: String,objet: models.Objet)
 
 @main("Welcome to Play") {
 
@@ -12,49 +12,155 @@
 
 <!-- Page content starts -->
 <div class="content blog">
-    @(body)
+    
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
-			<div class="col-md-6">
-				<a href="#">
-				    <img src="http://placehold.it/450x450" class="img-responsive" alt="Responsive image">
-				</a>
+			<div class="col-md-6 col-sm-6">
+				<img src="http://placehold.it/450x450" class="img-responsive" alt="Responsive image">
 			</div>
 			<div class="col-md-6">
-				<h3>Nom de l'objet</h3>
-				Reference: N0158 <br>
-				Type: Vase <br>
-				Matière: Terre cuite <br>
-				Largeur: <br>
-				Longeur: <br>
-				Longeur: <br>
-				Hauteur: <br>
-				Poid: <br>
-				Localisation actuelle: <br>
-				Localisation origine: <br>
-				Archéologue: <br>
-				Date de découverte: <br>
-				Civilisation: <br>
+
+				<table class="table table-striped tcart">
+					  <tbody>
+					  	<h2>@(objet.nom)</h2>
+						<tr>
+						  <td><strong><h5>Reference</h5></strong></td>
+						  <td>@(objet.reference)</td>
+						</tr>
+						<tr>
+						  <td><strong>Type</strong></td>
+						  <td>
+							@(objet.type_objet)
+						  </td>
+						</tr>
+						<tr>
+						  <td><strong>Matière</strong></td>
+						  <td>
+							@(objet.matiere)
+						  </td>
+						</tr>
+						<tr>
+						  <td><strong>Largeur</strong></td>
+						  <td>
+						  	@(objet.largeur)
+						  </td>
+						</tr>
+						<tr>
+						  <td><strong>Longeur</strong></td>
+						  <td>
+						  	@(objet.longeur)
+						  </td>
+						</tr>
+						<tr>
+						  <td><strong>Hauteur</strong></td>
+						  <td>
+							@(objet.hauteur)
+						  </td>
+						</tr>
+						<tr>
+						  <td><strong>Poid</strong></td>
+						  <td>
+						  	@(objet.poids)
+						  </td>
+						</tr>
+						<tr>
+						  <td><strong>Localisation actuelle:</strong></td>
+						  <td>
+						  	@(objet.localisationActuelle)
+						  </td>
+						</tr>
+						<tr>
+						  <td><strong>Localisation origine</strong></td>
+						  <td>
+						  	@(objet.localisationOrigine)
+						  </td>
+						</tr>  
+						<tr>
+						  <td><strong>Archéologue</strong></td>
+						  <td>
+						  	@(objet.archeologue)
+						  </td>
+						</tr>  
+						<tr>
+						  <td><strong>Date de découverte</strong></td>
+						  <td>
+						  	@(objet.dateDecouverte)
+						  </td>
+						</tr>  
+						<tr>
+						  <td><strong>Civilisation</strong></td>
+						  <td>
+						  	@(objet.civilisation)
+						  </td>
+						</tr>                                                                                               
+					  </tbody>
+					</table>
 
 				<div class="col-md-offset-9">
 
 					<div class="hlinks">
-						<span class="lr"><a href="#enrichir" role="button" data-toggle="modal">Enrichir l'oeuvre</a></span>
+						<span class="lr"><a href="#enrichir" role="button" data-toggle="modal">+Enrichir l'oeuvre</a></span>
 					</div>
 				</div>
 
 			</div>
-
+			<br/>
 			<div class="col-md-12">
-				<br>
-				<h1>Description</h1>
-				<br>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sed mi eleifend, porta magna sit amet, convallis metus. Donec dui tortor, tristique sit amet dictum eget, consectetur vel tellus. Morbi tincidunt, elit eget posuere venenatis, risus ex lobortis mauris, sit amet tincidunt tortor urna eget massa. Duis ullamcorper elit luctus, fringilla turpis nec, varius metus. Curabitur dictum molestie nunc, lacinia bibendum nibh efficitur interdum. Proin ac massa eu velit interdum ultricies sit amet et ante. Curabitur vitae sem vel odio rhoncus dictum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris dignissim, ipsum vulputate maximus bibendum, est metus aliquam nibh, sed egestas quam nulla eu diam. Vestibulum rhoncus elit tempor suscipit sodales. Donec in viverra lorem. Nunc dapibus tortor non justo luctus laoreet. Aenean eu orci fermentum, rutrum ex eu, euismod erat.</p>
-			</div>
-			<div class="col-md-12">
-				<ul class="nav nav-tabs nav-justified">
-				  ...
+				<ul class="nav nav-tabs">
+				  <!-- Use uniqe name for "href" in below anchor tags -->
+				  <li class="active"><a href="#tab1" data-toggle="tab">Description</a></li>
+				  <li><a href="#tab2" data-toggle="tab">Medias</a></li>
+				  <li><a href="#tab3" data-toggle="tab">Faits historiques</a></li>
+				  <li><a href="#tab4" data-toggle="tab">Commentaires</a></li>
 				</ul>
+
+				<!-- Tab Content -->
+				<div class="tab-content">
+					<div class="tab-pane active" id="tab1">
+						<h5>Description</h5>
+						<p>@(objet.description)</p>
+					</div>
+					<div class="tab-pane" id="tab2">
+						<h5>Medias</h5>
+						test
+					</div>
+					<div class="tab-pane" id="tab3">
+						<h5>Faits historiques</h5>
+						test2
+					</div>
+					<div class="tab-pane" id="tab4">
+						<h5>Commentaires</h5>
+						<div class="item-review">
+						  	<h5>Ravi Kumar - <span class="color">4/5</span></h5>
+						  	<p class="rmeta">27/1/2012</p>
+						  	<p>Suspendisse potenti. Morbi ac felis nec mauris imperdiet fermentum. Aenean sodales augue ac lacus hendrerit sed rhoncus erat hendrerit. Vivamus vel ultricies elit. Curabitur lacinia nulla vel tellus elementum non mollis justo aliquam.</p>
+						</div>
+						<hr />
+						<h5 class="title">Ecrire un commentaire</h5>
+						<div class="form form-small">
+						  	<!-- Review form (not working)-->
+						  	<form class="form-horizontal">
+							  	<!-- Review -->
+							  	<div class="form-group">
+									<label class="control-label col-md-3" for="name">Votre commentaire</label>
+									<div class="col-md-6">
+								  		<textarea class="form-control"></textarea>
+									</div>
+							  	</div>
+							  	<!-- Buttons -->
+							  	<div class="form-group">
+								 	<!-- Buttons -->
+								 	<div class="col-md-6 col-md-offset-3">
+										<button type="submit" class="btn btn-default">Envoyer</button>
+										<button type="reset" class="btn btn-default">Annuler</button>
+									</div>
+							  	</div>
+						  	</form>
+						</div> 
+					</div>
+				</div>
+
+
 			</div>
       </div>
     </div>

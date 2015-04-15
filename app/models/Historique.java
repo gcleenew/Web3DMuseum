@@ -23,30 +23,4 @@ public class Historique extends Model {
   public static Finder<Long,Historique> find = new Finder<Long,Historique>(
     Long.class, Historique.class
   ); 
-
-  
-  public Long getId() {
-      return id;
-  }
-  
-  public void setId(Long id) {
-      this.id = id;
-  }
-  
-  public Utilisateur getUtilisateur() {
-      return utilisateur;
-  }
-  
-  public void setUtilisateur(Utilisateur utilisateur) {
-      this.utilisateur = utilisateur;
-  }
-  
-  public Objet getObjet() {
-      return objet;
-  }
-  
-  public void setObjet(Objet objet) {
-      this.objet = objet;
-  }
-
 }
