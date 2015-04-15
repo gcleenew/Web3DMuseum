@@ -7,12 +7,21 @@ import play.db.ebean.*;
 import play.data.format.*;
 import play.data.validation.*;
 
+class ObjetComparator implements Comparator<Objet> {
+  @Override
+  public int compare(Objet first, Objet second) {
+    return new Integer(first.getId()).compareTo(new Integer(second.getId()));
+  }
+  
+}
+
+
 @Entity 
 public class Objet extends Model {
 
   @Id
   @Constraints.Min(10)
-  public Long id;
+  public int id;
   
   @Constraints.Required
   public String nom;
@@ -53,14 +62,14 @@ public class Objet extends Model {
    joinColumns=@JoinColumn(name="objet1"),
    inverseJoinColumns=@JoinColumn(name="objet2")
   )
-  private List<Objet> statEnfants;
+  public List<Objet> statEnfants;
 
   @ManyToMany
   @JoinTable(name="statistique_objet",
    joinColumns=@JoinColumn(name="objet2"),
    inverseJoinColumns=@JoinColumn(name="objet1")
   )
-  private List<Objet> statParents;
+  public List<Objet> statParents;
 
 
   @ManyToMany
@@ -68,39 +77,39 @@ public class Objet extends Model {
    joinColumns=@JoinColumn(name="oeuvre_principale"),
    inverseJoinColumns=@JoinColumn(name="oeuvre_inspiree")
   )
-  private List<Objet> enfants;
+  public List<Objet> enfants;
 
   @ManyToMany
   @JoinTable(name="oeuvre_composite",
    joinColumns=@JoinColumn(name="oeuvre_inspiree"),
    inverseJoinColumns=@JoinColumn(name="oeuvre_principale")
   )
-  private List<Objet> parents;
+  public List<Objet> parents;
 
 
 
   @OneToMany(cascade=CascadeType.ALL, mappedBy="objet")
-  List<Image> images = new ArrayList<Image>();
+  public List<Image> images = new ArrayList<Image>();
 
   @OneToMany(cascade=CascadeType.ALL, mappedBy="objet")
-  List<Video> videos = new ArrayList<Video>();
+  public List<Video> videos = new ArrayList<Video>();
 
   @OneToMany(cascade=CascadeType.ALL, mappedBy="objet")
-  List<Audio> audios = new ArrayList<Audio>();
+  public List<Audio> audios = new ArrayList<Audio>();
 
   @Formats.DateTime(pattern="dd/MM/yyyy")
   public Date creationDate = new Date();
   
-  public static Finder<Long,Objet> find = new Finder<Long,Objet>(
-    Long.class, Objet.class
+  public static Finder<Integer,Objet> find = new Finder<Integer,Objet>(
+    Integer.class, Objet.class
   ); 
 
   
-  public Long getId() {
+  public int getId() {
       return id;
   }
   
-  public void setId(Long id) {
+  public void setId(int id) {
       this.id = id;
   }
 
