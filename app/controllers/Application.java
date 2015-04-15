@@ -25,11 +25,15 @@ public class Application extends Controller {
         List<Objet> objets = Objet.find.all();
         int objetsSize = Collections.max(objets, new ObjetComparator()).id;
 
+        String descriptionSite = ContenuSite.find.where().eq("emplacement", "descriptionSite").findUnique().contenu;
+        String description3D   = ContenuSite.find.where().eq("emplacement", "description3D").findUnique().contenu;
+
         int i = 1;
         String firstImage  = "";
         String secondImage = "";
         String thirdImage  = "";
         String fourthImage = "";
+
 
         while( firstImage == "" ){
             i = i + aleatoireCarrousel/1300;
@@ -80,7 +84,7 @@ public class Application extends Controller {
             fourthImage = fourthObjet.images.get(0).lien;
         }
 
-        return ok(home.render(firstImage, secondImage, thirdImage, fourthImage, "This is the body !"));
+        return ok(home.render(firstImage, secondImage, thirdImage, fourthImage, descriptionSite, description3D));
     }
 
     public static Result search() {
@@ -114,6 +118,6 @@ public class Application extends Controller {
     }
 
     public static Result contact() {
-        return ok(index.render("This is the header !", "This is the body !"));
+        return ok(contact.render());
     }
 }
