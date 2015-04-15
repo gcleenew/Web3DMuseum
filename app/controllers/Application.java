@@ -103,7 +103,7 @@ public class Application extends Controller {
         return ok(index.render("This is the header !", "This is the body !"));
     }
 
-    public static Result parcours(Long id) {
+    public static Result parcours(Integer id) {
         return ok(index.render("This is the header !", "This is the body !"));
     }
 
@@ -111,7 +111,7 @@ public class Application extends Controller {
         return ok(index.render("This is the header !", "This is the body !"));
     }
 
-    public static Result objet(Long id) {
+    public static Result objet(Integer id) {
         Objet objet1 = Objet.find.byId(id);
 
         return ok(objet.render("Objet", objet1));

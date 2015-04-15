@@ -19,7 +19,7 @@ public class BackOffice extends Controller {
         return ok(index.render("This is the header !!!!!", "This is the body !!!!!"));
     }
 
-    public static Result objet(Long id) {
+    public static Result objet(Integer id) {
         return ok(index.render("This is the header !!!!!", "This is the body !!!!!"));
     }
 
@@ -47,7 +47,7 @@ public class BackOffice extends Controller {
         return ok(index.render("This is the header !!!!!", "This is the body !!!!!"));
     }
 
-    public static Result parcours(Long id) {
+    public static Result parcours(Integer id) {
         return ok(index.render("This is the header !!!!!", "This is the body !!!!!"));
     }
 
