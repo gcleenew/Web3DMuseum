@@ -12,7 +12,7 @@ public class Application extends Controller {
     }
 
     public static Result search() {
-        return ok(index.render("This is the header !", "This is the body !"));
+        return ok(search.render("", ""));
     }
 
     public static Result searchResult() {

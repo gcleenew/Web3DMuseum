@@ -1,0 +1,111 @@
+@(header: String,searchItem: String)
+
+@main("Welcome to Play") {
+
+<!-- Page heading starts -->
+<div class="page-head">
+	<div class="container">
+    	<h3>Rechercher un objet : @searchItem</h3>
+	</div>
+</div>
+<!--/ Page Heading ends -->
+
+<!-- Page content starts -->
+<div class="content blog">
+    
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+			
+			<form class="form-horizontal col-md-6 col-md-offset-3" action="">
+				<div class="form-group">
+					<h4 for="nom" class="col-sm-2 control-label">Nom :</h4>
+					<div class="col-sm-10">
+						<input name="nom" type="text" class="form-control" id="nom">
+					</div>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary search-button">Lancer la recherche</button>
+				</div>
+				<div class="form-group">
+					<label for="reference" class="col-sm-2 control-label">Référence :</label>
+					<div class="col-sm-10">
+						<input name="reference" type="text" class="form-control" id="reference">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="type" class="col-sm-2 control-label">Type :</label>
+					<div class="col-sm-10">
+						<input name="type" type="text" class="form-control" id="type">
+					</div>
+				</div>
+				<div class=" form-group">
+					<label for="matiere" class="col-sm-2 control-label">Matière :</label>
+					<div class="col-sm-10">
+						<input name="matiere" type="text" class="form-control" id="matiere">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="archeo" class="col-sm-2 control-label">Découvreur :</label>
+					<div class="col-sm-10">
+						<input name="archeo" type="text" class="form-control" id="archeo">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="poid" class="col-sm-2 control-label">Poid :</label>
+					<div class="col-sm-10">
+						<input name="poid" type="text" class="form-control" id="poid">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="longueur" class="col-sm-2 control-label">Longueur :</label>
+					<div class="col-sm-10">
+						<input name="longueur" type="text" class="form-control" id="longueur">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="largeur" class="col-sm-2 control-label">Largeur :</label>
+					<div class="col-sm-10">
+						<input name="largeur" type="text" class="form-control" id="largeur">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="hauteur" class="col-sm-2 control-label">Hauteur :</label>
+					<div class="col-sm-10">
+						<input name="hauteur" type="text" class="form-control" id="hauteur">
+					</div>
+				</div>		
+				<div class="form-group">
+					<label for="civilisation" class="col-sm-2 control-label">Civilisation :</label>
+					<div class="col-sm-10">
+						<select name="civilisation" id="civilisation" class="form-control">
+							<option value="Egypte ancienne">Egypte ancienne</option>
+							<option value="Phénicien">Phénicien</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="location-act" class="col-sm-2 control-label">Location actuelle :</label>
+					<div class="col-sm-10">
+						<input name="location-act" type="text" class="form-control" id="location-act">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="location-tr" class="col-sm-2 control-label">Location trouvé :</label>
+					<div class="col-sm-10">
+						<input name="location-tr" type="text" class="form-control" id="location-tr">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="date-tr" class="col-sm-2 control-label">Date trouvé :</label>
+					<div class="col-sm-10">
+						<input name="date-tr" type="text" class="form-control" id="date-tr">
+					</div>
+				</div>		
+			</form>
+			
+      </div>
+    </div>
+</div>
+<!--/ Page content ends -->
+
+}
