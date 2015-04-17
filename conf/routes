@@ -24,10 +24,10 @@ GET     /map                        controllers.Application.map()
 GET     /parcoursList               controllers.Application.parcoursList()
 
 # Parcours page
-GET     /parcours/:id               controllers.Application.parcours(id : Long)
+GET     /parcours/:id               controllers.Application.parcours(id : Integer)
 
 # Objet page
-GET     /objet/:id                  controllers.Application.objet(id : Long)
+GET     /objet/:id                  controllers.Application.objet(id : Integer)
 
 # Nuage de mot page
 GET     /random                     controllers.Application.random()
@@ -85,7 +85,7 @@ GET     /mod/searchObject          	controllers.BackOffice.searchObject()
 GET     /mod/searchObjectResult     controllers.BackOffice.searchObjectResult()
 
 # Objet page
-GET     /mod/objet/:id            	controllers.BackOffice.objet(id : Long)
+GET     /mod/objet/:id            	controllers.BackOffice.objet(id : Integer)
 
 # Add Objet page
 GET     /mod/addObjet             	controllers.BackOffice.addObjet()
@@ -106,7 +106,7 @@ GET     /mod/feedback             	controllers.BackOffice.feedback()
 GET     /mod/listParcours          	controllers.BackOffice.listParcours()
 
 # Search parcours page
-GET     /mod/parcours/:id           controllers.BackOffice.parcours(id : Long)
+GET     /mod/parcours/:id           controllers.BackOffice.parcours(id : Integer)
 
 
 # Liste parcours page

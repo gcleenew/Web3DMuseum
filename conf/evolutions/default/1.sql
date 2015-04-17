@@ -22,6 +22,7 @@ create table commentaire (
 create table contenu_site (
   id                        bigint auto_increment not null,
   contenu                   TEXT,
+  emplacement               varchar(255),
   constraint pk_contenu_site primary key (id))
 ;
 
@@ -68,7 +69,7 @@ create table objet (
   nom                       varchar(255),
   reference                 varchar(255),
   description               TEXT,
-  type                      varchar(255),
+  type_objet                varchar(255),
   matiere                   varchar(255),
   largeur                   double,
   longeur                   double,

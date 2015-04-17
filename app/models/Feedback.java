@@ -27,41 +27,4 @@ public class Feedback extends Model {
   public static Finder<Long,Feedback> find = new Finder<Long,Feedback>(
     Long.class, Feedback.class
   ); 
-
-  
-  public Long getId() {
-      return id;
-  }
-  
-  public void setId(Long id) {
-      this.id = id;
-  }
-
-  
-  public String getContenu() {
-      return contenu;
-  }
-  
-  public void setContenu(String contenu) {
-      this.contenu = contenu;
-  }
-
-  
-  public String getEmail() {
-      return email;
-  }
-  
-  public void setEmail(String email) {
-      this.email = email;
-  }
-
-  
-  public Date getCreationDate() {
-      return creationDate;
-  }
-  
-  public void setCreationDate(Date creationDate) {
-      this.creationDate = creationDate;
-  }
-
 }

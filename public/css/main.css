@@ -1,3 +1,22 @@
+
 .search-button{
 	margin-left: 40%;
 }
+
+#contenuAccueil{
+	margin: 25px 15% 15px 15%;
+	width: 70%;
+}
+#presentationSite{
+	width: 40%;
+	margin-left: 5%;
+	margin-right: 4%;
+	display: inline-block;
+}
+#presentation3D{
+	width: 40%;
+	margin-left: 4%;
+	margin-right: 5%;
+	display: inline-block;
+}
+

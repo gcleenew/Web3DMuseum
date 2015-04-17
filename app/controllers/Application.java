@@ -25,11 +25,15 @@ public class Application extends Controller {
         List<Objet> objets = Objet.find.all();
         int objetsSize = Collections.max(objets, new ObjetComparator()).id;
 
+        String descriptionSite = ContenuSite.find.where().eq("emplacement", "descriptionSite").findUnique().contenu;
+        String description3D   = ContenuSite.find.where().eq("emplacement", "description3D").findUnique().contenu;
+
         int i = 1;
         String firstImage  = "";
         String secondImage = "";
         String thirdImage  = "";
         String fourthImage = "";
+
 
         while( firstImage == "" ){
             i = i + aleatoireCarrousel/1300;
@@ -80,7 +84,7 @@ public class Application extends Controller {
             fourthImage = fourthObjet.images.get(0).lien;
         }
 
-        return ok(home.render(firstImage, secondImage, thirdImage, fourthImage, "This is the body !"));
+        return ok(home.render(firstImage, secondImage, thirdImage, fourthImage, descriptionSite, description3D));
     }
 
     public static Result search() {
@@ -99,7 +103,7 @@ public class Application extends Controller {
         return ok(index.render("This is the header !", "This is the body !"));
     }
 
-    public static Result parcours(Long id) {
+    public static Result parcours(Integer id) {
         return ok(index.render("This is the header !", "This is the body !"));
     }
 
@@ -107,11 +111,13 @@ public class Application extends Controller {
         return ok(index.render("This is the header !", "This is the body !"));
     }
 
-    public static Result objet(Long id) {
-        return ok(objet.render("Objet", "objet 1"));
+    public static Result objet(Integer id) {
+        Objet objet1 = Objet.find.byId(id);
+
+        return ok(objet.render("Objet", objet1));
     }
 
     public static Result contact() {
-        return ok(index.render("This is the header !", "This is the body !"));
+        return ok(contact.render());
     }
 }
