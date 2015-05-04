@@ -34,6 +34,7 @@ GET     /random                     controllers.Application.random()
 
 # Contact page
 GET     /contact                    controllers.Application.contact()
+POST    /contact                    controllers.Application.contact()
 
 
 

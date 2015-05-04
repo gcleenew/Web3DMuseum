@@ -1,16 +1,32 @@
+/* Accueil */
 #contenuAccueil{
 	margin: 25px 15% 15px 15%;
 	width: 70%;
 }
 #presentationSite{
 	width: 40%;
-	margin-left: 5%;
-	margin-right: 4%;
-	display: inline-block;
-}
-#presentation3D{
-	width: 40%;
 	margin-left: 4%;
 	margin-right: 5%;
 	display: inline-block;
+	vertical-align: top;
+}
+#presentation3D{
+	width: 40%;
+	margin-left: 5%;
+	margin-right: 4%;
+	display: inline-block;
+	vertical-align: top;
+}
+@media screen and (max-width: 768px) {	
+	#presentationSite{
+		width: 80%;
+		margin-left: 10%;
+		margin-right: 10%;
+	}
+	#presentation3D{
+		margin-top: 35px;
+		width: 80%;
+		margin-left: 10%;
+		margin-right: 10%;
+	}
 }

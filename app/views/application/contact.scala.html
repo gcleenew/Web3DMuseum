@@ -1,25 +1,30 @@
+@(
+alert: String
+)
+
 @main("Welcome to Play") {
+
+@(alert)
 
 <div class="content contact-two">
   <div class="container">
     <div class="row"> 
         <div class="col-md-6">
           	<!-- Contact form -->
-          	<h4 class="title">Contact Form</h4>
+          	<h4 class="title">Nous contacter</h4>
             <div class="form">
-              <form class="form-horizontal">
+              <form class="form-horizontal" method="post">
                 <!-- Email -->
                 <div class="form-group">
-                  <label class="control-label col-md-2" for="email1">Email</label>
+                  <label class="control-label col-md-2" for="email">Email</label>
                   <div class="col-md-9">
-                    <input type="text" class="form-control" id="email1">
+                    <input type="text" class="form-control" id="email" name="email">
                   </div>
                 </div>
-                <!-- Comment -->
                 <div class="form-group">
-                  <label class="control-label col-md-2" for="comment">Comment</label>
+                  <label class="control-label col-md-2" for="message" >Message</label>
                   <div class="col-md-9">
-                    <textarea class="form-control" id="comment" rows="3"></textarea>
+                    <textarea class="form-control" id="message" rows="3" name="message"></textarea>
                   </div>
                 </div>
                 <!-- Buttons -->
@@ -31,17 +36,17 @@
 				  </div>
                 </div>
               </form>
+       		</div>
         </div>
         <hr />       
         <div class="col-md-6">
             <h4 class="title">Google Map</h4>
                 <!-- Google maps -->
                	<div class="gmap">
-                    <!-- Google Maps. Replace the below iframe with your Google Maps embed code -->
-                    <iframe height="200" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" 
-                    <iframe height="200" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" 
-					src="https://www.google.com/maps/embed/v1/place?q=21+Rue+d'Assas,+75006+Paris,+France&key=AIzaSyCZoL2bspr8tPhtynSxYOyR2BgoncaCkXs"></iframe>
-                    </div>
+
+					         <iframe height="200" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2625.5471861364954!2d2.3291234649211816!3d48.84777530785945!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e671ce299badb7%3A0x542ba6c9659b1d47!2sInstitut+Catholique+de+Paris!5e0!3m2!1sfr!2sfr!4v1429090414881"></iframe>
+
+                  </div>
                               
                 <hr />
                     

@@ -1,12 +1,16 @@
 package controllers;
 
 import play.*;
+import play.data.*;
+import play.data.Form;
+import play.data.DynamicForm;
 import play.mvc.*;
+
+
 
 import java.util.Date;
 import java.util.*;
 import java.text.*;
-
 import models.*;
   
 
@@ -118,6 +122,27 @@ public class Application extends Controller {
     }
 
     public static Result contact() {
-        return ok(contact.render());
+
+        DynamicForm requestData = Form.form().bindFromRequest();
+        String email = requestData.get("email");
+        String message = requestData.get("message");
+        String alert = "";
+
+        if( email != null && message != null ){
+
+            Feedback feedback = new Feedback();
+            feedback.email = email;
+            feedback.contenu = message;
+            feedback.creationDate = new Date();
+
+            feedback.save();
+
+            alert = "<div class='alert alert-success' role='alert'> Votre message a été envoyé, il sera pris en compte et nous vous recontacterons </div>";
+
+        }
+
+        // TO DO : create feedback 
+
+        return ok(contact.render(alert));
     }
 }

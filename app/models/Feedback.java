@@ -27,4 +27,10 @@ public class Feedback extends Model {
   public static Finder<Long,Feedback> find = new Finder<Long,Feedback>(
     Long.class, Feedback.class
   ); 
+
+  public void createFeedback( String email, String contenu){
+    creationDate = new Date();
+    
+    // TO DO
+  }
 }
