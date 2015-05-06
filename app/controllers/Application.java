@@ -17,6 +17,7 @@ import views.html.*;
 import views.html.application.*;
 
 
+
 public class Application extends Controller {
 
     public static Result index() {

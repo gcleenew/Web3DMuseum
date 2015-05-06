@@ -9,10 +9,5 @@ import play.data.validation.*;
 import models.Objet;
 
 
-public class ObjetComparator implements Comparator<Objet> {
-  @Override
-  public int compare(Objet first, Objet second) {
-    return new Integer(first.id).compareTo(new Integer(second.id));
-  }
+
   
-}
