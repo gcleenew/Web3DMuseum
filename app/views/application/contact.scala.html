@@ -4,7 +4,7 @@ alert: String
 
 @main("Welcome to Play") {
 
-@(alert)
+@Html(alert)
 
 <div class="content contact-two">
   <div class="container">
@@ -69,6 +69,14 @@ alert: String
   	</div>
 </div>
 
+<script>
+  setTimeout(
+  function() 
+  {
+    $('#retourFeedback').slideUp();
+  }, 5000);
+  
+</script>
 
 
 }
