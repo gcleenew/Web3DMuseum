@@ -146,7 +146,7 @@ public class Application extends Controller {
 
             feedback.save();
 
-            alert = "<div class='alert alert-success' role='alert'> Votre message a été envoyé, il sera pris en compte et nous vous recontacterons </div>";
+            alert = "<div id='retourFeedback' class='alert alert-success' role='alert'> Votre message a été envoyé, il sera pris en compte et nous vous recontacterons </div>";
 
         }
 
