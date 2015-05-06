@@ -42,6 +42,7 @@ POST    /contact                    controllers.Application.contact()
 
 # Login page
 GET     /login                      controllers.User.login()
+POST     /login                      controllers.User.login()
 
 # Register page
 GET     /register                   controllers.User.register()
