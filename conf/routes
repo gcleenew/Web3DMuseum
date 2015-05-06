@@ -120,8 +120,9 @@ GET     /admin/users             	controllers.BackOffice.users()
 
 
 
-
-
+### Informations routes ###
+GET		/isThereUserByName/:username		controllers.Information.isThereUserByName(username : String)
+GET		/isThereUserByEmail/:email			controllers.Information.isThereUserByEmail(email : String)
 
 
 
