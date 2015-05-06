@@ -12,7 +12,6 @@ import java.util.Date;
 import java.util.*;
 import java.text.*;
 import models.*;
-  
 
 import views.html.*;
 import views.html.application.*;
@@ -117,8 +116,17 @@ public class Application extends Controller {
 
     public static Result objet(Integer id) {
         Objet objet1 = Objet.find.byId(id);
-
-        return ok(objet.render("Objet", objet1));
+        String imagePrincipale = "";
+        if(objet1.model3D != null){
+            imagePrincipale = objet1.model3D;
+        }
+        else if(objet1.images.get(0).lien != null) {
+            imagePrincipale = objet1.images.get(0).lien;
+        }
+        else {
+            imagePrincipale = "missing.jpg";
+        }
+        return ok(objet.render("Objet", objet1, imagePrincipale));
     }
 
     public static Result contact() {
