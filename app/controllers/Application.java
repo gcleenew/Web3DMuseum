@@ -1,14 +1,17 @@
 package controllers;
 
 import play.*;
+import play.data.*;
+import play.data.Form;
+import play.data.DynamicForm;
 import play.mvc.*;
+
+import play.db.ebean.*;
 
 import java.util.Date;
 import java.util.*;
 import java.text.*;
-
 import models.*;
-  
 
 import views.html.*;
 import views.html.application.*;
@@ -24,6 +27,7 @@ public class Application extends Controller {
 
         List<Objet> objets = Objet.find.all();
         int objetsSize = Collections.max(objets, new ObjetComparator()).id;
+
 
         String descriptionSite = ContenuSite.find.where().eq("emplacement", "descriptionSite").findUnique().contenu;
         String description3D   = ContenuSite.find.where().eq("emplacement", "description3D").findUnique().contenu;
@@ -88,7 +92,50 @@ public class Application extends Controller {
     }
 
     public static Result search() {
-        return ok(search.render("", ""));
+          DynamicForm requestData = Form.form().bindFromRequest();
+        String nom = requestData.get("nom");
+        String reference = requestData.get("reference");
+        String type = requestData.get("type");
+        String matiere = requestData.get("matiere");
+        String archeo = requestData.get("archeo");
+        String poids = requestData.get("poids");
+        String longueur = requestData.get("longueur");
+        String largeur = requestData.get("largeur");
+        String hauteur = requestData.get("hauteur");
+        String civilisation = requestData.get("civilisation");
+        String locationAct = requestData.get("location-act");
+        String locationTr = requestData.get("location-tr");
+        String dateTr = requestData.get("date-tr");
+
+        if(reference.equals("")){
+           reference = "%"; 
+        }
+
+        List<Objet> liste_objet = Objet.find
+            .where()
+                .ilike("nom", "%"+nom+"%")
+                .ilike("reference", "reference")
+                .ilike("type_objet", "%"+type+"%")
+                .ilike("matiere", "%"+matiere+"%")
+                .ilike("archeologue", "%"+archeo+"%")
+                .ilike("poids", "poids")
+                .ilike("longeur", "longueur")
+                .ilike("hauteur", "hauteur")
+                .ilike("largeur", "largeur")
+                .eq("civilisation", "civilisation")
+                .ilike("localisationActuelle", "%"+locationAct+"%")
+                .ilike("localisationOrigine", "%"+locationTr+"%")
+                .eq("dateDecouverte", "dateTr")
+            .findList();
+
+        String liste_objet1 = "";
+        System.out.print(liste_objet);
+        for (Objet obj : liste_objet) {
+            liste_objet1 += obj.nom;
+        }
+            
+        return ok(search.render(nom, liste_objet1));
+        //return ok(search.render("This is the header !", "This is the body !"));
     }
 
     public static Result searchResult() {
@@ -113,11 +160,41 @@ public class Application extends Controller {
 
     public static Result objet(Integer id) {
         Objet objet1 = Objet.find.byId(id);
-
-        return ok(objet.render("Objet", objet1));
+        String imagePrincipale = "";
+        if(objet1.model3D != null){
+            imagePrincipale = objet1.model3D;
+        }
+        else if(objet1.images.get(0).lien != null) {
+            imagePrincipale = objet1.images.get(0).lien;
+        }
+        else {
+            imagePrincipale = "missing.jpg";
+        }
+        return ok(objet.render("Objet", objet1, imagePrincipale));
     }
 
     public static Result contact() {
-        return ok(contact.render());
+
+        DynamicForm requestData = Form.form().bindFromRequest();
+        String email = requestData.get("email");
+        String message = requestData.get("message");
+        String alert = "";
+
+        if( email != null && message != null ){
+
+            Feedback feedback = new Feedback();
+            feedback.email = email;
+            feedback.contenu = message;
+            feedback.creationDate = new Date();
+
+            feedback.save();
+
+            alert = "<div class='alert alert-success' role='alert'> Votre message a été envoyé, il sera pris en compte et nous vous recontacterons </div>";
+
+        }
+
+        // TO DO : create feedback 
+
+        return ok(contact.render(alert));
     }
 }
