@@ -42,6 +42,7 @@ POST    /contact                    controllers.Application.contact()
 
 # Login page
 GET     /login                      controllers.User.login()
+POST     /login                      controllers.User.login()
 
 # Register page
 GET     /register                   controllers.User.register()
@@ -120,8 +121,9 @@ GET     /admin/users             	controllers.BackOffice.users()
 
 
 
-
-
+### Informations routes ###
+GET		/isThereUserByName/:username		controllers.Information.isThereUserByName(username : String)
+GET		/isThereUserByEmail/:email			controllers.Information.isThereUserByEmail(email : String)
 
 
 

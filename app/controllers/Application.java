@@ -17,6 +17,7 @@ import views.html.*;
 import views.html.application.*;
 
 
+
 public class Application extends Controller {
 
     public static Result index() {
@@ -26,7 +27,7 @@ public class Application extends Controller {
         int aleatoireCarrousel = Integer.parseInt(date)/8000; 
 
         List<Objet> objets = Objet.find.all();
-        int objetsSize = Collections.max(objets, new ObjetComparator()).id;
+        int objetsSize = 5;
 
 
         String descriptionSite = ContenuSite.find.where().eq("emplacement", "descriptionSite").findUnique().contenu;
@@ -92,7 +93,7 @@ public class Application extends Controller {
     }
 
     public static Result search() {
-          DynamicForm requestData = Form.form().bindFromRequest();
+        DynamicForm requestData = Form.form().bindFromRequest();
         String nom = requestData.get("nom");
         String reference = requestData.get("reference");
         String type = requestData.get("type");
@@ -107,28 +108,30 @@ public class Application extends Controller {
         String locationTr = requestData.get("location-tr");
         String dateTr = requestData.get("date-tr");
 
-        if(reference.equals("")){
-           reference = "%"; 
-        }
-
+        
+	    // if(reference == null){
+	    //     reference = "%"; 
+    	// }
+        
         List<Objet> liste_objet = Objet.find
             .where()
                 .ilike("nom", "%"+nom+"%")
-                .ilike("reference", "reference")
-                .ilike("type_objet", "%"+type+"%")
-                .ilike("matiere", "%"+matiere+"%")
-                .ilike("archeologue", "%"+archeo+"%")
-                .ilike("poids", "poids")
-                .ilike("longeur", "longueur")
-                .ilike("hauteur", "hauteur")
-                .ilike("largeur", "largeur")
-                .eq("civilisation", "civilisation")
-                .ilike("localisationActuelle", "%"+locationAct+"%")
-                .ilike("localisationOrigine", "%"+locationTr+"%")
-                .eq("dateDecouverte", "dateTr")
+                // .ilike("reference", reference)
+                // .ilike("type_objet", "%"+type+"%")
+                // .ilike("matiere", "%"+matiere+"%")
+                // .ilike("archeologue", "%"+archeo+"%")
+                // .ilike("poids", poids)
+                // .ilike("longeur", longueur)
+                // .ilike("hauteur", hauteur)
+                // .ilike("largeur", largeur)
+                // .ilike("civilisation", civilisation)
+                // .ilike("localisationActuelle", "%"+locationAct+"%")
+                // .ilike("localisationOrigine", "%"+locationTr+"%")
+                // .ilike("dateDecouverte", dateTr)
             .findList();
 
         String liste_objet1 = "";
+        
         System.out.print(liste_objet);
         for (Objet obj : liste_objet) {
             liste_objet1 += obj.nom;
@@ -189,7 +192,7 @@ public class Application extends Controller {
 
             feedback.save();
 
-            alert = "<div class='alert alert-success' role='alert'> Votre message a été envoyé, il sera pris en compte et nous vous recontacterons </div>";
+            alert = "<div id='retourFeedback' class='alert alert-success' role='alert'> Votre message a été envoyé, il sera pris en compte et nous vous recontacterons </div>";
 
         }
 

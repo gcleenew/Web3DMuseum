@@ -7,6 +7,12 @@ import play.db.ebean.*;
 import play.data.format.*;
 import play.data.validation.*;
 
+class ObjetComparator implements Comparator<Objet> {
+  @Override
+  public int compare(Objet first, Objet second) {
+    return new Integer(first.id).compareTo(new Integer(second.id));
+  }
+}
 
 @Entity 
 public class Objet extends Model {
