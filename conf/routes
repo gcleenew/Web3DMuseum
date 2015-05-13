@@ -45,7 +45,7 @@ GET     /login                      controllers.User.login()
 POST     /login                      controllers.User.login()
 
 # Register page
-GET     /register                   controllers.User.register()
+POST    /register                   controllers.User.register()
 
 # Mot de passe oublié page
 GET     /passwordForgotten          controllers.User.passwordForgotten()

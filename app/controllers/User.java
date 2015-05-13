@@ -14,7 +14,7 @@ import java.text.*;
 import models.Utilisateur;
 
 import views.html.*;
-import views.html.application.*;
+import views.html.User.*;
 
 public class User extends Controller {
 
@@ -49,7 +49,36 @@ public class User extends Controller {
     }
 
     public static Result register() {
-        return ok(index.render("This is the header !!!!!", "This is the body !!!!!"));
+
+        DynamicForm requestData = Form.form().bindFromRequest();
+        String username = requestData.get("username");
+        String email = requestData.get("email");
+        String password = requestData.get("password");
+        String conditions = requestData.get("conditions");
+
+        if( conditions != "" ){
+            return ok(register.render("<div class='alert alert-alert' role='alert'> Attention, ne desactivez pas le JavaScript.  Veuillez accepter les conditions générales d'utilisation! </div>"));
+        }
+
+        Utilisateur utilisateur = Utilisateur.find.where().eq("username", username).findUnique();
+        if( utilisateur != null ){
+            return ok(register.render("<div class='alert alert-alert' role='alert'> Attention, ne desactivez pas le JavaScript. Le nom d'utilisateur n'est pas disponible! </div>"));
+        }
+        utilisateur = Utilisateur.find.where().eq("email", email).findUnique();
+        if( utilisateur != null ){
+            return ok(register.render("<div class='alert alert-alert' role='alert'> Attention, ne desactivez pas le JavaScript. L'adresse email n'est pas disponible! </div>"));
+        }
+
+
+        utilisateur = new Utilisateur();
+            utilisateur.username = username;
+            utilisateur.email = email;
+            utilisateur.password = password;
+            utilisateur.creationDate = new Date();
+
+        utilisateur.save();
+        
+        return ok(register.render("<div class='alert alert-success' role='alert'> Votre compte a bien été créé. </div>"));
     }
 
     public static Result passwordForgotten(){

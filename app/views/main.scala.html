@@ -89,25 +89,31 @@
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 						<h4>Register</h4>
 					</div>
+
+
 					<div class="modal-body">
+						
+						<div id="registerAnswer"> </div>
+
+						<div id="registerAnswer"> </div>
 						<div class="form">
-							<form class="form-horizontal">
+							<form class="form-horizontal" id="registerform" method="post" action="@routes.User.register()">
 							  <div class="form-group">
 								<label class="control-label col-md-3" for="name">Nom d'utilisateur</label>
 								<div class="col-md-7">
-								  <input type="text" class="form-control" id="name">
+								  <input type="text" class="form-control" id="name" name="username">
 								</div>
 							  </div>   
 							  <div class="form-group">
 								<label class="control-label col-md-3" for="email">Email</label>
 								<div class="col-md-7">
-								  <input type="email" class="form-control" id="email">
+								  <input type="email" class="form-control" id="email" name="email">
 								</div>
 							  </div>
 							  <div class="form-group">
 								<label class="control-label col-md-3" for="password1">Password</label>
 								<div class="col-md-7">
-								  <input type="password" class="form-control" id="password1">
+								  <input type="password" class="form-control" id="password1" name="password">
 								</div>
 							  </div>
 
@@ -121,7 +127,7 @@
 							  <div class="col-md-7 col-md-offset-3">
 								 <div class="checkbox inline">
 									<label>
-									   <input type="checkbox" id="inlineCheckbox2" value="agree"> Agree with Terms and Conditions
+									   <input type="checkbox" id="conditions" name="conditions"> Agree with Terms and Conditions
 									</label>
 								 </div>
 								</div>
@@ -302,6 +308,18 @@
 		        });
 		        return false;
 		    });
+		    $("#registerform").submit(function () {
+		        $.ajax({
+		            url: "/register",
+		            data:  $(this).serialize(),
+		            type: 'POST',
+		            success: function (response) {
+		            	$('#registerAnswer').text(response);
+		                $('#registerform').hide();
+		            }
+		        });
+		        return false;
+		    });
 
 			$('#goToLogin').click(function() {
 				$('#register').modal('hide');
@@ -354,7 +372,7 @@
 			}
 
 			function checkInputs(){
-				if( $('#password1').parent().parent().hasClass("has-success") && $('#password2').parent().parent().hasClass("has-success") && $('#name').parent().parent().hasClass("has-success") && $('#email').parent().parent().hasClass("has-success") ){
+				if( $('#password1').parent().parent().hasClass("has-success") && $('#password2').parent().parent().hasClass("has-success") && $('#name').parent().parent().hasClass("has-success") && $('#email').parent().parent().hasClass("has-success") &&  $('input[name=conditions]').prop('checked') ){
 					document.getElementById("registerSubmit").disabled = false;
 				}
 				else{
@@ -378,6 +396,10 @@
 					checkInputs();
 				}
 			});
+
+			$('#conditions').change(function() {
+				checkInputs();
+			});
 			$('#password2').change(function() {
 				checkpasswords();
 				checkInputs();
@@ -387,6 +409,7 @@
 				$('#password2').parent().parent().removeClass( "has-error has-success" );
 				$('#name').parent().parent().removeClass( "has-error has-success" );
 				$('#email').parent().parent().removeClass( "has-error has-success" );
+				document.getElementById("registerSubmit").disabled = true;
 			});
 
 		</script>
