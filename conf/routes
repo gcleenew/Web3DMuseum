@@ -91,6 +91,7 @@ GET     /mod/objet/:id            	controllers.BackOffice.objet(id : Integer)
 
 # Add Objet page
 GET     /mod/addObjet             	controllers.BackOffice.addObjet()
+POST    /mod/addObjet             	controllers.BackOffice.addObjet()
 
 # Modify text page
 GET     /mod/modifyText             controllers.BackOffice.modifyText()
