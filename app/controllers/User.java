@@ -28,7 +28,9 @@ public class User extends Controller {
             if (Crypt.checkPassword(password, user.password)) {
                 session("connected", username);
                 // TODO
-                session("right", user.rights);
+                if (user.rights != null) {
+                    session("right", user.rights);
+                }
 
                 message = "Vous avez été connecté";
                 return ok(message);
@@ -56,7 +58,7 @@ public class User extends Controller {
         String password = requestData.get("password");
         String conditions = requestData.get("conditions");
 
-        if( conditions != "" ){
+        if( conditions == null ){
             return ok(register.render("<div class='alert alert-alert' role='alert'> Attention, ne desactivez pas le JavaScript.  Veuillez accepter les conditions générales d'utilisation! </div>"));
         }
 
@@ -73,7 +75,7 @@ public class User extends Controller {
         utilisateur = new Utilisateur();
             utilisateur.username = username;
             utilisateur.email = email;
-            utilisateur.password = password;
+            utilisateur.password = Crypt.createPassword(password);
             utilisateur.creationDate = new Date();
 
         utilisateur.save();
