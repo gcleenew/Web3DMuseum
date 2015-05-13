@@ -16,6 +16,8 @@ import models.*;
 import views.html.*;
 import views.html.application.*;
 
+import core.*;
+
 class ObjetComparator implements Comparator<Objet> {
   @Override
   public int compare(Objet first, Objet second) {
@@ -98,6 +100,9 @@ public class Application extends Controller {
     }
 
     public static Result search() {
+
+    	// Récupération des données du formulaire de recherche
+
         DynamicForm requestData = Form.form().bindFromRequest();
         String nom = requestData.get("nom");
         String reference = requestData.get("reference");
@@ -116,39 +121,72 @@ public class Application extends Controller {
         String liste_objet1 = "";
         Boolean launch = false;
         
-	    if(reference != null){
-	        if(reference.equals("")){
-	        	reference = "%";
-	        }
-	        else{
-	        	launch = true;
-	        }
-    	}
-    	else{
-    		reference = "%";
-    	}
+        // Passage de la variable launch à "true" si une des variable est différent d'une chaine vide.
+
+        nom = Verification.verifParam(nom);
+        launch = Verification.verifBool(nom, launch);
         
-        if(!nom.equals("") || launch){
+        reference = Verification.verifParam(reference);
+        launch = Verification.verifBool(reference, launch);
+
+        type = Verification.verifParam(type);
+        launch = Verification.verifBool(type, launch);
+
+        matiere = Verification.verifParam(matiere);
+        launch = Verification.verifBool(matiere, launch);
+
+        archeo = Verification.verifParam(archeo);
+        launch = Verification.verifBool(archeo, launch);
+
+        poids = Verification.verifParam(poids);
+        launch = Verification.verifBool(poids, launch);
+
+        longueur = Verification.verifParam(longueur);
+        launch = Verification.verifBool(longueur, launch);
+
+        largeur = Verification.verifParam(largeur);
+        launch = Verification.verifBool(largeur, launch);
+
+        hauteur = Verification.verifParam(hauteur);
+        launch = Verification.verifBool(hauteur, launch);
+
+        civilisation = Verification.verifParam(civilisation);
+        launch = Verification.verifBool(civilisation, launch);
+
+        locationAct = Verification.verifParam(locationAct);
+        launch = Verification.verifBool(locationAct, launch);
+
+        locationTr = Verification.verifParam(locationTr);
+        launch = Verification.verifBool(locationTr, launch);
+
+        dateTr = Verification.verifParam(dateTr);
+        launch = Verification.verifBool(dateTr, launch);
+
+        System.out.print(launch);
+    	// On effectue la requête, si un des paramètre est fourni par l'utilisateur.
+
+        if(launch){
         	List<Objet> liste_objet = Objet.find
             .where()
                 .ilike("nom", "%"+nom+"%")
                 .ilike("reference", reference)
-                // .ilike("type_objet", "%"+type+"%")
-                // .ilike("matiere", "%"+matiere+"%")
-                // .ilike("archeologue", "%"+archeo+"%")
-                // .ilike("poids", poids)
-                // .ilike("longeur", longueur)
-                // .ilike("hauteur", hauteur)
-                // .ilike("largeur", largeur)
-                // .ilike("civilisation", civilisation)
-                // .ilike("localisationActuelle", "%"+locationAct+"%")
-                // .ilike("localisationOrigine", "%"+locationTr+"%")
+                .ilike("type_objet", "%"+type+"%")
+                .ilike("matiere", "%"+matiere+"%")
+                .ilike("archeologue", "%"+archeo+"%")
+                .ilike("poids", poids)
+                .ilike("longeur", longueur)
+                .ilike("hauteur", hauteur)
+                .ilike("largeur", largeur)
+                .ilike("civilisation", civilisation)
+                .ilike("localisationActuelle", "%"+locationAct+"%")
+                .ilike("localisationOrigine", "%"+locationTr+"%")
                 // .ilike("dateDecouverte", dateTr)
             .findList();
 
-        
+      
         
 	        System.out.print(liste_objet);
+            
 	        for (Objet obj : liste_objet) {
 	            liste_objet1 += obj.nom;
 	        }
