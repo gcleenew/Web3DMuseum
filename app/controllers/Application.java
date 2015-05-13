@@ -16,7 +16,12 @@ import models.*;
 import views.html.*;
 import views.html.application.*;
 
-
+class ObjetComparator implements Comparator<Objet> {
+  @Override
+  public int compare(Objet first, Objet second) {
+    return new Integer(first.id).compareTo(new Integer(second.id));
+  }
+}
 
 public class Application extends Controller {
 

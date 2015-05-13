@@ -13,4 +13,6 @@ libraryDependencies ++= Seq(
   javaWs
 )
 
-libraryDependencies += "mysql" % "mysql-connector-java" % "5.1.18"
+libraryDependencies += "mysql" % "mysql-connector-java" % "5.1.18" 
+
+libraryDependencies += "org.mindrot" % "jbcrypt" % "0.3m"

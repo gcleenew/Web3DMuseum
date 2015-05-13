@@ -2,8 +2,135 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
+
+
+
+
+### Front routes ###
+
 # Home page
 GET     /                           controllers.Application.index()
+
+# Recherche page
+GET     /search                     controllers.Application.search()
+
+# Resultat recherche page
+GET     /searchResult               controllers.Application.searchResult()
+
+# Carte du monde page
+GET     /map                        controllers.Application.map()
+
+# Parcours list page
+GET     /parcoursList               controllers.Application.parcoursList()
+
+# Parcours page
+GET     /parcours/:id               controllers.Application.parcours(id : Integer)
+
+# Objet page
+GET     /objet/:id                  controllers.Application.objet(id : Integer)
+
+# Nuage de mot page
+GET     /random                     controllers.Application.random()
+
+# Contact page
+GET     /contact                    controllers.Application.contact()
+POST    /contact                    controllers.Application.contact()
+
+
+
+### User routes ###
+
+# Login page
+GET     /login                      controllers.User.login()
+POST     /login                      controllers.User.login()
+
+# Register page
+GET     /register                   controllers.User.register()
+
+# Mot de passe oublié page
+GET     /passwordForgotten          controllers.User.passwordForgotten()
+
+# Personel page
+GET     /profil          			controllers.User.profil()
+
+
+
+
+### Static routes ###
+
+# About us page
+GET     /aboutUs                    controllers.Static.aboutUs()
+
+# Nuage de mot page
+GET     /FAQ                        controllers.Static.faq()
+
+# Informations diverses page
+GET     /informations               controllers.Static.informations()
+
+# Condition générales page
+GET     /conditionsGenerales        controllers.Static.conditionsGenerales()
+
+
+
+
+
+
+### BackOffice routes ###
+
+# Admin index page
+GET     /mod         				controllers.BackOffice.index()
+
+# Search objet page
+GET     /mod/searchObject          	controllers.BackOffice.searchObject()
+
+# Resultat recherche objet page
+GET     /mod/searchObjectResult     controllers.BackOffice.searchObjectResult()
+
+# Objet page
+GET     /mod/objet/:id            	controllers.BackOffice.objet(id : Integer)
+
+# Add Objet page
+GET     /mod/addObjet             	controllers.BackOffice.addObjet()
+
+# Modify text page
+GET     /mod/modifyText             controllers.BackOffice.modifyText()
+
+# Commentaire/Fait historique recherche page
+GET     /mod/searchAdd             	controllers.BackOffice.searchAdd()
+
+# Modify text page
+GET     /mod/searchAddResult       	controllers.BackOffice.searchAddResult()
+
+# Commentaire/Fait historique modification page
+GET     /mod/feedback             	controllers.BackOffice.feedback()
+
+# Liste parcours page
+GET     /mod/listParcours          	controllers.BackOffice.listParcours()
+
+# Search parcours page
+GET     /mod/parcours/:id           controllers.BackOffice.parcours(id : Integer)
+
+
+# Liste parcours page
+GET     /admin/stats             	controllers.BackOffice.stats()
+
+# Liste parcours page
+GET     /admin/users             	controllers.BackOffice.users()
+
+
+
+
+
+### Informations routes ###
+GET		/isThereUserByName/:username		controllers.Information.isThereUserByName(username : String)
+GET		/isThereUserByEmail/:email			controllers.Information.isThereUserByEmail(email : String)
+
+
+
+
+
+
+
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

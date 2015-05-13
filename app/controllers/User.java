@@ -7,7 +7,7 @@ import play.data.DynamicForm;
 import play.mvc.*;
 
 
-
+import core.*;
 import java.util.Date;
 import java.util.*;
 import java.text.*;
@@ -23,18 +23,29 @@ public class User extends Controller {
         String username = requestData.get("username");
         String password = requestData.get("password");
         String message = "";
-        if (true) {
-            session("connected", username);
-            // TODO
-            session("right", "1");
+        Utilisateur user = Utilisateur.find.where().eq("username", username).findUnique();
+        if (user != null) {
+            if (Crypt.checkPassword(password, user.password)) {
+                session("connected", username);
+                // TODO
+                if (user.rights != null) {
+                    session("right", user.rights);
+                }
 
-            message = "Vous avez été connecté";
-            return ok(message);
+                message = "Vous avez été connecté";
+                return ok(message);
+            }
+            else {
+                message = "Ce nom d'utilisateur ou ce mot de passe n'est pas correct";
+                return ok(message);
+            }
         }
         else {
             message = "Ce nom d'utilisateur ou ce mot de passe n'est pas correct";
             return ok(message);
         }
+        
+        
         
         
     }
@@ -66,7 +77,7 @@ public class User extends Controller {
         utilisateur = new Utilisateur();
             utilisateur.username = username;
             utilisateur.email = email;
-            utilisateur.password = password;
+            utilisateur.password = Crypt.createPassword(password);
             utilisateur.creationDate = new Date();
 
         utilisateur.save();

@@ -1,7 +1,19 @@
-@(message: String)
+@(header: String,body: String)
 
 @main("Welcome to Play") {
 
-    @play20.welcome(message, style = "Java")
+<!-- Page heading starts -->
+<div class="page-head">
+	<div class="container">
+    	@(header)
+	</div>
+</div>
+<!--/ Page Heading ends -->
+
+<!-- Page content starts -->
+<div class="content blog">
+    @(body)
+</div>
+<!--/ Page content ends -->
 
 }
