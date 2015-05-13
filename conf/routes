@@ -114,7 +114,7 @@ GET     /mod/parcours/:id           controllers.BackOffice.parcours(id : Integer
 # Liste parcours page
 GET     /admin/stats             	controllers.BackOffice.stats()
 
-# Liste parcours page
+# Liste utilisateurs
 GET     /admin/users             	controllers.BackOffice.users()
 
 

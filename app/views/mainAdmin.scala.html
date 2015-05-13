@@ -34,133 +34,6 @@
     </head>
     <body>
 
-		<!-- Login Modal starts -->
-		<div id="login" class="modal fade">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-						<h4>Login</h4>
-					</div>
-					<div class="modal-body">
-						<div class="form">
-							<form class="form-horizontal">   
-							  <div class="form-group">
-								<label class="control-label col-md-3" for="username">Username</label>
-								<div class="col-md-7">
-								  <input type="text" class="form-control" id="username">
-								</div>
-							  </div>
-							  <div class="form-group">
-								<label class="control-label col-md-3" for="email">Password</label>
-								<div class="col-md-7">
-								  <input type="password" class="form-control" id="password">
-								</div>
-							  </div>
-							  <div class="form-group">
-								<div class="col-md-7 col-md-offset-3">
-								 <div class="checkbox inline">
-									<label>
-									   <input type="checkbox" id="inlineCheckbox1" value="agree"> Remember Password
-									</label>
-								 </div>
-								 </div>
-							  </div> 
-							  
-							  <div class="form-group">
-							  <div class="col-md-7 col-md-offset-3">
-								<button type="submit" class="btn btn-default">Login</button>
-								<button type="reset" class="btn btn-default">Reset</button>
-							  </div>
-							  </div>
-							</form>
-						</div> 
-					</div>
-					<div class="modal-footer">
-						<p>Dont have account? <a href="register.html">Register</a> here.</p>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!--/ Login modal ends -->
-
-		<!-- Register Modal starts -->
-		<div id="register" class="modal fade">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-						<h4>Register</h4>
-					</div>
-					<div class="modal-body">
-						<div class="form">
-							<form class="form-horizontal">
-							  <div class="form-group">
-								<label class="control-label col-md-3" for="name">Name</label>
-								<div class="col-md-7">
-								  <input type="text" class="form-control" id="name">
-								</div>
-							  </div>   
-							  <div class="form-group">
-								<label class="control-label col-md-3" for="email">Email</label>
-								<div class="col-md-7">
-								  <input type="text" class="form-control" id="email">
-								</div>
-							  </div>
-							  <div class="form-group">
-								<label class="control-label col-md-3">Drop Down</label>
-								<div class="col-md-7">                               
-									<select class="form-control">
-									<option>&nbsp;</option>
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-									<option>5</option>
-									</select>  
-								</div>
-							  </div>           
-							  <div class="form-group">
-								<label class="control-label col-md-3" for="username1">Username</label>
-								<div class="col-md-7">
-								  <input type="text" class="form-control" id="username1">
-								</div>
-							  </div>
-							  <div class="form-group">
-								<label class="control-label col-md-3" for="password1">Password</label>
-								<div class="col-md-7">
-								  <input type="password" class="form-control" id="password1">
-								</div>
-							  </div>
-							  <div class="form-group">
-							  <div class="col-md-7 col-md-offset-3">
-								 <div class="checkbox inline">
-									<label>
-									   <input type="checkbox" id="inlineCheckbox2" value="agree"> Agree with Terms and Conditions
-									</label>
-								 </div>
-								</div>
-							  </div> 
-							  
-							  <div class="form-group">
-								<div class="col-md-9 col-md-offset-3">
-								<button type="submit" class="btn btn-default">Register</button>
-								<button type="reset" class="btn btn-default">Reset</button>
-								</div>
-							  </div>
-							</form>
-						</div>
-					</div>
-					<div class="modal-footer">
-						<p>Already have account? <a href="login.html">Login</a> here.</p>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!--/ Register modal ends -->
-
-
-
 		<!-- Header starts -->
 		<header>
 			<div class="container">
@@ -184,12 +57,6 @@
 							</div>
 						</form>
 
-						<div class="hlinks">
-							<!-- Login and Register link -->
-							<span class="lr"><a href="#login" role="button" data-toggle="modal">Login</a>
-							or <a href="#register" role="button" data-toggle="modal">Register</a></span>
-						</div>
-
 					</div>
 				</div>
 			</div>
@@ -209,12 +76,12 @@
 				</div>
 				<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
 					<ul class="nav navbar-nav">                                  
-						<li><a href="/">Index</a></li>
-						<li><a href="/search">Ajout d'objet</a></li>          
-						<li><a href="/map">Liste des objets</a></li>
-						<li><a href="/parcoursList">Liste des commentaires</a></li>          
-						<li><a href="/random">Liste des parcours</a></li>
-						<li><a href="/aboutUs">Gérer les textes</a></li>         
+						<li><a href="/mod">Index</a></li>
+						<li><a href="/mod/addObjet">Ajout d'objet</a></li>          
+						<li><a href="/mod/searchObject">Liste des objets</a></li>
+						<li><a href="/mod">Liste des commentaires</a></li>          
+						<li><a href="/mod/listParcours ">Liste des parcours</a></li>
+						<li><a href="/mod/modifyText">Gérer les textes</a></li>         
 					</ul>
 				</nav>
 			</div>
