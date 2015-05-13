@@ -21,6 +21,10 @@ public class PropositionModification extends Model {
   @Column(columnDefinition = "TEXT")
   public String nouveauContenu;
 
+  
+  @Formats.DateTime(pattern="dd/MM/yyyy")
+  public Date creationDate = new Date();
+
   @ManyToOne
   public Utilisateur utilisateur;
 

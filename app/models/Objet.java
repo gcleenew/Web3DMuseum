@@ -9,6 +9,7 @@ import play.data.validation.*;
 
 
 
+
 @Entity 
 public class Objet extends Model {
 
@@ -32,7 +33,7 @@ public class Objet extends Model {
 
   public Double largeur;
 
-  public Double longeur;
+  public Double longueur;
   
   public Double hauteur;
   

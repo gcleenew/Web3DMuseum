@@ -19,6 +19,9 @@ public class Commentaire extends Model {
   public String contenu;
 
   public boolean valide;
+  
+  @Formats.DateTime(pattern="dd/MM/yyyy")
+  public Date creationDate = new Date();
 
   @ManyToOne
   public Utilisateur utilisateur;

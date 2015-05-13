@@ -1,6 +1,10 @@
 @(header: String,objet: models.Objet, imagePrincipale: String)
 
-@main(objet.nom, new Html("") , new Html("") ) {
+@main(objet.nom){
+  
+}{
+  
+}{
 
 <!-- Page heading starts -->
 <div class="page-head">
@@ -48,7 +52,7 @@
 						<tr>
 						  <td><strong>Longeur</strong></td>
 						  <td>
-						  	@(objet.longeur)
+						  	@(objet.longueur)
 						  </td>
 						</tr>
 						<tr>

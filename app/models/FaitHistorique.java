@@ -20,6 +20,9 @@ public class FaitHistorique extends Model {
 
   public boolean valide;
 
+  @Formats.DateTime(pattern="dd/MM/yyyy")
+  public Date creationDate = new Date();
+
   @ManyToOne
   public Utilisateur utilisateur;
 

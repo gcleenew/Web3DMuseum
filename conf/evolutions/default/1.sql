@@ -6,6 +6,7 @@
 create table audio (
   id                        bigint auto_increment not null,
   lien                      varchar(255),
+  nom                       varchar(255),
   objet_id                  integer,
   constraint pk_audio primary key (id))
 ;
@@ -14,6 +15,7 @@ create table commentaire (
   id                        bigint auto_increment not null,
   contenu                   TEXT,
   valide                    tinyint(1) default 0,
+  creation_date             datetime,
   utilisateur_id            bigint,
   objet_id                  integer,
   constraint pk_commentaire primary key (id))
@@ -30,6 +32,7 @@ create table fait_historique (
   id                        bigint auto_increment not null,
   contenu                   TEXT,
   valide                    tinyint(1) default 0,
+  creation_date             datetime,
   utilisateur_id            bigint,
   objet_id                  integer,
   constraint pk_fait_historique primary key (id))
@@ -61,6 +64,7 @@ create table image (
   id                        bigint auto_increment not null,
   lien                      varchar(255),
   objet_id                  integer,
+  nom                       varchar(255),
   constraint pk_image primary key (id))
 ;
 
@@ -72,7 +76,7 @@ create table objet (
   type_objet                varchar(255),
   matiere                   varchar(255),
   largeur                   double,
-  longeur                   double,
+  longueur                  double,
   hauteur                   double,
   poids                     double,
   localisation_actuelle     varchar(255),
@@ -86,7 +90,7 @@ create table objet (
 ;
 
 create table parcours (
-  id                        bigint auto_increment not null,
+  id                        integer auto_increment not null,
   nom                       varchar(255),
   constraint pk_parcours primary key (id))
 ;
@@ -94,7 +98,7 @@ create table parcours (
 create table parcours_objet (
   id                        bigint auto_increment not null,
   objet_id                  integer,
-  parcours_id               bigint,
+  parcours_id               integer,
   constraint pk_parcours_objet primary key (id))
 ;
 
@@ -102,6 +106,7 @@ create table proposition_modification (
   id                        bigint auto_increment not null,
   nom_champ                 varchar(255),
   nouveau_contenu           TEXT,
+  creation_date             datetime,
   utilisateur_id            bigint,
   objet_id                  integer,
   constraint pk_proposition_modification primary key (id))
@@ -120,6 +125,7 @@ create table utilisateur (
 create table video (
   id                        bigint auto_increment not null,
   lien                      varchar(255),
+  nom                       varchar(255),
   objet_id                  integer,
   constraint pk_video primary key (id))
 ;
