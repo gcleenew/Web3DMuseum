@@ -63,14 +63,16 @@ public class User extends Controller {
         }
 
         Utilisateur utilisateur = Utilisateur.find.where().eq("username", username).findUnique();
-        if( utilisateur != null ){
+        if( utilisateur != null && username.length() < 5){
             return ok(register.render("<div class='alert alert-alert' role='alert'> Attention, ne desactivez pas le JavaScript. Le nom d'utilisateur n'est pas disponible! </div>"));
         }
         utilisateur = Utilisateur.find.where().eq("email", email).findUnique();
-        if( utilisateur != null ){
+        if( utilisateur != null && email.length() < 5){
             return ok(register.render("<div class='alert alert-alert' role='alert'> Attention, ne desactivez pas le JavaScript. L'adresse email n'est pas disponible! </div>"));
         }
-
+        if( password.length() < 5 ){
+            return ok(register.render("<div class='alert alert-alert' role='alert'> Attention, ne desactivez pas le JavaScript. Votre mot de passe est trop court! </div>"));
+        }
 
         utilisateur = new Utilisateur();
             utilisateur.username = username;

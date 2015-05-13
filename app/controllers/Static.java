@@ -14,7 +14,7 @@ import java.text.*;
 import models.*;
 
 import views.html.*;
-import views.html.application.*;
+import views.html.Static.*;
 
 public class Static extends Controller {
 

@@ -1,6 +1,7 @@
-@(header: String,content: String)
+@(header: String,user: String)
 
-@main("Welcome to Play") {
+
+@main("Welcome to Play", new Html("") , new Html("") ) {
 <!-- Page heading starts -->
 <div class="page-head">
 	<div class="container">
@@ -11,6 +12,6 @@
 
 <!-- Page content starts -->
 <div class="content blog">
-    @(content)
+    @(user)
 </div>
 }
