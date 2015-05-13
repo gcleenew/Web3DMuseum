@@ -113,15 +113,26 @@ public class Application extends Controller {
         String locationTr = requestData.get("location-tr");
         String dateTr = requestData.get("date-tr");
 
+        String liste_objet1 = "";
+        Boolean launch = false;
         
-	    // if(reference == null){
-	    //     reference = "%"; 
-    	// }
+	    if(reference != null){
+	        if(reference.equals("")){
+	        	reference = "%";
+	        }
+	        else{
+	        	launch = true;
+	        }
+    	}
+    	else{
+    		reference = "%";
+    	}
         
-        List<Objet> liste_objet = Objet.find
+        if(!nom.equals("") || launch){
+        	List<Objet> liste_objet = Objet.find
             .where()
                 .ilike("nom", "%"+nom+"%")
-                // .ilike("reference", reference)
+                .ilike("reference", reference)
                 // .ilike("type_objet", "%"+type+"%")
                 // .ilike("matiere", "%"+matiere+"%")
                 // .ilike("archeologue", "%"+archeo+"%")
@@ -135,12 +146,14 @@ public class Application extends Controller {
                 // .ilike("dateDecouverte", dateTr)
             .findList();
 
-        String liste_objet1 = "";
         
-        System.out.print(liste_objet);
-        for (Objet obj : liste_objet) {
-            liste_objet1 += obj.nom;
+        
+	        System.out.print(liste_objet);
+	        for (Objet obj : liste_objet) {
+	            liste_objet1 += obj.nom;
+	        }
         }
+        
             
         return ok(search.render(nom, liste_objet1));
         //return ok(search.render("This is the header !", "This is the body !"));
