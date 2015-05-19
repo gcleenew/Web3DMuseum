@@ -23,4 +23,6 @@ public class ParcoursObjet extends Model {
   public static Finder<Long,ParcoursObjet> find = new Finder<Long,ParcoursObjet>(
     Long.class, ParcoursObjet.class
   ); 
+
+  
 }

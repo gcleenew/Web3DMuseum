@@ -24,10 +24,11 @@ GET     /map                        controllers.Application.map()
 GET     /parcoursList               controllers.Application.parcoursList()
 
 # Parcours page
-GET     /parcours/:id               controllers.Application.parcours(id : Integer)
+GET     /parcours/:id               controllers.Application.parcours(id : Long)
 
 # Objet page
 GET     /objet/:id                  controllers.Application.objet(id : Integer)
+POST     /objet/:id                  controllers.Application.objet(id : Integer)
 
 # Nuage de mot page
 GET     /random                     controllers.Application.random()

@@ -36,6 +36,8 @@ public class BackOffice extends Controller {
     }
 
     public static Result addObjet() {
+        String message = "";
+
         DynamicForm requestData = Form.form().bindFromRequest();
         String nom = requestData.get("nom");
         String reference = requestData.get("reference");
@@ -66,7 +68,9 @@ public class BackOffice extends Controller {
 
         // (1) create a SimpleDateFormat object with the desired format.
         // this is the format/pattern we're expecting to receive.
-        String expectedPattern = "MM/dd/yyyy";
+
+
+        String expectedPattern = "yyyy-MM-dd";
         SimpleDateFormat formatter = new SimpleDateFormat(expectedPattern);
         if (requestData.get("dateDecouverte") != null) {
             try
@@ -89,7 +93,7 @@ public class BackOffice extends Controller {
 
         String civilisation = requestData.get("civilisation");
         String model3D = requestData.get("model3D");
-        if (nom != null && reference != null && description != null) {
+        if (nom != "" && nom != null && reference != "" && reference != null && description != "" && description != null) {
             Objet objet = new Objet();
             objet.nom = nom;
             objet.reference = reference;
@@ -109,10 +113,14 @@ public class BackOffice extends Controller {
             objet.model3D = model3D;
 
             objet.save();
+            message = "L'objet : "+nom+" a été crée";
+        }
+        else {
+            message = "Vous n'avez pas remplis les trois premiers champs";
         }
         
 
-        return ok(addObjet.render("This is the header !!!!!", "This is the body !!!!!"));
+        return ok(addObjet.render("This is the header !!!!!", message));
     }
 
     public static Result modifyText() {

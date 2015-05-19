@@ -1,4 +1,4 @@
-@(header: String,objet: models.Objet, imagePrincipale: String)
+@(header: String,objet: models.Objet, imagePrincipale: String, previous: Integer, next: Integer, parcour: Long)
 
 @main(objet.nom, new Html("") , new Html("") ) {
 
@@ -100,6 +100,23 @@
 
 					<div class="hlinks">
 						<span class="lr"><a href="#enrichir" role="button" data-toggle="modal">+Enrichir l'oeuvre</a></span>
+					</div>
+				</div>
+				<div class="col-md-offset-9">
+
+					<div class="hlinks">
+						@if(previous != 0){
+							<form id="previous" action="@routes.Application.objet(previous)" method="post">
+							<input type="hidden" name="parcour_recup" value="@(parcour)"/>
+							</form>
+							<a href='#' onclick='document.getElementById("previous").submit()'>Objet Précédent</a>
+						}
+						@if(next != 0){
+							<form id="next" action="@routes.Application.objet(next)" method="post">
+							<input type="hidden" name="parcour_recup" value="@(parcour)"/>
+							</form>
+							<a href='#' onclick='document.getElementById("next").submit()'>Objet Suivant</a>
+						}
 					</div>
 				</div>
 

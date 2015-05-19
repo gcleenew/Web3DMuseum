@@ -110,8 +110,15 @@ public class Application extends Controller {
         return ok(index.render("This is the header !", "This is the body !"));
     }
 
-    public static Result parcours(Integer id) {
-        return ok(index.render("This is the header !", "This is the body !"));
+    public static Result parcours(Long id) {
+        List<Image> images = new ArrayList<Image>();
+
+        Parcours parcours1 = Parcours.find.byId(id);
+        List<ParcoursObjet> parcoursObjets = parcours1.parcoursObjets;
+        for (int i = 0; i < parcoursObjets.size(); i++) {
+            images.add(parcoursObjets.get(i).objet.images.get(0));
+        }
+        return ok(parcours.render("Parcours", parcours1, images));
     }
 
     public static Result random() {
@@ -119,8 +126,17 @@ public class Application extends Controller {
     }
 
     public static Result objet(Integer id) {
+        DynamicForm requestData = Form.form().bindFromRequest();
+
+        String parcourString = requestData.get("parcour_recup");
+        Long parcour = 0L;
+        if (parcourString != null && parcourString != "") {
+            parcour = Long.parseLong(parcourString);
+        }
         Objet objet1 = Objet.find.byId(id);
         String imagePrincipale = "";
+        Integer previous = 0;
+        Integer next = 0;
         if(objet1.model3D != null){
             imagePrincipale = objet1.model3D;
         }
@@ -130,7 +146,39 @@ public class Application extends Controller {
         else {
             imagePrincipale = "missing.jpg";
         }
-        return ok(objet.render("Objet", objet1, imagePrincipale));
+
+
+        if ( parcour != 0L ) {
+            List<Image> images = new ArrayList<Image>();
+
+            Parcours parcours1 = Parcours.find.byId(parcour);
+            List<ParcoursObjet> parcoursObjets = parcours1.parcoursObjets;
+            for (int i = 0; i < parcoursObjets.size(); i++) {
+                if (parcoursObjets.get(i).objet.id == id) {
+                    if (i == 0 && i == parcoursObjets.size()-1) {
+                        previous = 0;
+                        next = 0;
+                    }
+                    else if (i == 0) {
+                        previous = 0;
+                        next = parcoursObjets.get(i+1).objet.id;
+                    }
+                    else if(i == parcoursObjets.size()-1){
+                        previous = parcoursObjets.get(i-1).objet.id;
+                        next = 0;
+                    }
+                    else {
+                        previous = parcoursObjets.get(i-1).objet.id;
+                        next = parcoursObjets.get(i+1).objet.id;
+                    }
+                    
+                }
+            }
+            
+        }
+
+
+        return ok(objet.render("Objet", objet1, imagePrincipale, previous, next, parcour));
     }
 
     public static Result contact() {
