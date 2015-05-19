@@ -17,6 +17,8 @@ public class Video extends Model {
   @Constraints.Required
   public String lien;
 
+  public String nom;
+  
   @ManyToOne
   public Objet objet;
   
