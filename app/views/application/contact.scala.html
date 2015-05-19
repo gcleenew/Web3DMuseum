@@ -2,7 +2,7 @@
 alert: String
 )
 
-@main("Welcome to Play") {
+@main("Welcome to Play", new Html("") , new Html("") ) {
 
 @Html(alert)
 
@@ -67,16 +67,6 @@ alert: String
     	</div>
   	</div>
 </div>
-
-<script>
-  setTimeout(
-  function() 
-  {
-    $('#retourFeedback').slideUp();
-  }, 5000);
-  
-</script>
-
 
 }
 

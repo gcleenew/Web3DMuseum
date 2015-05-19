@@ -1,0 +1,131 @@
+@(header: String,content: String)
+
+@mainAdmin("Welcome to Play") {
+<!-- Page heading starts -->
+<div class="page-head">
+	<div class="container">
+    	@(header)
+	</div>
+</div>
+<!--/ Page Heading ends -->
+
+<!-- Page content starts -->
+<div class="content blog">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <h4 class="title">Ajouter un objet</h4>
+          <div class="form">
+            <form class="form-horizontal" method="post">
+              <!-- Email -->
+              <h5 class="title">Informations générales</h5><br>
+              <div class="form-group">
+                <label class="control-label col-md-2" for="nom">Nom de l'objet</label>
+                <div class="col-md-9">
+                  <input type="text" class="form-control" id="nom" name="nom">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-2" for="reference">Référence</label>
+                <div class="col-md-9">
+                  <input type="text" class="form-control" id="reference" name="reference">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-2" for="description">Description</label>
+                <div class="col-md-9">
+                  <textarea class="form-control" id="description" name="description"></textarea>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-2" for="type_objet">Type de l'objet</label>
+                <div class="col-md-9">
+                  <input type="text" class="form-control" id="type_objet" name="type_objet">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-2" for="matiere">Matière</label>
+                <div class="col-md-9">
+                  <input type="text" class="form-control" id="matiere" name="matiere">
+                </div>
+              </div>
+              <h5 class="title">Dimensions</h5><br>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="control-label col-md-2" for="largeur">Largeur</label>
+                  <div class="col-md-5">
+                    <input type="number" step="0.01" class="form-control" id="largeur" name="largeur">
+                  </div>cm
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-2" for="longueur">Longueur</label>
+                  <div class="col-md-5">
+                    <input type="number" step="0.01" class="form-control" id="longueur" name="longueur">
+                  </div>cm
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="control-label col-md-2" for="hauteur">Hauteur</label>
+                  <div class="col-md-5">
+                    <input type="number" step="0.01" class="form-control" id="hauteur" name="hauteur">
+                  </div>cm
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-2" for="poids">Poids</label>
+                  <div class="col-md-5">
+                    <input type="number" step="0.01" class="form-control" id="poids" name="poids">
+                  </div>gramme(s)
+                </div>
+              </div><br>
+              <h5 class="title">Autres informations</h5><br>
+              <div class="form-group">
+                <label class="control-label col-md-4" for="localisationActuelle">Localisation Actuelle</label>
+                <div class="col-md-7">
+                  <input type="text" class="form-control" id="localisationActuelle" name="localisationActuelle">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-4" for="localisationOrigine">Localisation d'origine</label>
+                <div class="col-md-7">
+                  <input type="text" class="form-control" id="localisationOrigine" name="localisationOrigine">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-4" for="archeologue">Archéologue qui à découvert l'oeuvre</label>
+                <div class="col-md-7">
+                  <input type="text" class="form-control" id="archeologue" name="archeologue">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-4" for="dateDecouverte">Date de découverte</label>
+                <div class="col-md-7">
+                  <input type="date" class="form-control" id="dateDecouverte" name="dateDecouverte">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-4" for="civilisation">Civilisation</label>
+                <div class="col-md-7">
+                  <input type="text" class="form-control" id="civilisation" name="civilisation">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-4" for="model3D">Modèle 3D</label>
+                <div class="col-md-7">
+                  <input type="text" class="form-control" id="model3D" name="model3D">
+                </div>
+              </div>
+              <!-- Buttons -->
+              <div class="form-group">
+                <!-- Buttons -->
+                <div class="col-md-9 col-md-offset-2">
+                   <button type="submit" class="btn btn-default">Envoyer</button>
+                   <button type="reset" class="btn btn-default">Annuler</button>
+                </div>
+              </div>
+            </form>
+          </div>
+      </div>
+    </div>
+</div>
+}
+

@@ -6,7 +6,9 @@ import play.data.Form;
 import play.data.DynamicForm;
 import play.mvc.*;
 
+
 import play.db.ebean.*;
+
 
 import java.util.Date;
 import java.util.*;
@@ -100,6 +102,22 @@ public class Application extends Controller {
     }
 
     public static Result search() {
+        // Récupération des différentes civilisation
+
+        String addCivList = "";
+        List<String> li = new ArrayList<String>();
+        // SqlQuery query = Objet.createSqlQuery("select distinct civilisation from Objet");
+        // List<SqlRow> rows = query.findList();
+
+        for(Objet obj: Objet.find.select("civilisation").findList()) {
+            if(!li.contains(obj.civilisation)){
+                li.add(obj.civilisation);
+
+                addCivList += "<option value="+obj.civilisation+">"+obj.civilisation+"</option>";
+            }
+        }
+        //System.out.print(addCivList);
+
 
     	// Récupération des données du formulaire de recherche
 
@@ -185,15 +203,18 @@ public class Application extends Controller {
 
       
         
-	        System.out.print(liste_objet);
+	        
             
 	        for (Objet obj : liste_objet) {
 	            liste_objet1 += obj.nom;
 	        }
+            System.out.println(liste_objet);
         }
+
+        nom = Verification.eraser(nom);
         
             
-        return ok(search.render(nom, liste_objet1));
+        return ok(search.render(nom, liste_objet1, addCivList));
         //return ok(search.render("This is the header !", "This is the body !"));
     }
 

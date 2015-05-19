@@ -1,5 +1,5 @@
-@(searchItem: String, liste_objet1: String)
-@main("Welcome to Play") {
+@(searchItem: String, liste_objet1: String, addCivList : String)
+@main("Welcome to Play", new Html("") , new Html("") ) {
 
 <!-- Page heading starts -->
 <div class="page-head">
@@ -82,8 +82,8 @@
 						<div class="col-sm-8">
 							<select name="civilisation" id="civilisation" class="form-control">
 								<option value="">...</option>
-								<option value="Egypte ancienne">Egypte ancienne</option>
-								<option value="Phénicien">Phénicien</option>
+								@Html(addCivList)
+								
 							</select>
 						</div>
 					</div>
