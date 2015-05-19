@@ -6,13 +6,15 @@ import javax.persistence.*;
 import play.db.ebean.*;
 import play.data.format.*;
 import play.data.validation.*;
-import models.Objet;
+import models.Parcours;
 
-public class ObjetComparator implements Comparator<Objet> {
-  
-  public int compare(Objet first, Objet second) {
+
+
+public class ParcoursComparator implements Comparator<Parcours> {
+  @Override
+  public int compare(Parcours first, Parcours second) {
     return new Integer(first.id).compareTo(new Integer(second.id));
   }
   
 }
-
+  

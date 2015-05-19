@@ -101,7 +101,7 @@ public class BackOffice extends Controller {
             objet.type_objet = type_objet;
             objet.matiere = matiere;
             objet.largeur = largeur;
-            objet.longeur = longueur;
+            objet.longueur = longueur;
             objet.hauteur = hauteur;
             objet.poids = poids;
 

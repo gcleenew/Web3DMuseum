@@ -20,6 +20,8 @@ public class Image extends Model {
   @ManyToOne
   public Objet objet;
   
+  public String nom;
+  
   public static Finder<Long,Image> find = new Finder<Long,Image>(
     Long.class, Image.class
   ); 

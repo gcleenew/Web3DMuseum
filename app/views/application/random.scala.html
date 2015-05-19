@@ -1,0 +1,60 @@
+@( objet1: Objet, objet2: Objet, objet3: Objet, objet4: Objet, objet5: Objet, objet6: Objet, objet7: Objet, objet8: Objet, objet9: Objet, objet10: Objet, objet11: Objet, objet12: Objet, parcours1:Parcours, parcours2:Parcours, parcours3:Parcours, parcours4:Parcours )
+
+@main("Nuage de mots"){
+	<style> 
+		#myCanvasContainer{
+			margin-left: 50%;
+		}
+		#myCanvas{
+			margin-left: -300px;
+		}
+	</style>
+}{
+	<script src="@routes.Assets.at("js/tagCanevas.js")" type="text/javascript"></script>
+	<script type="text/javascript">
+	      $(document).ready(function() {
+	        if(!$('#myCanvas').tagcanvas({
+	          textColour: '#2b5a30',
+	          outlineColour: '#303030',
+	          reverse: true,
+	          depth: 0.8,
+	          maxSpeed: 0.05
+	        },'tags')) {
+	          // something went wrong, hide the canvas container
+	          $('#myCanvasContainer').hide();
+	        }
+	      });
+	</script>
+}{
+
+
+
+ <div id="myCanvasContainer">
+      <canvas width="600" height="600" id="myCanvas">
+        <p>Anything in here will be replaced on browsers that support the canvas element</p>
+      </canvas>
+    </div>
+    <div id="tags">
+      <ul>
+        <li><a href="/objet/@objet1.id">@objet1.nom</a></li>
+        <li><a href="/objet/@objet2.id">@objet2.nom</a></li>
+        <li><a href="/objet/@objet3.id">@objet3.nom</a></li>
+        <li><a href="/objet/@objet4.id">@objet4.nom</a></li>
+        <li><a href="/objet/@objet5.id">@objet5.nom</a></li>
+        <li><a href="/objet/@objet6.id">@objet6.nom</a></li>
+        <li><a href="/objet/@objet7.id">@objet7.nom</a></li>
+        <li><a href="/objet/@objet8.id">@objet8.nom</a></li>
+        <li><a href="/objet/@objet9.id">@objet9.nom</a></li>
+        <li><a href="/objet/@objet10.id">@objet10.nom</a></li>
+        <li><a href="/objet/@objet11.id">@objet11.nom</a></li>
+        <li><a href="/objet/@objet12.id">@objet12.nom</a></li>
+        <li><a href="/parcours/@parcours1.id">@parcours1.nom</a></li>
+        <li><a href="/parcours/@parcours2.id">@parcours2.nom</a></li>
+        <li><a href="/parcours/@parcours3.id">@parcours3.nom</a></li>
+        <li><a href="/parcours/@parcours4.id">@parcours4.nom</a></li>
+      </ul>
+    </div>
+
+
+}
+

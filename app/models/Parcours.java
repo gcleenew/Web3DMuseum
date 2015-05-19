@@ -12,7 +12,7 @@ public class Parcours extends Model {
 
   @Id
   @Constraints.Min(10)
-  public Long id;
+  public int id;
 
   @Constraints.Required
   public String nom;
@@ -20,7 +20,7 @@ public class Parcours extends Model {
   @OneToMany(cascade=CascadeType.ALL, mappedBy="parcours")
   public List<ParcoursObjet> parcoursObjets = new ArrayList<ParcoursObjet>();
   
-  public static Finder<Long,Parcours> find = new Finder<Long,Parcours>(
-    Long.class, Parcours.class
+  public static Finder<Integer,Parcours> find = new Finder<Integer,Parcours>(
+    Integer.class, Parcours.class
   ); 
 }
