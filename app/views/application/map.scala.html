@@ -1,0 +1,92 @@
+@(  )
+
+@main("Welcome to Play"){
+	<style> 
+		#myCanvasContainer{
+			margin-left: 50%;
+		}
+		#myCanvas{
+			margin-left: -300px;
+		}
+	</style>
+}{
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://d3js.org/topojson.v1.min.js"></script>
+<script src="@routes.Assets.at("js/datamaps.world.min.js")" type="text/javascript"></script>
+
+<script>
+        $('#container').height($('#container').width()*0.45);
+        $('#legend').css( 'top', $('#container').height()*0.5+"px");
+
+      
+        var map = new Datamap({
+            element: document.getElementById('container'),
+            fills: {
+                VERYHIGH: '#990000',
+                HIGH: '#FF8B00',
+                MEDIUM: '#FFCB05',
+                LOW: '#5BC0DE',
+                VERYLOW: '#5CB85C',
+                NONE: '#054628',
+                defaultFill: '#000000'
+            },
+            data: {
+{% for country in countries %}
+                {{ country.trigram }}: {
+                    {% if country.users | length  = 0 %}
+                        fillKey: 'NONE',
+                    {% elseif country.users | length  <= 3 %}
+                        fillKey: 'VERYLOW',
+                    {% elseif country.users | length <= 5 %}
+                        fillKey: 'LOW',
+                    {% elseif country.users | length <= 13 %}
+                        fillKey: 'MEDIUM',
+                    {% elseif country.users | length <= 20 %}
+                        fillKey: 'HIGH',
+                    {% else %}
+                        fillKey: 'VERYHIGH',
+                    {% endif %}
+                    numberOfObject: {{ country.users | length }}
+                },
+{% endfor %}
+            }, // Faire le data en fonction des différentes informations du controleur
+            geographyConfig: {
+                highlightFillColor: '#778899',
+                popupTemplate: function(geo, data) {
+                    return ['<div class="hoverinfo"><strong>',
+                            geo.properties.name+': <br>',
+                            "<br> Nombre d'oeuvres: " + data.numberOfObject,
+                            '</strong></div>'].join('');
+                }
+
+            },
+            done: function(datamap) {
+            datamap.svg.selectAll('.datamaps-subunit').on('click', function(geography) {
+                window.location.replace("/destinations/"+geography.id);
+            }); // Faire redirection vers recherche avec le pays comme paramètre
+        }
+        });
+
+</script>
+
+
+}{
+
+
+
+<div style="position: relative; width: 100%; height: 55px;"></div>
+<div>
+    <div id="container" style="position: relative; width: 95%%; "></div>
+    <div id="legend" style="position: absolute; left:2%;"> 
+        <i><b>Legend :</b></i>      <br>
+            <div style="height: 10px; width: 10px; background-color: #990000; display: inline-block; margin-right: 4px; margin-left: 3px; border: grey"></div> : +500: <br>
+            <div style="height: 10px; width: 10px; background-color: #FFCB05; display: inline-block; margin-right: 4px; margin-left: 3px; border: grey"></div> : 250-500 <br>
+            <div style="height: 10px; width: 10px; background-color: #FFCB05; display: inline-block; margin-right: 4px; margin-left: 3px; border: grey"></div> : 100-250 <br>
+            <div style="height: 10px; width: 10px; background-color: #5BC0DE; display: inline-block; margin-right: 4px; margin-left: 3px; border: grey"></div> : 35-100 <br>
+            <div style="height: 10px; width: 10px; background-color: #5CB85C; display: inline-block; margin-right: 4px; margin-left: 3px; border: grey"></div> : 5-35 <br>
+            <div style="height: 10px; width: 10px; background-color: #054628; display: inline-block; margin-right: 4px; margin-left: 3px; border: grey"></div> : 0-5 <br>
+    </div>
+</div>
+
+}
+

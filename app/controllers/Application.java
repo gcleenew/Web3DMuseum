@@ -104,7 +104,9 @@ public class Application extends Controller {
     }
 
     public static Result map() {
-        return ok(index.render("This is the header !", "This is the body !"));
+
+        // renvoyer un tableau de pays avec le nombre d'oeuvre a chaque fois
+        return ok(map.render());
     }
 
     public static Result parcoursList() {
