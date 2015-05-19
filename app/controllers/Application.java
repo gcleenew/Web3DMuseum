@@ -7,6 +7,8 @@ import play.data.DynamicForm;
 import play.mvc.*;
 
 
+import play.db.ebean.*;
+
 
 import java.util.Date;
 import java.util.*;
@@ -15,6 +17,8 @@ import models.*;
 
 import views.html.*;
 import views.html.application.*;
+
+import core.*;
 
 
 public class Application extends Controller {
@@ -26,7 +30,8 @@ public class Application extends Controller {
         int aleatoireCarrousel = Integer.parseInt(date)/2400000; 
 
         List<Objet> objets = Objet.find.all();
-        int objetsSize = Collections.max(objets, new ObjetComparator()).id;
+        int objetsSize = 5;
+
 
         String descriptionSite = ContenuSite.find.where().eq("emplacement", "descriptionSite").findUnique().contenu;
         String description3D   = ContenuSite.find.where().eq("emplacement", "description3D").findUnique().contenu;
@@ -96,7 +101,120 @@ public class Application extends Controller {
     }
 
     public static Result search() {
-        return ok(index.render("This is the header !", "This is the body !"));
+        // Récupération des différentes civilisation
+
+        String addCivList = "";
+        List<String> li = new ArrayList<String>();
+        // SqlQuery query = Objet.createSqlQuery("select distinct civilisation from Objet");
+        // List<SqlRow> rows = query.findList();
+
+        for(Objet obj: Objet.find.select("civilisation").findList()) {
+            if(!li.contains(obj.civilisation)){
+                li.add(obj.civilisation);
+
+                addCivList += "<option value="+obj.civilisation+">"+obj.civilisation+"</option>";
+            }
+        }
+        //System.out.print(addCivList);
+
+
+    	// Récupération des données du formulaire de recherche
+
+        DynamicForm requestData = Form.form().bindFromRequest();
+        String nom = requestData.get("nom");
+        String reference = requestData.get("reference");
+        String type = requestData.get("type");
+        String matiere = requestData.get("matiere");
+        String archeo = requestData.get("archeo");
+        String poids = requestData.get("poids");
+        String longueur = requestData.get("longueur");
+        String largeur = requestData.get("largeur");
+        String hauteur = requestData.get("hauteur");
+        String civilisation = requestData.get("civilisation");
+        String locationAct = requestData.get("location-act");
+        String locationTr = requestData.get("location-tr");
+        String dateTr = requestData.get("date-tr");
+
+        String liste_objet1 = "";
+        Boolean launch = false;
+        
+        // Passage de la variable launch à "true" si une des variable est différent d'une chaine vide.
+
+        nom = Verification.verifParam(nom);
+        launch = Verification.verifBool(nom, launch);
+        
+        reference = Verification.verifParam(reference);
+        launch = Verification.verifBool(reference, launch);
+
+        type = Verification.verifParam(type);
+        launch = Verification.verifBool(type, launch);
+
+        matiere = Verification.verifParam(matiere);
+        launch = Verification.verifBool(matiere, launch);
+
+        archeo = Verification.verifParam(archeo);
+        launch = Verification.verifBool(archeo, launch);
+
+        poids = Verification.verifParam(poids);
+        launch = Verification.verifBool(poids, launch);
+
+        longueur = Verification.verifParam(longueur);
+        launch = Verification.verifBool(longueur, launch);
+
+        largeur = Verification.verifParam(largeur);
+        launch = Verification.verifBool(largeur, launch);
+
+        hauteur = Verification.verifParam(hauteur);
+        launch = Verification.verifBool(hauteur, launch);
+
+        civilisation = Verification.verifParam(civilisation);
+        launch = Verification.verifBool(civilisation, launch);
+
+        locationAct = Verification.verifParam(locationAct);
+        launch = Verification.verifBool(locationAct, launch);
+
+        locationTr = Verification.verifParam(locationTr);
+        launch = Verification.verifBool(locationTr, launch);
+
+        dateTr = Verification.verifParam(dateTr);
+        launch = Verification.verifBool(dateTr, launch);
+
+        System.out.print(launch);
+    	// On effectue la requête, si un des paramètre est fourni par l'utilisateur.
+
+        if(launch){
+        	List<Objet> liste_objet = Objet.find
+            .where()
+                .ilike("nom", "%"+nom+"%")
+                .ilike("reference", reference)
+                .ilike("type_objet", "%"+type+"%")
+                .ilike("matiere", "%"+matiere+"%")
+                .ilike("archeologue", "%"+archeo+"%")
+                .ilike("poids", poids)
+                .ilike("longueur", longueur)
+                .ilike("hauteur", hauteur)
+                .ilike("largeur", largeur)
+                .ilike("civilisation", civilisation)
+                .ilike("localisationActuelle", "%"+locationAct+"%")
+                .ilike("localisationOrigine", "%"+locationTr+"%")
+                // .ilike("dateDecouverte", dateTr)
+            .findList();
+
+      
+        
+	        
+            
+	        for (Objet obj : liste_objet) {
+	            liste_objet1 += obj.nom;
+	        }
+            System.out.println(liste_objet);
+        }
+
+        nom = Verification.eraser(nom);
+        
+            
+        return ok(search.render(nom, liste_objet1, addCivList));
+        //return ok(search.render("This is the header !", "This is the body !"));
     }
 
     public static Result searchResult() {
@@ -105,8 +223,46 @@ public class Application extends Controller {
 
     public static Result map() {
 
-        // renvoyer un tableau de pays avec le nombre d'oeuvre a chaque fois
-        return ok(map.render());
+        String pays ="";
+        HashMap<String, Integer> paysList = new HashMap<String, Integer>();
+
+        for(Objet obj: Objet.find.select("localisationOrigine").findList()) {
+            if( obj.localisationOrigine == null ) continue;
+            if(paysList.get(obj.localisationOrigine) == null ){
+                paysList.put(obj.localisationOrigine, 1);
+            }
+            else{
+                paysList.put(obj.localisationOrigine , paysList.get(obj.localisationOrigine)+1 ) ;
+            }
+        }
+
+        for(Map.Entry<String, Integer> entry : paysList.entrySet()) {
+
+            pays += entry.getKey()+":{ fillKey:";
+            if( entry.getValue() == 0 ){
+                pays += "'NONE'";
+            }
+            else if ( entry.getValue() < 3 ){
+                pays += "'VERYLOW'";
+            }
+            else if ( entry.getValue() < 6 ){
+                pays += "'LOW'";
+            }
+            else if ( entry.getValue() < 10 ){
+                pays += "'MEDIUM'";
+            }
+            else if ( entry.getValue() < 20 ){
+                pays += "'HIGH'";
+            }
+            else{
+                pays += "'VERYHIGH'";
+            }
+            pays += ", numberOfObject:"+entry.getValue()+",},";
+            // do what you have to do here
+            // In your case, an other loop.
+        }
+
+        return ok(map.render(pays));
     }
 
     public static Result parcoursList() {

@@ -1,4 +1,38 @@
+
+/* Page de recherche */
+
+.search-button{
+	margin-left: 40%;
+	color: #ffffff;
+  	background-color: #54da4d;
+  	border-color: #54da4d;
+}
+
+.btn-primary {
+  
+}
+.search-button:hover,
+.search-button:focus,
+.search-button.focus,
+.search-button:active,
+.search-button.active,
+.open > .dropdown-toggle.search-button {
+  color: #ffffff;
+  background-color: #4ac344;
+  border-color: #4ac344;
+}
+
+.searchLabel{
+	min-width: 115px;
+}
+
+.advancedParamButton{
+	margin-left: 40%;
+}
+
+
 /* Accueil */
+
 #contenuAccueil{
 	margin: 25px 15% 15px 15%;
 	width: 70%;
@@ -15,8 +49,9 @@
 	margin-left: 5%;
 	margin-right: 4%;
 	display: inline-block;
-	vertical-align: top;
+
 }
+
 @media screen and (max-width: 768px) {	
 	#presentationSite{
 		width: 80%;
@@ -30,3 +65,7 @@
 		margin-right: 10%;
 	}
 }
+
+
+
+

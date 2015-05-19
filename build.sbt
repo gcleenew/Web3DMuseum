@@ -16,3 +16,5 @@ libraryDependencies ++= Seq(
 libraryDependencies += "mysql" % "mysql-connector-java" % "5.1.18" 
 
 libraryDependencies += "org.mindrot" % "jbcrypt" % "0.3m"
+
+libraryDependencies += "org.hibernate" % "hibernate-entitymanager" % "3.6.9.Final"
