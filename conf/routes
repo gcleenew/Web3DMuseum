@@ -24,7 +24,7 @@ GET     /map                        controllers.Application.map()
 GET     /parcoursList               controllers.Application.parcoursList()
 
 # Parcours page
-GET     /parcours/:id               controllers.Application.parcours(id : Long)
+GET     /parcours/:id               controllers.Application.parcours(id : Integer)
 
 # Objet page
 GET     /objet/:id                  controllers.Application.objet(id : Integer)

@@ -270,7 +270,7 @@ public class Application extends Controller {
         return ok(index.render("This is the header !", "This is the body !"));
     }
 
-    public static Result parcours(Long id) {
+    public static Result parcours(Integer id) {
         List<Image> images = new ArrayList<Image>();
 
         Parcours parcours1 = Parcours.find.byId(id);
@@ -317,9 +317,9 @@ public class Application extends Controller {
         DynamicForm requestData = Form.form().bindFromRequest();
 
         String parcourString = requestData.get("parcour_recup");
-        Long parcour = 0L;
+        Integer parcour = 0;
         if (parcourString != null && parcourString != "") {
-            parcour = Long.parseLong(parcourString);
+            parcour = Integer.parseInt(parcourString);
         }
         Objet objet1 = Objet.find.byId(id);
         String imagePrincipale = "";
@@ -336,7 +336,7 @@ public class Application extends Controller {
         }
 
 
-        if ( parcour != 0L ) {
+        if ( parcour != 0 ) {
             List<Image> images = new ArrayList<Image>();
 
             Parcours parcours1 = Parcours.find.byId(parcour);
