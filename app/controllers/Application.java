@@ -16,7 +16,7 @@ import java.text.*;
 import models.*;
 
 import views.html.*;
-import views.html.application.*;
+import views.html.Application.*;
 
 import core.*;
 
@@ -226,10 +226,6 @@ public class Application extends Controller {
             
         return ok(search.render(nom, liste_result, addCivList));
         //return ok(search.render("This is the header !", "This is the body !"));
-    }
-
-    public static Result searchResult() {
-        return ok(index.render("This is the header !", "This is the body !"));
     }
 
     public static Result map() {

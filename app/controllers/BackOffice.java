@@ -15,7 +15,7 @@ import java.text.*;
 import models.*;
 
 import views.html.*;
-import views.html.application.*;
+import views.html.BackOffice.*;
 
 public class BackOffice extends Controller {
 
@@ -124,7 +124,32 @@ public class BackOffice extends Controller {
     }
 
     public static Result modifyText() {
-        return ok(indexAdmin.render("This is the header !!!!!", "This is the body !!!!!"));
+        String select = "";
+        String alert = "";
+
+
+        DynamicForm requestData = Form.form().bindFromRequest();
+        String emplacement = requestData.get("emplacement");
+        String contenu = requestData.get("contenu");
+
+        if( emplacement != null && contenu != null ){
+
+            ContenuSite contenuSite = ContenuSite.find.where().eq("emplacement", emplacement).findUnique();
+            contenuSite.contenu = contenu;
+
+            contenuSite.save();
+            alert = "<div id='retourFeedback' class='alert alert-success' role='alert'> Le contenu a été modifié. </div>";
+
+
+        }
+
+        for(ContenuSite cont: ContenuSite.find.select("emplacement").findList()) {
+            select += "<option value="+cont.emplacement+">"+cont.emplacement+"</option>";
+            
+        }
+
+
+        return ok(modifyText.render(alert, select));
     }
 
     public static Result searchAdd() {
