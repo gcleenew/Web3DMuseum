@@ -333,7 +333,7 @@ public class Application extends Controller {
         String imagePrincipale = "";
         Integer previous = 0;
         Integer next = 0;
-        if(objet1.model3D != null){
+        if(objet1.model3D != null && objet1.model3D != ""){
             imagePrincipale = objet1.model3D;
         }
         else if(objet1.images.get(0).lien != null) {
