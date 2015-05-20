@@ -290,7 +290,9 @@ public class Application extends Controller {
             List<Image> images = new ArrayList<Image>();
             //remplissage de la liste d'image avec la liste des objets dans le parcours
             for (int j = 0; j < parcoursObjets.size(); j++) {
-                images.add(parcoursObjets.get(j).objet.images.get(0));
+                if (j < 5) {
+                    images.add(parcoursObjets.get(j).objet.images.get(0));
+                }
             }
             listParcours.put(uniqueParcours, images);
 
