@@ -32,6 +32,8 @@ public class Application extends Controller {
         List<Objet> objets = Objet.find.all();
         int objetsSize = 5;
 
+        // Attention boucle tant qu'il ne trouve pas 4 images de 4 objets différents ( ca peut faire une boucle infini )
+        // le i et le y rajoute de l'aléatoire et permet le debug en cas d'un saut d'id
 
         String descriptionSite = ContenuSite.find.where().eq("emplacement", "descriptionSite").findUnique().contenu;
         String description3D   = ContenuSite.find.where().eq("emplacement", "description3D").findUnique().contenu;
@@ -235,6 +237,7 @@ public class Application extends Controller {
         String pays ="";
         HashMap<String, Integer> paysList = new HashMap<String, Integer>();
 
+        // Récupère les différents pays et les compte
         for(Objet obj: Objet.find.select("localisationOrigine").findList()) {
             if( obj.localisationOrigine == null ) continue;
             if(paysList.get(obj.localisationOrigine) == null ){
@@ -245,6 +248,7 @@ public class Application extends Controller {
             }
         }
 
+        // fait la data du javascript en fonction des données
         for(Map.Entry<String, Integer> entry : paysList.entrySet()) {
 
             pays += entry.getKey()+":{ fillKey:";
@@ -290,7 +294,7 @@ public class Application extends Controller {
     }
 
     public static Result random() {
-
+        // Prends 12 objets et 4 parcours avec math random sur les id.
 
         List<Objet> objets = Objet.find.all();
         int objetsSize = Collections.max(objets, new ObjetComparator()).id;
@@ -333,7 +337,7 @@ public class Application extends Controller {
         String imagePrincipale = "";
         Integer previous = 0;
         Integer next = 0;
-        if(objet1.model3D != null){
+        if(objet1.model3D != null && objet1.model3D != ""){
             imagePrincipale = objet1.model3D;
         }
         else if(objet1.images.get(0).lien != null) {
@@ -384,6 +388,7 @@ public class Application extends Controller {
         String message = requestData.get("message");
         String alert = "";
 
+        // Fait une alerte si le message est sauvegardé 
         if( email != null && message != null ){
 
             Feedback feedback = new Feedback();
