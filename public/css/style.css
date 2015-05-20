@@ -1488,15 +1488,6 @@ footer .payment-icons img{
 	header .lr{
 		display: block;
 	}
-	header .hlinks > span{
-		background: transparent !important;
-		border: none !important;
-		color: #888;
-		padding: 0px;
-	}
-	header .hlinks a, header .hlinks a:visited{
-		color: #555;
-	}
 	header .hlinks a:hover{
 		color: #222;
 	}
