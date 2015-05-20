@@ -31,6 +31,16 @@
 	min-width: 115px;
 }
 
+.searchPanel:hover,
+.searchPanel:focus,
+.searchPanel.focus,
+.searchPanel:active,
+.searchPanel.active{
+  color: #021c01;
+  
+  border-color: #4ac344;
+}
+
 .advancedParamButton{
 	margin-left: 40%;
 }

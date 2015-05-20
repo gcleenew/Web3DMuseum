@@ -11,6 +11,7 @@ import play.db.ebean.*;
 
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.*;
 import java.text.*;
 import models.*;
@@ -125,7 +126,7 @@ public class Application extends Controller {
                 addCivList += "<option value="+obj.civilisation+">"+obj.civilisation+"</option>";
             }
         }
-        //System.out.print(addCivList);
+        
 
 
     	// Récupération des données du formulaire de recherche
@@ -213,7 +214,7 @@ public class Application extends Controller {
 	        for (Objet obj : liste_objet) {
 	            String image = Image.find.select("lien").where().eq("objet_id", obj.id).findUnique().lien;
                 
-                liste_result += "<div class=\"panel panel-default\"><div class=\"panel-heading\">"+obj.nom+"</div><div class=\"panel-body\"><div class=\"col-md-2\"><img class=\"searchImage\" src=\"/assets/imgObjet/"+image+"\"></div><div class=\"col-md-3\">Référence :"+obj.reference+"</div><div class=\"col-md-4 col-md-offset-0\">"+obj.description+"</div><div class=\"col-md-3 col-md-offset-0\">Type : "+obj.type_objet+"<br>Matière : "+obj.matiere+"<br>Poids : "+obj.poids+" gramme(s)<br></div></div></div>";
+                liste_result += "<a href=\"/objet/"+obj.id+"\"><div class=\"panel panel-default searchPanel\"><div class=\"panel-heading\">"+obj.nom+"</div><div class=\"panel-body\"><div class=\"col-md-2\"><img class=\"searchImage\" src=\"/assets/imgObjet/"+image+"\"></div><div class=\"col-md-3\">Référence :"+obj.reference+"</div><div class=\"col-md-4 col-md-offset-0\">"+obj.description+"</div><div class=\"col-md-3 col-md-offset-0\">Type : "+obj.type_objet+"<br>Matière : "+obj.matiere+"<br>Poids : "+obj.poids+" gramme(s)<br></div></div></div></a>";
 	           
             }
             System.out.println(liste_objet);
@@ -275,14 +276,35 @@ public class Application extends Controller {
     }
 
     public static Result parcoursList() {
-        return ok(index.render("This is the header !", "This is the body !"));
+        List<Parcours> parcours = Parcours.find.all();
+
+        //Create a HashMap with mutable key
+        HashMap<Parcours, List<Image>> listParcours = new HashMap<Parcours, List<Image>>();
+        for (int i = 0; i < parcours.size(); i++) {
+            Parcours uniqueParcours = parcours.get(i);
+            List<ParcoursObjet> parcoursObjets = uniqueParcours.parcoursObjets;
+            List<Image> images = new ArrayList<Image>();
+            //remplissage de la liste d'image avec la liste des objets dans le parcours
+            for (int j = 0; j < parcoursObjets.size(); j++) {
+                if (j < 5) {
+                    images.add(parcoursObjets.get(j).objet.images.get(0));
+                }
+            }
+            listParcours.put(uniqueParcours, images);
+
+        }
+        return ok(parcoursList.render("Liste des parcours", listParcours));
     }
 
     public static Result parcours(Integer id) {
+        // création de la liste d'image
         List<Image> images = new ArrayList<Image>();
-
+        // récupération du parcours et de ses données
         Parcours parcours1 = Parcours.find.byId(id);
+        // création de la liste des liaison entre parcours et objet
         List<ParcoursObjet> parcoursObjets = parcours1.parcoursObjets;
+
+        //remplissage de la liste d'image avec la liste des objets dans le parcours
         for (int i = 0; i < parcoursObjets.size(); i++) {
             images.add(parcoursObjets.get(i).objet.images.get(0));
         }
@@ -322,17 +344,23 @@ public class Application extends Controller {
     }
 
     public static Result objet(Integer id) {
+        //récupération des données du formulaire
         DynamicForm requestData = Form.form().bindFromRequest();
-
+        //récupération de l'id du parcours si on vien d'un parcours
         String parcourString = requestData.get("parcour_recup");
         Integer parcour = 0;
+        //transformation du string venant du formulaire en Int
         if (parcourString != null && parcourString != "") {
             parcour = Integer.parseInt(parcourString);
         }
+        //récupération de l'objet et de ses informations
         Objet objet1 = Objet.find.byId(id);
+        //création de l'image principale et des objets suivant et précédents si parcours
         String imagePrincipale = "";
         Integer previous = 0;
         Integer next = 0;
+
+        //remplissage de l'image principale par le modèle 3D si existant sinon de la première image, sinon d'image manquante
         if(objet1.model3D != null && objet1.model3D != ""){
             imagePrincipale = objet1.model3D;
         }
@@ -343,13 +371,16 @@ public class Application extends Controller {
             imagePrincipale = "missing.jpg";
         }
 
-
+        // si parcours alors on parcours la liste d'objet
         if ( parcour != 0 ) {
-            List<Image> images = new ArrayList<Image>();
 
             Parcours parcours1 = Parcours.find.byId(parcour);
             List<ParcoursObjet> parcoursObjets = parcours1.parcoursObjets;
+
+            // on parcours la liste d'objet
             for (int i = 0; i < parcoursObjets.size(); i++) {
+
+                //si on tombe sur l'objet lui même, on remplis alors l'image suivant et l'image précédente ou suiviante si elle existe ou non
                 if (parcoursObjets.get(i).objet.id == id) {
                     if (i == 0 && i == parcoursObjets.size()-1) {
                         previous = 0;

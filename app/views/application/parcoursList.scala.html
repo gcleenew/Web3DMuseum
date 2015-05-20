@@ -1,0 +1,49 @@
+@(header: String,listParcours: Map[Parcours, List[Image]])
+
+@main("Web3DMuseum: liste des parcours") {
+  
+}{
+  
+}{
+<!-- Page heading starts -->
+<div class="page-head">
+	<div class="container">
+    	@(header)
+	</div>
+</div>
+<!--/ Page Heading ends -->
+
+<!-- Page content starts -->
+<div class="content blog">
+    
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+			<div class="col-md-12">
+				@for(parcours <- listParcours.entrySet()) {
+				  	<a href="@routes.Application.parcours(parcours.getKey().id)">
+				  		<div class="panel panel-default searchPanel">
+				  			<div class="panel-heading">
+				  				@(parcours.getKey().nom)
+				  			</div>
+				  			<div class="panel-body">
+				  				<div class="col-md-10 col-md-offset-1">
+				  					@for(image <- parcours.getValue()){
+				  						<div class="col-md-2">
+											<img src="@routes.Assets.at("imgObjet/")@(image.lien)" class="img-responsive" alt="Responsive image">
+				  						</div>
+				  					}
+				  				</div>
+				  				
+				  			</div>
+				  		</div>
+				  	</a>
+				}
+				
+			</div>
+			
+      </div>
+    </div>
+</div>
+<!--/ Page content ends -->
+
+}
