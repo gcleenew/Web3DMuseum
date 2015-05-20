@@ -8,6 +8,11 @@
   	border-color: #54da4d;
 }
 
+.searchImage{
+	max-width: 120px;
+	max-height: 200px;
+}
+
 .btn-primary {
   
 }

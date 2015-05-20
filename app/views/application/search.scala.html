@@ -1,4 +1,5 @@
-@(searchItem: String, liste_objet1: String, addCivList : String)
+
+@(searchItem: String, objet_liste: String, addCivList : String)
 @main("Welcome to Play"){ }{ }{
 
 <!-- Page heading starts -->
@@ -111,7 +112,9 @@
 
       	<div class="col-md-10 col-md-offset-1">
       	<h4 class="title"></h4>
-      		Résulat de la recherche :@(liste_objet1)
+      		<h3>Résulat de la recherche :</h3>
+      		@Html(objet_liste)
+      		
       	</div>
     </div>
 </div>

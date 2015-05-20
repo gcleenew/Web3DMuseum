@@ -143,7 +143,7 @@ public class Application extends Controller {
         String locationTr = requestData.get("location-tr");
         String dateTr = requestData.get("date-tr");
 
-        String liste_objet1 = "";
+        String liste_result = "";
         Boolean launch = false;
         
         // Passage de la variable launch à "true" si une des variable est différent d'une chaine vide.
@@ -189,7 +189,7 @@ public class Application extends Controller {
 
         System.out.print(launch);
     	// On effectue la requête, si un des paramètre est fourni par l'utilisateur.
-
+        
         if(launch){
         	List<Objet> liste_objet = Objet.find
             .where()
@@ -208,20 +208,21 @@ public class Application extends Controller {
                 // .ilike("dateDecouverte", dateTr)
             .findList();
 
-      
-        
-	        
-            
 	        for (Objet obj : liste_objet) {
-	            liste_objet1 += obj.nom;
-	        }
+	            String image = Image.find.select("lien").where().eq("objet_id", obj.id).findUnique().lien;
+                
+                liste_result += "<div class=\"panel panel-default\"><div class=\"panel-heading\">"+obj.nom+"</div><div class=\"panel-body\"><div class=\"col-md-2\"><img class=\"searchImage\" src=\"/assets/imgObjet/"+image+"\"></div><div class=\"col-md-3\">Référence :"+obj.reference+"</div><div class=\"col-md-4 col-md-offset-0\">"+obj.description+"</div><div class=\"col-md-3 col-md-offset-0\">Type : "+obj.type_objet+"<br>Matière : "+obj.matiere+"<br>Poids : "+obj.poids+" gramme(s)<br></div></div></div>";
+	           
+            }
             System.out.println(liste_objet);
+
+            
         }
 
         nom = Verification.eraser(nom);
         
             
-        return ok(search.render(nom, liste_objet1, addCivList));
+        return ok(search.render(nom, liste_result, addCivList));
         //return ok(search.render("This is the header !", "This is the body !"));
     }
 
