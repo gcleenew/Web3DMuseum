@@ -33,6 +33,8 @@ public class Application extends Controller {
         List<Objet> objets = Objet.find.all();
         int objetsSize = 5;
 
+        // Attention boucle tant qu'il ne trouve pas 4 images de 4 objets différents ( ca peut faire une boucle infini )
+        // le i et le y rajoute de l'aléatoire et permet le debug en cas d'un saut d'id
 
         String descriptionSite = ContenuSite.find.where().eq("emplacement", "descriptionSite").findUnique().contenu;
         String description3D   = ContenuSite.find.where().eq("emplacement", "description3D").findUnique().contenu;
@@ -124,7 +126,7 @@ public class Application extends Controller {
                 addCivList += "<option value="+obj.civilisation+">"+obj.civilisation+"</option>";
             }
         }
-        //System.out.print(addCivList);
+        
 
 
     	// Récupération des données du formulaire de recherche
@@ -212,7 +214,7 @@ public class Application extends Controller {
 	        for (Objet obj : liste_objet) {
 	            String image = Image.find.select("lien").where().eq("objet_id", obj.id).findUnique().lien;
                 
-                liste_result += "<div class=\"panel panel-default\"><div class=\"panel-heading\">"+obj.nom+"</div><div class=\"panel-body\"><div class=\"col-md-2\"><img class=\"searchImage\" src=\"/assets/imgObjet/"+image+"\"></div><div class=\"col-md-3\">Référence :"+obj.reference+"</div><div class=\"col-md-4 col-md-offset-0\">"+obj.description+"</div><div class=\"col-md-3 col-md-offset-0\">Type : "+obj.type_objet+"<br>Matière : "+obj.matiere+"<br>Poids : "+obj.poids+" gramme(s)<br></div></div></div>";
+                liste_result += "<a href=\"/objet/"+obj.id+"\"><div class=\"panel panel-default searchPanel\"><div class=\"panel-heading\">"+obj.nom+"</div><div class=\"panel-body\"><div class=\"col-md-2\"><img class=\"searchImage\" src=\"/assets/imgObjet/"+image+"\"></div><div class=\"col-md-3\">Référence :"+obj.reference+"</div><div class=\"col-md-4 col-md-offset-0\">"+obj.description+"</div><div class=\"col-md-3 col-md-offset-0\">Type : "+obj.type_objet+"<br>Matière : "+obj.matiere+"<br>Poids : "+obj.poids+" gramme(s)<br></div></div></div></a>";
 	           
             }
             System.out.println(liste_objet);
@@ -236,6 +238,7 @@ public class Application extends Controller {
         String pays ="";
         HashMap<String, Integer> paysList = new HashMap<String, Integer>();
 
+        // Récupère les différents pays et les compte
         for(Objet obj: Objet.find.select("localisationOrigine").findList()) {
             if( obj.localisationOrigine == null ) continue;
             if(paysList.get(obj.localisationOrigine) == null ){
@@ -246,6 +249,7 @@ public class Application extends Controller {
             }
         }
 
+        // fait la data du javascript en fonction des données
         for(Map.Entry<String, Integer> entry : paysList.entrySet()) {
 
             pays += entry.getKey()+":{ fillKey:";
@@ -310,7 +314,7 @@ public class Application extends Controller {
     }
 
     public static Result random() {
-
+        // Prends 12 objets et 4 parcours avec math random sur les id.
 
         List<Objet> objets = Objet.find.all();
         int objetsSize = Collections.max(objets, new ObjetComparator()).id;
@@ -413,6 +417,7 @@ public class Application extends Controller {
         String message = requestData.get("message");
         String alert = "";
 
+        // Fait une alerte si le message est sauvegardé 
         if( email != null && message != null ){
 
             Feedback feedback = new Feedback();

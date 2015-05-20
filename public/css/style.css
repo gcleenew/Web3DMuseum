@@ -1491,6 +1491,12 @@ footer .payment-icons img{
 	header .hlinks a:hover{
 		color: #222;
 	}
+	.hlinks{
+		margin-left: auto;
+		margin-right: auto;
+		width: 135px;
+		height: 26px;
+	}
    .navbar .nav{
    	margin-left: 0px !important;
       border:0px !important;
