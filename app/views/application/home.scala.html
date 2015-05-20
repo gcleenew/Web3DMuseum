@@ -1,4 +1,8 @@
 @(
+firstLink: String,
+secondLink: String,
+thirdLink: String,
+fourthLink: String,
 firstImage: String,
 secondImage: String,
 thirdImage: String,
@@ -31,16 +35,24 @@ description3D: String
 		  <!-- Wrapper for slides -->
 		  <div class="carousel-inner" role="listbox">
 		    <div class="item active">
-		      <img src="@routes.Assets.at("imgObjet/")@(firstImage)">
+		    	<a href="@firstLink">
+		      		<img src="@routes.Assets.at("imgObjet/")@(firstImage)" style="height: 350px; margin-left: auto; margin-right: auto; ">
+		      	</a>
 		    </div>
 		    <div class="item">
-		      <img src="@routes.Assets.at("imgObjet/")@(secondImage)">
+		    	<a href="@secondLink">
+		      		<img src="@routes.Assets.at("imgObjet/")@(secondImage)" style="height: 350px; margin-left: auto;margin-right: auto; ">
+		      	</a>
 		    </div>
 		    <div class="item">
-		      <img src="@routes.Assets.at("imgObjet/")@(thirdImage)">
+		    	<a href="@thirdLink">
+		      		<img src="@routes.Assets.at("imgObjet/")@(thirdImage)" style="height: 350px; margin-left: auto; margin-right: auto; ">
+		      	</a>
 		    </div>
 		    <div class="item">
-		      <img src="@routes.Assets.at("imgObjet/")@(fourthImage)">
+		    	<a href="@fourthLink">
+		      		<img src="@routes.Assets.at("imgObjet/")@(fourthImage)" style="height: 350px; margin-left: auto; margin-right: auto; ">
+		      	</a>
 		    </div>
 		  </div>
 

@@ -42,6 +42,10 @@ public class Application extends Controller {
         String secondImage = "";
         String thirdImage  = "";
         String fourthImage = "";
+        String firstLink  = "";
+        String secondLink = "";
+        String thirdLink  = "";
+        String fourthLink = "";
 
 
         while( firstImage == "" ){
@@ -54,7 +58,8 @@ public class Application extends Controller {
             }     
             if( firstObjet.images.isEmpty() ){
                 continue;
-            }        
+            }     
+            firstLink  = "/objet/"+firstObjet.id;   
             firstImage = firstObjet.images.get(0).lien;
         }
         while( secondImage == "" || secondImage.equals(firstImage) ){
@@ -68,6 +73,7 @@ public class Application extends Controller {
             if( secondObjet.images.isEmpty() ){
                 continue;
             }      
+            secondLink  = "/objet/"+secondObjet.id; 
             secondImage = secondObjet.images.get(0).lien;
         }
         while( thirdImage == "" || thirdImage.equals(firstImage) || thirdImage.equals(secondImage) ){
@@ -81,6 +87,7 @@ public class Application extends Controller {
             if( thirdObjet.images.isEmpty() ){
                 continue;
             }            
+            thirdLink  = "/objet/"+thirdObjet.id; 
             thirdImage = thirdObjet.images.get(0).lien;
         }
         while( fourthImage == "" || fourthImage.equals(firstImage) || fourthImage.equals(secondImage) || fourthImage.equals(thirdImage) ){
@@ -93,11 +100,12 @@ public class Application extends Controller {
             } 
             if( fourthObjet.images.isEmpty() ){
                 continue;
-            }          
+            }  
+            fourthLink  = "/objet/"+fourthObjet.id;         
             fourthImage = fourthObjet.images.get(0).lien;
         }
 
-        return ok(home.render(firstImage, secondImage, thirdImage, fourthImage, descriptionSite, description3D));
+        return ok(home.render( firstLink , secondLink , thirdLink , fourthLink , firstImage, secondImage, thirdImage, fourthImage, descriptionSite, description3D));
     }
 
     public static Result search() {
