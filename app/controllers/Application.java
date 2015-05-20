@@ -123,7 +123,7 @@ public class Application extends Controller {
                 addCivList += "<option value="+obj.civilisation+">"+obj.civilisation+"</option>";
             }
         }
-        //System.out.print(addCivList);
+        
 
 
     	// Récupération des données du formulaire de recherche
@@ -211,7 +211,7 @@ public class Application extends Controller {
 	        for (Objet obj : liste_objet) {
 	            String image = Image.find.select("lien").where().eq("objet_id", obj.id).findUnique().lien;
                 
-                liste_result += "<div class=\"panel panel-default\"><div class=\"panel-heading\">"+obj.nom+"</div><div class=\"panel-body\"><div class=\"col-md-2\"><img class=\"searchImage\" src=\"/assets/imgObjet/"+image+"\"></div><div class=\"col-md-3\">Référence :"+obj.reference+"</div><div class=\"col-md-4 col-md-offset-0\">"+obj.description+"</div><div class=\"col-md-3 col-md-offset-0\">Type : "+obj.type_objet+"<br>Matière : "+obj.matiere+"<br>Poids : "+obj.poids+" gramme(s)<br></div></div></div>";
+                liste_result += "<a href=\"/objet/"+obj.id+"\"><div class=\"panel panel-default searchPanel\"><div class=\"panel-heading\">"+obj.nom+"</div><div class=\"panel-body\"><div class=\"col-md-2\"><img class=\"searchImage\" src=\"/assets/imgObjet/"+image+"\"></div><div class=\"col-md-3\">Référence :"+obj.reference+"</div><div class=\"col-md-4 col-md-offset-0\">"+obj.description+"</div><div class=\"col-md-3 col-md-offset-0\">Type : "+obj.type_objet+"<br>Matière : "+obj.matiere+"<br>Poids : "+obj.poids+" gramme(s)<br></div></div></div></a>";
 	           
             }
             System.out.println(liste_objet);
