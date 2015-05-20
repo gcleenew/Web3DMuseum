@@ -79,10 +79,12 @@ public class User extends Controller {
             utilisateur.email = email;
             utilisateur.password = Crypt.createPassword(password);
             utilisateur.creationDate = new Date();
+            utilisateur.rights = "0";
 
         utilisateur.save();
-        
-        return ok(register.render("<div class='alert alert-success' role='alert'> Votre compte a bien été créé. </div>"));
+        session("connected", username);
+        session("right", utilisateur.rights);
+        return ok(register.render("<div class='alert alert-success' role='alert'> Votre compte a bien été créé. Vous êtes connecté.</div>"));
     }
 
     public static Result passwordForgotten(){
