@@ -151,7 +151,6 @@ public class BackOffice extends Controller {
             
         }
 
-
         return ok(modifyText.render(alert, select));
     }
 
@@ -180,6 +179,56 @@ public class BackOffice extends Controller {
     }
 
     public static Result users() {
-        return ok(indexAdmin.render("This is the header !!!!!", "This is the body !!!!!"));
+
+        List<Utilisateur> utilisateurs = Utilisateur.find.all();
+
+        return ok(userAdmin.render(utilisateurs, ""));
+    }
+
+    public static Result usersWithMessage(String message) {
+
+        List<Utilisateur> utilisateurs = Utilisateur.find.all();
+
+        if( message.equals("promu")){
+            message = "<div id='retour' class='alert alert-success' role='alert'> Utilisateur promu </div>";
+        }
+        else if( message.equals("admin")) {
+            message = "<div id='retour' class='alert alert-danger' role='alert'> Utilisateur non promu car déjà administrateur </div>";
+        }
+        else{
+            message = "<div id='retour' class='alert alert-success' role='alert'> Utilisateur supprimé </div>";
+        }
+
+        return ok(userAdmin.render(utilisateurs, message));
+    }
+
+    public static Result promoteUser(Integer id) {
+
+        Utilisateur utilisateur = Utilisateur.find.byId((long) (id));
+
+        if( utilisateur.rights.equals("admin") ){
+            return ok("admin");
+        }
+        else if( !utilisateur.rights.equals("mod") ){
+            utilisateur.rights = "mod";
+        }
+        else{
+            utilisateur.rights = "admin";
+        }
+
+        utilisateur.save();
+
+
+        return ok("promu");
+    }
+
+    public static Result deleteUser(Integer id) {
+
+        Utilisateur utilisateur = Utilisateur.find.byId((long) (id));
+
+        utilisateur.delete();
+
+
+        return ok("delete");
     }
 }
