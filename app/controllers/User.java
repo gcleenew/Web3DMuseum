@@ -27,6 +27,7 @@ public class User extends Controller {
         if (user != null) {
             if (Crypt.checkPassword(password, user.password)) {
                 session("connected", username);
+                // session.maxAge = 5d;
                 // TODO
                 if (user.rights != null) {
                     session("right", user.rights);

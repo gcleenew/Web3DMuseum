@@ -21,9 +21,10 @@ import views.html.Application.*;
 
 import core.*;
 
-
+@With(core.CheckRights.class)
 public class Application extends Controller {
 
+    
     public static Result index() {
        
         SimpleDateFormat d = new SimpleDateFormat ("yyyyMMdd"); 
