@@ -15,7 +15,7 @@ import java.text.*;
 import models.*;
 
 import views.html.*;
-import views.html.application.*;
+import views.html.BackOffice.*;
 
 public class BackOffice extends Controller {
 
@@ -36,8 +36,9 @@ public class BackOffice extends Controller {
     }
 
     public static Result addObjet() {
+        // initialisation du message d'erreur
         String message = "";
-
+        // création des différentes variable et remplissage avec les variables du formulaire
         DynamicForm requestData = Form.form().bindFromRequest();
         String nom = requestData.get("nom");
         String reference = requestData.get("reference");
@@ -53,6 +54,7 @@ public class BackOffice extends Controller {
         Double hauteur = 3.1415926535;
         Double poids = 3.1415926535;
         Date dateDecouverte = new Date();
+        //parsage des string en double
         if (stringlarg != null && stringlarg != "") {
             largeur = Double.parseDouble(stringlarg);
         }
@@ -86,13 +88,14 @@ public class BackOffice extends Controller {
               e.printStackTrace();
             }
         }
-
+        // remplissage avec les données du formulaire.
         String localisationActuelle = requestData.get("localisationActuelle");
         String localisationOrigine = requestData.get("localisationOrigine");
         String archeologue = requestData.get("archeologue");
 
         String civilisation = requestData.get("civilisation");
         String model3D = requestData.get("model3D");
+        // si les trois première informations de l'objet sont remplies alors création de l'objet
         if (nom != "" && nom != null && reference != "" && reference != null && description != "" && description != null) {
             Objet objet = new Objet();
             objet.nom = nom;
@@ -124,7 +127,32 @@ public class BackOffice extends Controller {
     }
 
     public static Result modifyText() {
-        return ok(indexAdmin.render("This is the header !!!!!", "This is the body !!!!!"));
+        String select = "";
+        String alert = "";
+
+
+        DynamicForm requestData = Form.form().bindFromRequest();
+        String emplacement = requestData.get("emplacement");
+        String contenu = requestData.get("contenu");
+
+        if( emplacement != null && contenu != null ){
+
+            ContenuSite contenuSite = ContenuSite.find.where().eq("emplacement", emplacement).findUnique();
+            contenuSite.contenu = contenu;
+
+            contenuSite.save();
+            alert = "<div id='retourFeedback' class='alert alert-success' role='alert'> Le contenu a été modifié. </div>";
+
+
+        }
+
+        for(ContenuSite cont: ContenuSite.find.select("emplacement").findList()) {
+            select += "<option value="+cont.emplacement+">"+cont.emplacement+"</option>";
+            
+        }
+
+
+        return ok(modifyText.render(alert, select));
     }
 
     public static Result searchAdd() {

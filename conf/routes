@@ -14,8 +14,6 @@ GET     /                           controllers.Application.index()
 # Recherche page
 GET     /search                     controllers.Application.search()
 
-# Resultat recherche page
-GET     /searchResult               controllers.Application.searchResult()
 
 # Carte du monde page
 GET     /map                        controllers.Application.map()
@@ -96,6 +94,7 @@ POST    /mod/addObjet             	controllers.BackOffice.addObjet()
 
 # Modify text page
 GET     /mod/modifyText             controllers.BackOffice.modifyText()
+POST    /mod/modifyText             controllers.BackOffice.modifyText()
 
 # Commentaire/Fait historique recherche page
 GET     /mod/searchAdd             	controllers.BackOffice.searchAdd()
@@ -126,6 +125,7 @@ GET     /admin/users             	controllers.BackOffice.users()
 ### Informations routes ###
 GET		/isThereUserByName/:username		controllers.Information.isThereUserByName(username : String)
 GET		/isThereUserByEmail/:email			controllers.Information.isThereUserByEmail(email : String)
+GET		/getTextFromEmplacement/:emplacement controllers.Information.getTextFromEmplacement(emplacement : String)
 
 
 

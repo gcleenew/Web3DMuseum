@@ -12,7 +12,6 @@ import java.text.*;
 import models.*;
 
 import views.html.*;
-import views.html.application.*;
 
 
 public class Information extends Controller {
@@ -32,5 +31,10 @@ public class Information extends Controller {
             return ok("false");
         }
         return ok("true");
+    }
+    public static Result getTextFromEmplacement(String emplacement){
+
+        ContenuSite contenu = ContenuSite.find.where().eq("emplacement", emplacement).findUnique();
+        return ok(contenu.contenu);
     }
 }
