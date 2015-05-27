@@ -24,7 +24,7 @@ import core.*;
 public class Application extends Controller {
 
     public static Result index() {
-
+       
         SimpleDateFormat d = new SimpleDateFormat ("yyyyMMdd"); 
         String date = d.format(new Date());
         int aleatoireCarrousel = Integer.parseInt(date)/2400000; 
@@ -143,7 +143,7 @@ public class Application extends Controller {
         String civilisation = requestData.get("civilisation");
         String locationAct = requestData.get("location-act");
         String locationTr = requestData.get("location-tr");
-        String dateTr = requestData.get("date-tr");
+        
 
         String liste_result = "";
         Boolean launch = false;
@@ -186,10 +186,10 @@ public class Application extends Controller {
         locationTr = Verification.verifParam(locationTr);
         launch = Verification.verifBool(locationTr, launch);
 
-        dateTr = Verification.verifParam(dateTr);
-        launch = Verification.verifBool(dateTr, launch);
+        // dateTr = Verification.verifParam(dateTr);
+        // launch = Verification.verifBool(dateTr, launch);
 
-        System.out.print(launch);
+
     	// On effectue la requête, si un des paramètre est fourni par l'utilisateur.
         
         if(launch){
@@ -207,7 +207,6 @@ public class Application extends Controller {
                 .ilike("civilisation", civilisation)
                 .ilike("localisationActuelle", "%"+locationAct+"%")
                 .ilike("localisationOrigine", "%"+locationTr+"%")
-                // .ilike("dateDecouverte", dateTr)
             .findList();
 
 	        for (Objet obj : liste_objet) {
