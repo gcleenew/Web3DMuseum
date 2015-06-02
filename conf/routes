@@ -41,7 +41,7 @@ POST    /contact                    controllers.Application.contact()
 
 # Login page
 GET     /login                      controllers.User.login()
-POST     /login                      controllers.User.login()
+POST    /login                      controllers.User.login()
 
 # Register page
 POST    /register                   controllers.User.register()
@@ -52,6 +52,8 @@ GET     /passwordForgotten          controllers.User.passwordForgotten()
 # Personel page
 GET     /profil          			controllers.User.profil()
 
+#Deconnection
+GET     /logout						controllers.User.logout()
 
 
 

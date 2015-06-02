@@ -179,8 +179,14 @@
 
 						<div class="hlinks">
 							<!-- Login and Register link -->
-							<span class="lr"><a href="#login" role="button" data-toggle="modal">Login</a>
-							or <a href="#register" role="button" data-toggle="modal">Register</a></span>
+							@if(session.isEmpty){
+								<span class="lr"><a href="#login" role="button" data-toggle="modal">Login</a>
+								or <a href="#register" role="button" data-toggle="modal">Register</a></span>
+							}else{
+								<span class="lr"><a href="/profil" role="button">Profil</a>
+								 / <a href="/logout" role="button" >Se deconnecter</a></span>
+							}
+							
 						</div>
 
 					</div>

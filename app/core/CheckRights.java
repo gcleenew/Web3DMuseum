@@ -14,14 +14,16 @@ import java.lang.reflect.Method;
 
 public class CheckRights extends play.mvc.Action.Simple {
 	public F.Promise<Result> call(Http.Context ctx) throws Throwable {
-		// if(request.cookie("PLAY_SESSION") != null){
-		// 	if(ctx.session().get("username").equals("user")){
-		// 	System.out.println("You are just a standart user.");
-		// 	}
-		// 	else if (ctx.session().get("right").equals("mod")) {
-		// 		System.out.println("You are a amazing administrator!");
-		// 	}
-		// }
+		System.out.println(ctx.session());
+		if(ctx.session().get("right") != null){
+			if(ctx.session().get("right").equals("user")){
+				System.out.println("You are just a standart user. Get out.");
+				return F.Promise.pure(redirect(controllers.routes.Application.index()));
+			}
+			else if (ctx.session().get("right").equals("mod")) {
+				System.out.println("You are a amazing administrator! Welcome.");
+			}
+		}
 		
 		return delegate.call(ctx);
 	}

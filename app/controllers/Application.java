@@ -21,7 +21,7 @@ import views.html.Application.*;
 
 import core.*;
 
-@With(core.CheckRights.class)
+
 public class Application extends Controller {
 
     
@@ -34,7 +34,7 @@ public class Application extends Controller {
         List<Objet> objets = Objet.find.all();
         int objetsSize = 5;
 
-        // Attention boucle tant qu'il ne trouve pas 4 images de 4 objets différents ( ca peut faire une boucle infini )
+        // Attention boucle tant qu'il ne trouve pas 4 images de 4 objets différents (boucle infinie)
         // le i et le y rajoute de l'aléatoire et permet le debug en cas d'un saut d'id
 
         String descriptionSite = ContenuSite.find.where().eq("emplacement", "descriptionSite").findUnique().contenu;

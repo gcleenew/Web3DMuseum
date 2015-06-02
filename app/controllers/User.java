@@ -34,7 +34,7 @@ public class User extends Controller {
                 }
 
                 message = "Vous avez été connecté";
-                return ok(message);
+                
             }
             else {
                 message = "Ce nom d'utilisateur ou ce mot de passe n'est pas correct";
@@ -46,7 +46,7 @@ public class User extends Controller {
             return ok(message);
         }
         
-        
+        return redirect(routes.Application.index());
         
         
     }
@@ -95,5 +95,11 @@ public class User extends Controller {
     public static Result profil(){
         String user = session("connected");
         return ok(index.render("Ton profil", user));
+    }
+
+    public static Result logout(){
+        session().clear();
+        flash("info", "Deconnecté");
+        return redirect(routes.Application.index());
     }
 }
