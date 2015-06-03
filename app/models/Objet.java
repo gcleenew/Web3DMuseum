@@ -110,7 +110,29 @@ public class Objet extends Model {
     Integer.class, Objet.class
   ); 
 
-  
-  
-
+  public String getField(String field)
+  {
+    if (field == "description") {
+      return description;
+    }
+    else if (field == "type_objet") {
+      return type_objet;
+    }
+    else if (field == "matiere") {
+      return matiere;
+    }
+    else if (field == "localisationActuelle") {
+      return localisationActuelle;
+    }
+    else if (field == "localisationOrigine") {
+      return localisationOrigine;
+    }
+    else if (field == "archeologue") {
+      return archeologue;
+    }
+    else if (field == "civilisation") {
+      return civilisation;
+    }
+    return null;
+  }
 }

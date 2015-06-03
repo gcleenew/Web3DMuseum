@@ -1,0 +1,83 @@
+@(header: String, objet: models.Objet, message: String)
+
+@mainAdmin("Proposition de modification"){
+  
+} {
+
+}{
+<!-- Page heading starts -->
+<div class="page-head">
+	<div class="container">
+    	@(message)
+	</div>
+</div>
+<!--/ Page Heading ends -->
+
+<!-- Page content starts -->
+<div class="content blog">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <h4 class="title">Ajouter un objet</h4>
+          <div class="form">
+            <form class="form-horizontal" method="post">
+              <!-- Email -->
+              <h5 class="title">Informations générales</h5><br>
+              
+              <div class="form-group">
+                <label class="control-label col-md-2" for="description">Description*</label>
+                <div class="col-md-9">
+                  <textarea class="form-control" id="description" name="description">@(objet.description)</textarea>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-2" for="type_objet">Type de l'objet</label>
+                <div class="col-md-9">
+                  <input type="text" class="form-control" id="type_objet" name="type_objet" value="@objet.type_objet">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-2" for="matiere">Matière</label>
+                <div class="col-md-9">
+                  <input type="text" class="form-control" id="matiere" name="matiere" value="@objet.matiere">
+                </div>
+              </div>
+              <h5 class="title">Autres informations</h5><br>
+              <div class="form-group">
+                <label class="control-label col-md-4" for="localisationActuelle">Localisation Actuelle</label>
+                <div class="col-md-7">
+                  <input type="text" class="form-control" id="localisationActuelle" name="localisationActuelle" value="@objet.localisationActuelle">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-4" for="localisationOrigine">Localisation d'origine</label>
+                <div class="col-md-7">
+                  <input type="text" class="form-control" id="localisationOrigine" name="localisationOrigine" value="@objet.localisationOrigine">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-4" for="archeologue">Archéologue qui à découvert l'oeuvre</label>
+                <div class="col-md-7">
+                  <input type="text" class="form-control" id="archeologue" name="archeologue" value="@objet.archeologue">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-4" for="civilisation">Civilisation</label>
+                <div class="col-md-7">
+                  <input type="text" class="form-control" id="civilisation" name="civilisation" value="@objet.civilisation">
+                </div>
+              </div>
+              <!-- Buttons -->
+              <div class="form-group">
+                <!-- Buttons -->
+                <div class="col-md-9 col-md-offset-2">
+                   <button type="submit" class="btn btn-default">Envoyer</button>
+                   <button type="reset" class="btn btn-default">Annuler</button>
+                </div>
+              </div>
+            </form>
+          </div>
+      </div>
+    </div>
+</div>
+}
+

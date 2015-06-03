@@ -52,9 +52,21 @@ GET     /passwordForgotten          controllers.User.passwordForgotten()
 # Personel page
 GET     /profil          			controllers.User.profil()
 
+
+# Proposition modification page
+GET     /objet/:id/proposeModification                 controllers.User.proposeModification(id : Integer)
+POST    /objet/:id/proposeModification                 controllers.User.proposeModification(id : Integer)
+
+
 #Deconnection
 GET     /logout						controllers.User.logout()
 
+
+# Comment page
+POST    /objet/:id/createCommentaire	               controllers.User.createCommentaire(id : Integer)
+
+# Fait historique page
+POST    /objet/:id/createFait	               		   controllers.User.createFait(id : Integer)
 
 
 ### Static routes ###
