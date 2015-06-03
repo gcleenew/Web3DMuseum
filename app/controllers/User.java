@@ -27,13 +27,14 @@ public class User extends Controller {
         if (user != null) {
             if (Crypt.checkPassword(password, user.password)) {
                 session("connected", username);
+                // session.maxAge = 5d;
                 // TODO
                 if (user.rights != null) {
                     session("right", user.rights);
                 }
 
                 message = "Vous avez été connecté";
-                return ok(message);
+                
             }
             else {
                 message = "Ce nom d'utilisateur ou ce mot de passe n'est pas correct";
@@ -45,7 +46,7 @@ public class User extends Controller {
             return ok(message);
         }
         
-        
+        return redirect(routes.Application.index());
         
         
     }
@@ -196,6 +197,13 @@ public class User extends Controller {
         flash("success", alert);
         // TO DO : create feedback 
         return redirect(controllers.routes.Application.objet(id));
+    }
+
+
+    public static Result logout(){
+        session().clear();
+        flash("info", "Deconnecté");
+        return redirect(routes.Application.index());
     }
 
 }

@@ -41,7 +41,7 @@ POST    /contact                    controllers.Application.contact()
 
 # Login page
 GET     /login                      controllers.User.login()
-POST     /login                      controllers.User.login()
+POST    /login                      controllers.User.login()
 
 # Register page
 POST    /register                   controllers.User.register()
@@ -52,9 +52,15 @@ GET     /passwordForgotten          controllers.User.passwordForgotten()
 # Personel page
 GET     /profil          			controllers.User.profil()
 
+
 # Proposition modification page
 GET     /objet/:id/proposeModification                 controllers.User.proposeModification(id : Integer)
 POST    /objet/:id/proposeModification                 controllers.User.proposeModification(id : Integer)
+
+
+#Deconnection
+GET     /logout						controllers.User.logout()
+
 
 # Comment page
 POST    /objet/:id/createCommentaire	               controllers.User.createCommentaire(id : Integer)
@@ -125,6 +131,14 @@ GET     /admin/stats             	controllers.BackOffice.stats()
 
 # Liste utilisateurs
 GET     /admin/users             	controllers.BackOffice.users()
+# Liste utilisateurs
+GET     /admin/users/:message      controllers.BackOffice.usersWithMessage(message : String)
+
+# Promote utilisateurs
+GET     /admin/users/promote/:id    controllers.BackOffice.promoteUser(id : Integer)
+
+# Delete utilisateurs
+GET     /admin/users/delete/:id     controllers.BackOffice.deleteUser(id : Integer)
 
 
 
