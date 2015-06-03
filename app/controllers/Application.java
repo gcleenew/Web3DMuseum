@@ -24,8 +24,9 @@ import core.*;
 
 public class Application extends Controller {
 
+    
     public static Result index() {
-
+       
         SimpleDateFormat d = new SimpleDateFormat ("yyyyMMdd"); 
         String date = d.format(new Date());
         int aleatoireCarrousel = Integer.parseInt(date)/2400000; 
@@ -33,7 +34,7 @@ public class Application extends Controller {
         List<Objet> objets = Objet.find.all();
         int objetsSize = 5;
 
-        // Attention boucle tant qu'il ne trouve pas 4 images de 4 objets différents ( ca peut faire une boucle infini )
+        // Attention boucle tant qu'il ne trouve pas 4 images de 4 objets différents (boucle infinie)
         // le i et le y rajoute de l'aléatoire et permet le debug en cas d'un saut d'id
 
         String descriptionSite = ContenuSite.find.where().eq("emplacement", "descriptionSite").findUnique().contenu;
@@ -144,7 +145,7 @@ public class Application extends Controller {
         String civilisation = requestData.get("civilisation");
         String locationAct = requestData.get("location-act");
         String locationTr = requestData.get("location-tr");
-        String dateTr = requestData.get("date-tr");
+        
 
         String liste_result = "";
         Boolean launch = false;
@@ -187,10 +188,10 @@ public class Application extends Controller {
         locationTr = Verification.verifParam(locationTr);
         launch = Verification.verifBool(locationTr, launch);
 
-        dateTr = Verification.verifParam(dateTr);
-        launch = Verification.verifBool(dateTr, launch);
+        // dateTr = Verification.verifParam(dateTr);
+        // launch = Verification.verifBool(dateTr, launch);
 
-        System.out.print(launch);
+
     	// On effectue la requête, si un des paramètre est fourni par l'utilisateur.
         
         if(launch){
@@ -208,7 +209,6 @@ public class Application extends Controller {
                 .ilike("civilisation", civilisation)
                 .ilike("localisationActuelle", "%"+locationAct+"%")
                 .ilike("localisationOrigine", "%"+locationTr+"%")
-                // .ilike("dateDecouverte", dateTr)
             .findList();
 
 	        for (Objet obj : liste_objet) {

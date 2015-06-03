@@ -41,7 +41,7 @@ POST    /contact                    controllers.Application.contact()
 
 # Login page
 GET     /login                      controllers.User.login()
-POST     /login                      controllers.User.login()
+POST    /login                      controllers.User.login()
 
 # Register page
 POST    /register                   controllers.User.register()
@@ -53,6 +53,20 @@ GET     /passwordForgotten          controllers.User.passwordForgotten()
 GET     /profil          			controllers.User.profil()
 
 
+# Proposition modification page
+GET     /objet/:id/proposeModification                 controllers.User.proposeModification(id : Integer)
+POST    /objet/:id/proposeModification                 controllers.User.proposeModification(id : Integer)
+
+
+#Deconnection
+GET     /logout						controllers.User.logout()
+
+
+# Comment page
+POST    /objet/:id/createCommentaire	               controllers.User.createCommentaire(id : Integer)
+
+# Fait historique page
+POST    /objet/:id/createFait	               		   controllers.User.createFait(id : Integer)
 
 
 ### Static routes ###
