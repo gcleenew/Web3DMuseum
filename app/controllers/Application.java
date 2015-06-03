@@ -217,7 +217,7 @@ public class Application extends Controller {
                 liste_result += "<a href=\"/objet/"+obj.id+"\"><div class=\"panel panel-default searchPanel\"><div class=\"panel-heading\">"+obj.nom+"</div><div class=\"panel-body\"><div class=\"col-md-2\"><img class=\"searchImage\" src=\"/assets/imgObjet/"+image+"\"></div><div class=\"col-md-3\">Référence :"+obj.reference+"</div><div class=\"col-md-4 col-md-offset-0\">"+obj.description+"</div><div class=\"col-md-3 col-md-offset-0\">Type : "+obj.type_objet+"<br>Matière : "+obj.matiere+"<br>Poids : "+obj.poids+" gramme(s)<br></div></div></div></a>";
 	           
             }
-            System.out.println(liste_objet);
+            
 
             
         }
