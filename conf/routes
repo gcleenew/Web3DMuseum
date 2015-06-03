@@ -119,6 +119,14 @@ GET     /admin/stats             	controllers.BackOffice.stats()
 
 # Liste utilisateurs
 GET     /admin/users             	controllers.BackOffice.users()
+# Liste utilisateurs
+GET     /admin/users/:message      controllers.BackOffice.usersWithMessage(message : String)
+
+# Promote utilisateurs
+GET     /admin/users/promote/:id    controllers.BackOffice.promoteUser(id : Integer)
+
+# Delete utilisateurs
+GET     /admin/users/delete/:id     controllers.BackOffice.deleteUser(id : Integer)
 
 
 
