@@ -27,7 +27,7 @@ public class Application extends Controller {
     
     public static Result index() {
        
-        SimpleDateFormat d = new SimpleDateFormat ("yyyyMMdd"); 
+        SimpleDateFormat d = new SimpleDateFormat ("yyyyMMdd");
         String date = d.format(new Date());
         int aleatoireCarrousel = Integer.parseInt(date)/2400000; 
 
