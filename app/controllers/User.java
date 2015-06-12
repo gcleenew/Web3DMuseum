@@ -237,4 +237,69 @@ public class User extends Controller {
         return redirect(routes.Application.index());
     }
 
+    public static Result changeMail(){
+        String username = session("connected");
+        Utilisateur user = Utilisateur.find.where().eq("username", username).findUnique();
+
+        DynamicForm requestData = Form.form().bindFromRequest();
+        
+        System.out.println(requestData);
+
+        String newMail = requestData.get("mail");
+
+        if(newMail != null){
+
+            if(!newMail.equals("")){
+                user.email = newMail;
+                user.save();
+                String success = "<div id='successMail' class='alert alert-success' role='alert'>Votre email a été modifié.</div>";
+                flash("successMail", success);
+                return redirect(controllers.routes.User.profil());
+            }
+            else{
+                String echec = "<div id='echecMail' class='alert alert-danger' role='alert'>Une erreur s'est produite veuillez réessayer.</div>";
+                flash("echecMail", echec);
+            }
+        } 
+        
+
+        return ok(changeMail.render(user));
+    }
+
+    public static Result changePassword(){
+        String username = session("connected");
+        Utilisateur user = Utilisateur.find.where().eq("username", username).findUnique();
+
+        DynamicForm requestData = Form.form().bindFromRequest();
+
+        String password1 = requestData.get("password1");
+
+        String password2 = requestData.get("password2");
+
+        if(password1 != null && password2 != null){
+
+            if(!password1.equals("") && !password2.equals("")){
+                if(password1.equals(password2)){
+                    user.password = Crypt.createPassword(password1);
+                    user.save();
+                    String success = "<div id='successPass' class='alert alert-success' role='alert'>Votre mot de passe a été modifié.</div>";
+                    flash("successPass", success);
+                    return redirect(controllers.routes.User.profil());
+                }
+                else{
+                    String echec = "<div id='echecPass' class='alert alert-danger' role='alert'>Les mots de passe ne correspondent pas.</div>";
+                    flash("echecPass", echec);
+                }
+            }
+            else{
+                String echec = "<div id='echecPass' class='alert alert-danger' role='alert'>Une erreur s'est produite veuillez réessayer.</div>";
+                flash("echecPass", echec);
+            }
+        } 
+
+
+
+        return ok(changePassword.render(user));
+    }
+
 }

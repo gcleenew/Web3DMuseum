@@ -20,6 +20,8 @@
 <div class="content blog">
     <div class="row">
 	    <div class="col-md-10 col-md-offset-1">
+	    	@Html(flash.get("successMail"))
+	    	@Html(flash.get("successPass"))
 			<ul class="nav nav-tabs">
 			  <!-- Use uniqe name for "href" in below anchor tags -->
 			  <li class="active"><a href="#tab1" data-toggle="tab">Commentaire(s)</a></li>
@@ -47,15 +49,19 @@
 						  <tbody>
 						  	<h2>Information compte :</h2>
 							<tr>
-							  <td><strong><h5>Email</h5></strong></td>
-							  <td>@(user.email)</td>
+								<td><strong><h5>Nom d'utilisateur</h5></strong></td>
+							  	<td>@(user.username)</td>
 							</tr>
 							<tr>
-							  <td><strong><h5>Nom d'utilisateur</h5></strong></td>
-							  <td>
-								@(user.username)
-							  </td>
-							</tr>    
+							  <td><strong><h5>Email</h5></strong></td>
+							  <td>@(user.email)</td>
+							  <td><button><a href="/changeMail">Modifier mail</a></button></td>
+							</tr>
+							<tr>
+								<td><strong><h5>Mot de passe</h5></strong></td>
+								<td>*************</td>
+								<td><button><a href="/changePassword">Modifier mot de passe</a></button></td>
+							</tr>   
 						  </tbody>
 					</table>
 				</div>
