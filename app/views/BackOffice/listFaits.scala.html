@@ -1,0 +1,81 @@
+@(faits: List[FaitHistorique])
+
+@mainAdmin("Liste faits historique"){
+  
+} {
+
+}{
+<!-- Page heading starts -->
+<div class="page-head">
+	<div class="container">
+	</div>
+</div>
+<!--/ Page Heading ends -->
+
+<!-- Page content starts -->
+<div class="content blog">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <h4 class="title">Liste des faits</h4>
+          <div class="row">
+            <div class="col-md-12">
+              <table class="table">
+                <theader>
+
+                    <th>
+                          #
+                    </th>
+                    <th>
+                          Utilisateur
+                    </th>
+                    <th>
+                          Objet
+                    </th>
+                    <th>
+                          Date de création
+                    </th>
+                    <th>
+                          Validitée
+                    </th>
+                    <th>
+                          Voir
+                    </th>
+                </tr>
+                <tbody>
+                @for(fait <- faits) {
+
+                  <tr id="@fait.id">
+                    
+                      <td>
+                            @fait.id
+                      </td>
+                      <td>
+                            @fait.utilisateur.username
+                      </td>
+                      <td>
+                            @fait.objet.nom
+                      </td>
+                      <td>
+                            @fait.creationDate
+                      </td>
+                      <td>
+                          @if(fait.valide){
+                            Validé
+                          }else{
+                            Pas encore validé
+                          }
+                      </td>
+                      <td>
+                            <a href="@routes.BackOffice.faitHistorique(fait.id)" role="button" class="modif btn btn-info">voir</a>
+                      </td>
+                    </tr>
+
+                }
+              </tbody>
+              </table>
+            </div>
+          </div>
+      </div>
+    </div>
+</div>
+}

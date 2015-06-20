@@ -1,0 +1,60 @@
+@(fait: models.FaitHistorique)
+
+@mainAdmin("Fait historique") {
+  
+}{
+  
+}{
+<!-- Page heading starts -->
+<div class="page-head">
+	<div class="container">
+			@Html(flash.get("valide"))
+		  	@Html(flash.get("delete"))
+	</div>
+</div>
+<!--/ Page Heading ends -->
+
+<!-- Page content starts -->
+<div class="content blog">
+    
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+			<div class="col-md-12">
+				<h5>Faits Historique</h5>
+				Sur l'objet : <a href="@routes.Application.objet(fait.objet.id)">@fait.objet.nom</a> Status : 
+				@if(fait.valide){
+					Validé
+				}else{
+					Non Validé
+				}
+				<div class="item-review">
+				  	<h5>@(fait.utilisateur.username) </h5>
+				  	<p>@(fait.contenu)</p>
+				</div>
+
+				<div class="col-md-offset-10"> 
+					<form id="valid" action="@routes.BackOffice.faitHistorique(fait.id)" method="post">
+						<input type="hidden" name="faitAction" value="valid"/>
+					</form>
+					
+
+
+					<form id="delete" action="@routes.BackOffice.faitHistorique(fait.id)" method="post">
+						<input type="hidden" name="faitAction" value="delete"/>
+					</form>
+					@if(fait.valide){
+					  
+					}else{
+					  <a href='#' onclick='document.getElementById("valid").submit()' role="button" class="modif btn btn-info">Valider</a>
+					}
+					<a href='#' onclick='document.getElementById("delete").submit()' role="button" class="modif btn btn-danger">Supprimer</a>
+
+				</div>
+			</div>
+			
+      </div>
+    </div>
+</div>
+<!--/ Page content ends -->
+
+}

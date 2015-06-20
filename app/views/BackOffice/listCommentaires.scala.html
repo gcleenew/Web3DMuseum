@@ -1,0 +1,81 @@
+@(commentaires: List[Commentaire])
+
+@mainAdmin("Liste commentaires historique"){
+  
+} {
+
+}{
+<!-- Page heading starts -->
+<div class="page-head">
+	<div class="container">
+	</div>
+</div>
+<!--/ Page Heading ends -->
+
+<!-- Page content starts -->
+<div class="content blog">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <h4 class="title">Liste des commentaires</h4>
+          <div class="row">
+            <div class="col-md-12">
+              <table class="table">
+                <theader>
+
+                    <th>
+                          #
+                    </th>
+                    <th>
+                          Utilisateur
+                    </th>
+                    <th>
+                          Objet
+                    </th>
+                    <th>
+                          Date de création
+                    </th>
+                    <th>
+                          Validitée
+                    </th>
+                    <th>
+                          Voir
+                    </th>
+                </tr>
+                <tbody>
+                @for(commentaire <- commentaires) {
+
+                  <tr id="@commentaire.id">
+                    
+                      <td>
+                            @commentaire.id
+                      </td>
+                      <td>
+                            @commentaire.utilisateur.username
+                      </td>
+                      <td>
+                            @commentaire.objet.nom
+                      </td>
+                      <td>
+                            @commentaire.creationDate
+                      </td>
+                      <td>
+                          @if(commentaire.valide){
+                            Validé
+                          }else{
+                            Pas encore validé
+                          }
+                      </td>
+                      <td>
+                            <a href="@routes.BackOffice.commentaire(commentaire.id)" role="button" class="modif btn btn-info">voir</a>
+                      </td>
+                    </tr>
+
+                }
+              </tbody>
+              </table>
+            </div>
+          </div>
+      </div>
+    </div>
+</div>
+}
