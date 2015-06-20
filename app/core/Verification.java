@@ -16,7 +16,7 @@ public class Verification {
     	else{
     		param = "%";
     	}
-    	System.out.println(param);
+    	
     	return param;
 	}
 

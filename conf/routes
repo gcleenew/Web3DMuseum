@@ -52,6 +52,12 @@ GET     /passwordForgotten          controllers.User.passwordForgotten()
 # Personel page
 GET     /profil          			controllers.User.profil()
 
+# Change mail page
+GET     /changeMail          		controllers.User.changeMail()
+
+# Change password page
+GET     /changePassword          	controllers.User.changePassword()
+
 
 # Proposition modification page
 GET     /objet/:id/proposeModification                 controllers.User.proposeModification(id : Integer)

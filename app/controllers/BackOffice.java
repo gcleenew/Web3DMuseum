@@ -17,7 +17,7 @@ import models.*;
 import views.html.*;
 import views.html.BackOffice.*;
 
-@With(core.CheckRights.class)
+@With(core.CheckMod.class)
 public class BackOffice extends Controller {
 
     public static Result index() {

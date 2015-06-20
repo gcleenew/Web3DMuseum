@@ -1,4 +1,4 @@
-@(header: String,user: String)
+@(user : models.Utilisateur, com : String )
 
 
 
@@ -11,13 +11,64 @@
 <!-- Page heading starts -->
 <div class="page-head">
 	<div class="container">
-    	@(header)
+    	<h4>Profil de @(user.username)</h4>
 	</div>
 </div>
 <!--/ Page Heading ends -->
 
 <!-- Page content starts -->
 <div class="content blog">
-    @(user)
+    <div class="row">
+	    <div class="col-md-10 col-md-offset-1">
+	    	@Html(flash.get("successMail"))
+	    	@Html(flash.get("successPass"))
+			<ul class="nav nav-tabs">
+			  <!-- Use uniqe name for "href" in below anchor tags -->
+			  <li class="active"><a href="#tab1" data-toggle="tab">Commentaire(s)</a></li>
+			  <li><a href="#tab2" data-toggle="tab">Historique</a></li>
+			  <li><a href="#tab3" data-toggle="tab">Favoris</a></li>
+			  <li><a href="#tab4" data-toggle="tab">Compte</a></li>
+			</ul>
+
+			<!-- Tab Content -->
+			<div class="tab-content">
+				<div class="tab-pane active" id="tab1">
+					@Html(com)
+
+				</div>
+				<div class="tab-pane" id="tab2">
+					<h5>Hist</h5>
+				</div>
+				<div class="tab-pane" id="tab3">
+					<h5>Fav</h5>
+				</div>
+				<div class="tab-pane" id="tab4">
+				<div class="col-md-6">
+
+					<table class="table table-striped tcart">
+						  <tbody>
+						  	<h2>Information compte :</h2>
+							<tr>
+								<td><strong><h5>Nom d'utilisateur</h5></strong></td>
+							  	<td>@(user.username)</td>
+							</tr>
+							<tr>
+							  <td><strong><h5>Email</h5></strong></td>
+							  <td>@(user.email)</td>
+							  <td><button><a href="/changeMail">Modifier mail</a></button></td>
+							</tr>
+							<tr>
+								<td><strong><h5>Mot de passe</h5></strong></td>
+								<td>*************</td>
+								<td><button><a href="/changePassword">Modifier mot de passe</a></button></td>
+							</tr>   
+						  </tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
+<!--/ Page content ends -->
+
 }
