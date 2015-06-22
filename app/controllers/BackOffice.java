@@ -58,6 +58,7 @@ public class BackOffice extends Controller {
         alert = "<div id='retour' class='alert alert-success' role='alert'> Objet supprimé </div>";
         flash("delete", alert);
         return redirect(controllers.routes.BackOffice.searchObject());
+        
     }
 
     public static Result objet(Integer id) {
@@ -419,7 +420,7 @@ public class BackOffice extends Controller {
 
         }
         return ok(proposition.render(proposition1, champvalue));
-        
+
     }
 
 
