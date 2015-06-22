@@ -309,34 +309,32 @@ public class BackOffice extends Controller {
                 // added lines
 
 
-                String myUploadPath = Play.application().configuration().getString("myUploadPath");
+                String myUploadPath = Play.application().configuration().getString("myUploadPathPhoto");
                 // Replace the /public/ folder
                 File newFile=Play.application().getFile(myUploadPath + fileName);
                 // Move the tmp file to the final location
                 // Not the best way but it works !
                 boolean bool = file.renameTo(newFile);
 
-                return ok("file saved as " + myUploadPath + fileName + " le resultat est :"+String.valueOf(bool));
             } else {
                 flash("error", "Missing file");
-                return redirect("/mod/addPhoto");
             }
         }
         
 
-
-
-
-
         Image image = Image.find.where().eq("nom", nom).findUnique();
 
-        if( nom == null || objet == null || image == null ){
+        if( nom == null && objet == null){
+
+        }
+        else if( nom.equals("") || objet.equals("") ){
             message = "<div id='retourFeedback' class='alert alert-danger' role='alert'> La photo "+nom+" n'a pas été créé car un des champs n'était pas rempli.</div>";
         }
         else if( image == null ){
             image = new Image();
             image.nom = nom;
             image.objet = Objet.find.where().eq("nom", objet).findUnique();
+            image.lien = nom+".png";
             image.save();
        
             message = "<div id='retourFeedback' class='alert alert-success' role='alert'> La photo : "+nom+" a été créé. </div>";
@@ -347,6 +345,118 @@ public class BackOffice extends Controller {
         
 
         return ok(addPhoto.render(message));
+    }
+
+    public static Result addVideo() {
+        // initialisation du message d'erreur
+        String message = "";
+        // création des différentes variable et remplissage avec les variables du formulaire
+        DynamicForm requestData = Form.form().bindFromRequest();
+        String nom = requestData.get("nom");
+        String objet = requestData.get("objet");
+
+        play.mvc.Http.MultipartFormData body = request().body().asMultipartFormData();
+               
+        if( body != null ){
+            play.mvc.Http.MultipartFormData.FilePart videoFile = body.getFile("video");
+            if (videoFile != null) {
+                String fileName = nom+".mp4";
+                File file = videoFile.getFile();
+                // added lines
+
+
+                String myUploadPath = Play.application().configuration().getString("myUploadPathVideo");
+                // Replace the /public/ folder
+                File newFile=Play.application().getFile(myUploadPath + fileName);
+                // Move the tmp file to the final location
+                // Not the best way but it works !
+                boolean bool = file.renameTo(newFile);
+
+            } else {
+                flash("error", "Missing file");
+            }
+        }
+        
+
+        Video video = Video.find.where().eq("nom", nom).findUnique();
+
+        if( nom == null && objet == null){
+
+        }
+        else if( nom.equals("") || objet.equals("") ){
+            message = "<div id='retourFeedback' class='alert alert-danger' role='alert'> La vidéo "+nom+" n'a pas été créé car un des champs n'était pas rempli.</div>";
+        }
+        else if( video == null ){
+            video = new Video();
+            video.nom = nom;
+            video.objet = Objet.find.where().eq("nom", objet).findUnique();
+            video.lien = nom+".png";
+            video.save();
+       
+            message = "<div id='retourFeedback' class='alert alert-success' role='alert'> La video : "+nom+" a été créé. </div>";
+        }        
+        else {
+            message = "<div id='retourFeedback' class='alert alert-danger' role='alert'> La video "+nom+" n'a pas été créé car elle existe déjà </div>";
+        }
+        
+
+        return ok(addVideo.render(message));
+    }
+
+    public static Result addAudio() {
+        // initialisation du message d'erreur
+        String message = "";
+        // création des différentes variable et remplissage avec les variables du formulaire
+        DynamicForm requestData = Form.form().bindFromRequest();
+        String nom = requestData.get("nom");
+        String objet = requestData.get("objet");
+
+        play.mvc.Http.MultipartFormData body = request().body().asMultipartFormData();
+               
+        if( body != null ){
+            play.mvc.Http.MultipartFormData.FilePart audioFile = body.getFile("audio");
+            if (audioFile != null) {
+                String fileName = nom+".mp3";
+                File file = audioFile.getFile();
+                // added lines
+
+
+                String myUploadPath = Play.application().configuration().getString("myUploadPathAudio");
+                // Replace the /public/ folder
+                File newFile=Play.application().getFile(myUploadPath + fileName);
+                // Move the tmp file to the final location
+                // Not the best way but it works !
+                boolean bool = file.renameTo(newFile);
+
+            } else {
+                flash("error", "Missing file");
+            }
+        }
+        
+
+        Audio audio = Audio.find.where().eq("nom", nom).findUnique();
+
+        if( nom == null && objet == null){
+
+        }
+        else if( nom.equals("") || objet.equals("") ){
+            message = "<div id='retourFeedback' class='alert alert-danger' role='alert'> L'audio "+nom+" n'a pas été créé car un des champs n'était pas rempli.</div>";
+        }
+        else if( audio == null ){
+            audio = new Audio();
+            audio.nom = nom;
+            audio.objet = Objet.find.where().eq("nom", objet).findUnique();
+            audio.lien = nom+".png";
+            audio.save();
+       
+            message = "<div id='retourFeedback' class='alert alert-success' role='alert'> L'audio : "+nom+" a été créé. </div>";
+        }        
+        else {
+            message = "<div id='retourFeedback' class='alert alert-danger' role='alert'> L'audio "+nom+" n'a pas été créé car elle existe déjà </div>";
+        }
+        
+
+        return ok(addAudio.render(message));
     }
 
     public static Result listPropositions() {

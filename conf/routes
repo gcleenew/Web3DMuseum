@@ -120,9 +120,17 @@ GET     /mod/addObjet             	controllers.BackOffice.addObjet()
 POST    /mod/addObjet             	controllers.BackOffice.addObjet()
 
 
-# Add Objet page
+# Add Photo objet page
 GET     /mod/addPhoto            	controllers.BackOffice.addPhoto()
 POST    /mod/addPhoto           	controllers.BackOffice.addPhoto()
+
+# Add Video objet page
+GET     /mod/addVideo            	controllers.BackOffice.addVideo()
+POST    /mod/addVideo           	controllers.BackOffice.addVideo()
+
+# Add Audio objet page
+GET     /mod/addAudio           	controllers.BackOffice.addAudio()
+POST    /mod/addAudio           	controllers.BackOffice.addAudio()
 
 
 # Modify text page
