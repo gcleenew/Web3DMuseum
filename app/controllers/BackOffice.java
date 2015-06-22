@@ -4,9 +4,9 @@ import play.*;
 import play.data.*;
 import play.data.Form;
 import play.data.DynamicForm;
+import play.mvc.*;
 import play.mvc.Http.MultipartFormData;
 import play.mvc.Http.MultipartFormData.FilePart;
-import play.mvc.*;
 
 import java.lang.*;
 import java.util.Date;
@@ -25,7 +25,7 @@ import views.html.BackOffice.*;
 public class BackOffice extends Controller {
 
     public static Result index() {
-        return ok(indexAdmin.render("", ""));
+        return ok(indexAdmin.render("This is the ADMIN header !", "This is the ADMIN body !"));
     }
 
     public static Result searchObject() {
@@ -51,6 +51,7 @@ public class BackOffice extends Controller {
         return ok(searchObjectResult.render(objet));
     }
 
+
     public static Result deleteObject(Integer id) {
         Objet objet = Objet.find.byId(id);
         objet.delete();
@@ -60,6 +61,7 @@ public class BackOffice extends Controller {
         return redirect(controllers.routes.BackOffice.searchObject());
         
     }
+
 
     public static Result objet(Integer id) {
 
@@ -153,6 +155,16 @@ public class BackOffice extends Controller {
 
 
         return ok(objet.render(objet1));
+    }
+
+    public static Result deleteObjet(Integer id) {
+
+        Objet objet = Objet.find.byId(id);
+
+        objet.delete();
+        String message = "<div id='retour' class='alert alert-success' role='alert'> Objet supprimé </div>";
+        flash("delete", message);
+        return ok("delete");
     }
 
     public static Result addObjet() {
@@ -288,27 +300,27 @@ public class BackOffice extends Controller {
         String objet = requestData.get("objet");
 
         play.mvc.Http.MultipartFormData body = request().body().asMultipartFormData();
-        if (body != null) {
-             if (body.getFile("image") != null) {
-                FilePart filePart = body.getFile("image");
-                String fileName = filePart.getFilename();
-                String contentType = filePart.getContentType(); 
+        
+         if (body.getFile("image") != null) {
+            FilePart filePart = body.getFile("image");
+            String fileName = filePart.getFilename();
+            String contentType = filePart.getContentType(); 
 
-                try
-                {
-                    File file = filePart.getFile();
-                    // Replace the /public/ folder
-                    String myUploadPath = Play.application().configuration().getString("myUploadPath");
-                    File newFile=Play.application().getFile(myUploadPath + fileName);
-                    // Move the tmp file to the final location
-                    // Not the best way but it works !
-                    file.renameTo(newFile);
-                    file.delete();
-                }
-                catch(Exception ex)
-                {
+            try
+            {
+                File file = filePart.getFile();
+                // Replace the /public/ folder
+                File newFile=Play.application().getFile("/public/imgObjet/" + fileName);
+                // Move the tmp file to the final location
+                // Not the best way but it works !
+                boolean bool = file.renameTo(newFile);
+                //file.delete();
 
-                }
+                return ok(String.valueOf(bool));
+            }
+            catch(Exception ex)
+            {
+            //TO DO Exception ex 
             }
         }
          
