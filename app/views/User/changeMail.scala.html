@@ -1,0 +1,40 @@
+@(user : models.Utilisateur)
+
+
+
+@main("Page de profil"){
+  
+}{
+  
+}{
+
+<!-- Page heading starts -->
+<div class="page-head">
+	<div class="container">
+    	<h4>Profil de @(user.username)</h4>
+	</div>
+</div>
+<!--/ Page Heading ends -->
+
+<!-- Page content starts -->
+<div class="content blog">
+	<div class="row">
+		<form class="form-horizontal col-md-6 col-md-offset-0" action="">
+			<div class="col-md-offset-3">
+				@Html(flash.get("echecMail"))
+			</div>
+			<div class="form-group">
+				<h4 for="nom" class="col-sm-6 control-label searchLabel">Nouveau mail :</h4>
+				<div class="col-sm-6">
+					<input name="mail" type="text" class="form-control" id="mail">
+				</div>
+			</div>
+			<div class="form-group">
+				<button type="submit" class="btn btn-primary search-button">Modifier</button>
+			</div>
+		</form>
+	</div>
+</div>
+<!--/ Page content ends -->
+
+}

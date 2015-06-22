@@ -1,0 +1,82 @@
+@(objet: Objet)
+
+@mainAdmin("Création d'un objet"){
+  
+} {
+<script>    
+      $('.delete').click(function() {
+            $.ajax({
+                url: "/mod/objet/delete/"+$(this).attr("id"),
+                type: 'GET',
+                success: function (response) {
+                    document.location.href = "/mod/searchObject";
+                }
+            });
+      });
+  </script>
+}{
+<!-- Page heading starts -->
+<div class="page-head">
+	<div class="container">
+
+	</div>
+</div>
+<!--/ Page Heading ends -->
+
+<!-- Page content starts -->
+<div class="content blog">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <h4 class="title">Rechercher un objet</h4>
+          <div class="form">
+            <form class="form-horizontal" method="post" action="@routes.BackOffice.searchObject()">
+              <!-- Email -->
+              <h5 class="title">Rechercher par référence</h5><br>
+              <div class="form-group">
+                <label class="control-label col-md-2" for="reference">Référence</label>
+                <div class="col-md-9">
+                  <input type="text" class="form-control" id="reference" name="reference">
+                </div>
+              </div>
+              <!-- Buttons -->
+              <div class="form-group">
+                <!-- Buttons -->
+                <div class="col-md-9 col-md-offset-2">
+                   <button type="submit" class="btn btn-default">Envoyer</button>
+                   <button type="reset" class="btn btn-default">Annuler</button>
+                </div>
+              </div>
+            </form>
+            
+            
+          </div>
+        <h4 class="title">Objet recherché</h4>
+
+
+        <div class="panel panel-default searchPanel">
+          <div class="panel-heading">
+            @(objet.nom)
+          </div>
+          <div class="panel-body">
+            <div class="col-md-12 ">
+              @for(image <- objet.images){
+                <div class="col-md-2">
+                <img src="@routes.Assets.at("imgObjet/")@(image.lien)" class="img-responsive" alt="Responsive image">
+                </div>
+              }
+              <div class="col-md-offset-10">          
+                <a href="@routes.BackOffice.objet(objet.id)" role="button" class="modif btn btn-info">Modifier</a>
+                <button type="button" class="delete btn btn-danger" id="@objet.id"> Supprimer </button>
+              </div>
+            </div>
+
+            
+          </div>
+        </div>
+
+          
+      </div>
+    </div>
+</div>
+}
+

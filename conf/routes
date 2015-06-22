@@ -52,6 +52,12 @@ GET     /passwordForgotten          controllers.User.passwordForgotten()
 # Personel page
 GET     /profil          			controllers.User.profil()
 
+# Change mail page
+GET     /changeMail          		controllers.User.changeMail()
+
+# Change password page
+GET     /changePassword          	controllers.User.changePassword()
+
 
 # Proposition modification page
 GET     /objet/:id/proposeModification                 controllers.User.proposeModification(id : Integer)
@@ -95,12 +101,17 @@ GET     /mod         				controllers.BackOffice.index()
 
 # Search objet page
 GET     /mod/searchObject          	controllers.BackOffice.searchObject()
+POST     /mod/searchObject         	controllers.BackOffice.searchObject()
 
 # Resultat recherche objet page
-GET     /mod/searchObjectResult     controllers.BackOffice.searchObjectResult()
+GET     /mod/searchObjectResult/:id       controllers.BackOffice.searchObjectResult(id : Integer)
 
 # Objet page
 GET     /mod/objet/:id            	controllers.BackOffice.objet(id : Integer)
+POST     /mod/objet/:id            	controllers.BackOffice.objet(id : Integer)
+
+# Delete Objet page
+GET     /mod/objet/delete/:id        controllers.BackOffice.deleteObjet(id : Integer)
 
 # Add Objet page
 GET     /mod/addObjet             	controllers.BackOffice.addObjet()
@@ -116,14 +127,19 @@ POST    /mod/addPhoto           	controllers.BackOffice.addPhoto()
 GET     /mod/modifyText             controllers.BackOffice.modifyText()
 POST    /mod/modifyText             controllers.BackOffice.modifyText()
 
-# Commentaire/Fait historique recherche page
-GET     /mod/searchAdd             	controllers.BackOffice.searchAdd()
+# Faits historiques page
+GET     /mod/listFaits          	controllers.BackOffice.listFaits()
 
-# Modify text page
-GET     /mod/searchAddResult       	controllers.BackOffice.searchAddResult()
+# Fait historique page
+GET     /mod/faitHistorique/:id     controllers.BackOffice.faitHistorique(id : Long)
+POST     /mod/faitHistorique/:id     controllers.BackOffice.faitHistorique(id : Long)
 
-# Commentaire/Fait historique modification page
-GET     /mod/feedback             	controllers.BackOffice.feedback()
+# Commentaires page
+GET     /mod/listCommentaires          	controllers.BackOffice.listCommentaires()
+
+# Commentaire page
+GET     /mod/commentaire/:id     controllers.BackOffice.commentaire(id : Long)
+POST     /mod/commentaire/:id     controllers.BackOffice.commentaire(id : Long)
 
 # Add Objet page
 GET     /mod/addParcours            controllers.BackOffice.addParcours()
