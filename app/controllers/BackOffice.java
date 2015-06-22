@@ -366,6 +366,63 @@ public class BackOffice extends Controller {
         return ok(addPhoto.render(message));
     }
 
+    public static Result listPropositions() {
+        List<PropositionModification> propositions = PropositionModification.find.all();
+        return ok(listPropositions.render(propositions));
+    }
+
+    public static Result proposition(Long id) {
+        DynamicForm requestData = Form.form().bindFromRequest();
+        PropositionModification proposition1 = PropositionModification.find.byId(id);
+        String alert;
+        String action = requestData.get("propositionAction");
+        Objet objet = proposition1.objet;
+
+        String champvalue = objet.getField(proposition1.nomChamp);
+
+        if (action != null && action.equals("valid")){
+
+            if (proposition1.nomChamp.equals("description")) {
+              objet.description = proposition1.nouveauContenu;
+            }
+            else if (proposition1.nomChamp.equals("type_objet")) {
+              objet.type_objet = proposition1.nouveauContenu;
+            }
+            else if (proposition1.nomChamp.equals("matiere")) {
+              objet.matiere = proposition1.nouveauContenu;
+            }
+            else if (proposition1.nomChamp.equals("localisationActuelle")) {
+              objet.localisationActuelle = proposition1.nouveauContenu;
+            }
+            else if (proposition1.nomChamp.equals("localisationOrigine")) {
+              objet.localisationOrigine = proposition1.nouveauContenu;
+            }
+            else if (proposition1.nomChamp.equals("archeologue")) {
+              objet.archeologue = proposition1.nouveauContenu;
+            }
+            else if (proposition1.nomChamp.equals("civilisation")) {
+              objet.civilisation = proposition1.nouveauContenu;
+            }
+
+            objet.save();
+            alert = "<div id='retour' class='alert alert-success' role='alert'> Propositon de modification validé </div>";
+            flash("valide", alert);
+            proposition1.delete();
+            return redirect(controllers.routes.BackOffice.listPropositions());
+        }
+        else if (action != null && action.equals("delete")){
+            proposition1.delete();
+            alert = "<div id='retour' class='alert alert-success' role='alert'> Proposition de modification supprimé </div>";
+            flash("delete", alert);
+            return redirect(controllers.routes.BackOffice.listPropositions());
+        }
+        else {
+
+        }
+        return ok(proposition.render(proposition1, champvalue));
+        
+    }
+
 
     public static Result modifyText() {
         String select = "";
