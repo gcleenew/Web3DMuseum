@@ -1,4 +1,4 @@
-@(header: String,objet: models.Objet, imagePrincipale: String, previous: Integer, next: Integer, parcour: Integer)
+@(header: String,objet: models.Objet, imagePrincipale: String, previous: Integer, next: Integer, parcour: Integer, recommandations: String)
 
 @main(objet.nom){
   
@@ -18,7 +18,15 @@
 <div class="content blog">
     
     <div class="row">
-      <div class="col-md-8 col-md-offset-2">
+      <div class="col-md-2" style="text-align: center; font-size: 45px; padding-top: 50px;">
+      	@if(previous != 0){
+      		<form id="previous" action="@routes.Application.objet(previous)" method="post">
+      		<input type="hidden" name="parcour_recup" value="@(parcour)"/>
+      		</form>
+      		<a href='#' onclick='document.getElementById("previous").submit()'><i class="fa fa-angle-left"></i> <div style="font-size: 25px"> Objet précédent </div> </a>
+      	}
+      </div>
+      <div class="col-md-8">
 			<div class="col-md-6 col-sm-6">
 				<img src="@routes.Assets.at("imgObjet/")@(imagePrincipale)" class="img-responsive" alt="Responsive image">
 			</div>
@@ -96,7 +104,7 @@
 						  <td>
 						  	@(objet.civilisation)
 						  </td>
-						</tr>                                                                                               
+						</tr>                                                                                                
 					  </tbody>
 					</table>
 
@@ -106,26 +114,15 @@
 						<span class="lr"><a href="@routes.User.proposeModification(objet.id)" role="button" data-toggle="modal">+Enrichir l'oeuvre</a></span>
 					</div>
 				</div>
-				<div class="col-md-offset-9">
-
-					<div class="hlinks">
-						@if(previous != 0){
-							<form id="previous" action="@routes.Application.objet(previous)" method="post">
-							<input type="hidden" name="parcour_recup" value="@(parcour)"/>
-							</form>
-							<a href='#' onclick='document.getElementById("previous").submit()'>Objet Précédent</a>
-						}
-						@if(next != 0){
-							<form id="next" action="@routes.Application.objet(next)" method="post">
-							<input type="hidden" name="parcour_recup" value="@(parcour)"/>
-							</form>
-							<a href='#' onclick='document.getElementById("next").submit()'>Objet Suivant</a>
-						}
-					</div>
-				</div>
 
 			</div>
-			<br/>
+
+			<div class="col-md-10 col-md-offset-1" style="margin-top: 35px; margin-bottom: 35px;"> 
+				<h2>Recommandations</h2>
+				@Html(recommandations)
+			</div>
+
+
 			<div class="col-md-12">
 				<ul class="nav nav-tabs">
 				  <!-- Use uniqe name for "href" in below anchor tags -->
@@ -224,8 +221,19 @@
 
 			</div>
       </div>
+
+    <div class="col-md-2" style="text-align: center; font-size: 45px; padding-top: 50px;">
+	    @if(next != 0){
+	    	<form id="next" action="@routes.Application.objet(next)" method="post">
+	    	<input type="hidden" name="parcour_recup" value="@(parcour)"/>
+	    	</form>
+	    	<a href='#' onclick='document.getElementById("next").submit()'><i class="fa fa-angle-right"></i>  <div style="font-size: 25px"> Objet suivant </div> </a>
+
+	    }
+    </div>
     </div>
 </div>
+
 <!--/ Page content ends -->
 
 }

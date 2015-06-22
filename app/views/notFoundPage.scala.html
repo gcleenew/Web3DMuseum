@@ -1,28 +1,35 @@
 @import helper._
-@( )
+@(url: String)
 
 @main("Error"){
 	
 }{
 	
 }{
+
 <div class="content error-page">
   <div class="container">
     <div class="row">
       <div class="col-md-4 col-sm-5">  
         <!-- Big 404 text -->
-        <div class="big-text">500</div>
+        <div class="big-text">404</div>
         <hr />
       </div>
       <div class="col-md-5 col-sm-5 col-sm-offset-1 col-md-offset-1">
-        <h2>Il y a une erreur</h2>
-        <h4>Veuillez revenir sur l'accueil</h4>
+        <h2>@url ne renvoie rien!!!</h2>
+        <h4>Page Not Found</h4>
         <hr />
+        <!-- Some site links -->
+        <div class="horizontal-links">
+          <h5>Take a look around our site</h5>
+        </div>
         <hr />
       </div>
 
     </div>
   </div>
 </div>
+
+
 
 }

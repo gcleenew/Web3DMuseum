@@ -243,8 +243,82 @@ public class BackOffice extends Controller {
             flash("fail", message);
         }
         
+        return ok(addObjet.render(message));
+    }
 
-        return ok(addObjet.render("Ajout d'objet"));
+    public static Result addParcours() {
+        // initialisation du message d'erreur
+        String message = "";
+        // création des différentes variable et remplissage avec les variables du formulaire
+        DynamicForm requestData = Form.form().bindFromRequest();
+        String nom = requestData.get("nom");
+
+        Parcours parcours = Parcours.find.where().eq("nom", nom).findUnique();
+
+        if( parcours == null ){
+            parcours = new Parcours();
+            parcours.nom = nom;
+            parcours.save();
+       
+            message = "<div id='retourFeedback' class='alert alert-success' role='alert'> Le parcours : "+nom+" a été créé. </div>";
+        }
+        else if( nom == null ){
+
+        }
+        else {
+            message = "<div id='retourFeedback' class='alert alert-danger' role='alert'> Le parcours "+nom+" existe déjà. </div>";
+        }
+        
+
+        return ok(addParcours.render(message));
+    }
+
+    public static Result addPhoto() {
+        // initialisation du message d'erreur
+        String message = "";
+        // création des différentes variable et remplissage avec les variables du formulaire
+        DynamicForm requestData = Form.form().bindFromRequest();
+        String nom = requestData.get("nom");
+        String objet = requestData.get("objet");
+
+
+        play.mvc.Http.MultipartFormData body = request().body().asMultipartFormData();
+        if( body != null ){
+            play.mvc.Http.MultipartFormData.FilePart picture = body.getFile("image");
+            if (picture != null) {
+                String fileName = nom+".png";
+                String contentType = picture.getContentType();
+                java.io.File file = picture.getFile();
+                // added lines
+                String myUploadPath = Play.application().configuration().getString("myUploadPath");
+                file.renameTo(new java.io.File(myUploadPath, fileName));
+
+                return ok("file saved as " + myUploadPath + fileName );
+            } else {
+                flash("error", "Missing file");
+                return redirect("/mod/addPhoto");
+            }
+        }
+        
+        Image image = Image.find.where().eq("nom", nom).findUnique();
+
+        if( nom == null || objet == null || image == null ){
+            message = "<div id='retourFeedback' class='alert alert-danger' role='alert'> La photo "+nom+" n'a pas été créé car un des champs n'était pas rempli.</div>";
+        }
+        else if( image == null ){
+            image = new Image();
+            image.nom = nom;
+            image.objet = Objet.find.where().eq("nom", objet).findUnique();
+            image.save();
+       
+            message = "<div id='retourFeedback' class='alert alert-success' role='alert'> La photo : "+nom+" a été créé. </div>";
+        }        
+        else {
+            message = "<div id='retourFeedback' class='alert alert-danger' role='alert'> La photo "+nom+" n'a pas été créé car elle existe déjà </div>";
+        }
+        
+
+        return ok(addPhoto.render(message));
     }
 
     public static Result listPropositions() {
@@ -302,6 +376,7 @@ public class BackOffice extends Controller {
         }
         return ok(proposition.render(proposition1, champvalue));
     }
+
 
     public static Result modifyText() {
         String select = "";

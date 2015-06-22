@@ -16,6 +16,9 @@ import java.util.*;
 import java.text.*;
 import models.*;
 
+
+import com.avaje.ebean.Expr;
+
 import views.html.*;
 import views.html.Application.*;
 
@@ -27,7 +30,7 @@ public class Application extends Controller {
     
     public static Result index() {
        
-        SimpleDateFormat d = new SimpleDateFormat ("yyyyMMdd"); 
+        SimpleDateFormat d = new SimpleDateFormat ("yyyyMMdd");
         String date = d.format(new Date());
         int aleatoireCarrousel = Integer.parseInt(date)/2400000; 
 
@@ -404,8 +407,49 @@ public class Application extends Controller {
             
         }
 
+        List<Objet> objets = Objet.find.all();
+        int objetsSize = Collections.max(objets, new ObjetComparator()).id;
 
-        return ok(objet.render("Objet", objet1, imagePrincipale, previous, next, parcour));
+        List<Objet> objetsSimilaires = Objet.find.where().disjunction()
+            .add(Expr.eq("matiere",objet1.matiere))
+            .add(Expr.eq("type_objet",objet1.type_objet))
+            .add(Expr.eq("localisationOrigine",objet1.localisationOrigine))
+            .add(Expr.eq("civilisation",objet1.civilisation)).findList();
+
+        int objetsSimilaireSize = Collections.max(objetsSimilaires, new ObjetComparator()).id;
+
+
+
+
+        String recommandations = "";
+
+         // trois objets pris dans les similaires
+        Objet objet2 = Objet.find.byId( (int)(Math.random()*8000) % objetsSize + 1);
+        if( !objet2.images.isEmpty() ){
+            recommandations += "<a href='/objet/"+objet2.id+"'> <div class='col-md-3'> <img src='/assets/imgObjet/"+objet2.images.get(0).lien+"' class='img-responsive' alt='Responsive image'> </div> </a>";
+        }
+        Objet objet3 = Objet.find.byId( (int)(Math.random()*8000) % objetsSize + 1);
+        if( !objet3.images.isEmpty() & objet3.id != objet2.id ){
+            recommandations += "<a href='/objet/"+objet3.id+"'><div class='col-md-3'> <img src='/assets/imgObjet/"+objet3.images.get(0).lien+"' class='img-responsive' alt='Responsive image'> </div></a>";
+        }
+        Objet objet4 = Objet.find.byId( (int)(Math.random()*8000) % objetsSize + 1);
+        if( !objet4.images.isEmpty() & objet4.id != objet2.id & objet4.id != objet3.id ){
+            recommandations += "<a href='/objet/"+objet4.id+"'><div class='col-md-3'> <img src='/assets/imgObjet/"+objet4.images.get(0).lien+"' class='img-responsive' alt='Responsive image'> </div></a>";
+        }
+
+
+
+        // un objet pris aléatoirement
+        Objet objet5 = Objet.find.byId( (int)(Math.random()*8000) % objetsSize + 1);
+        while( objet5.images.isEmpty() || objet5.id == objet2.id || objet5.id == objet3.id || objet5.id == objet4.id){
+            objet5 = Objet.find.byId( (int)(Math.random()*8000) % objetsSize + 1);
+        }
+        recommandations += "<a href='/objet/"+objet5.id+"'><div class='col-md-3'> <img src='/assets/imgObjet/"+objet5.images.get(0).lien+"' class='img-responsive' alt='Responsive image'> </div> </a>";
+
+
+
+
+        return ok(objet.render("Objet", objet1, imagePrincipale, previous, next, parcour, recommandations));
     }
 
     public static Result contact() {
