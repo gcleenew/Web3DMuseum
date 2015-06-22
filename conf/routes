@@ -169,8 +169,13 @@ GET     /mod/listParcours          	controllers.BackOffice.listParcours()
 GET     /mod/parcours/:id           controllers.BackOffice.parcours(id : Integer)
 
 
-# Liste parcours page
-GET     /admin/stats             	controllers.BackOffice.stats()
+# Contact admin page
+GET     /admin/contact/:message     controllers.BackOffice.contactMessage(message: String)
+GET     /admin/contact     			controllers.BackOffice.contact()
+
+# Delete utilisateurs
+GET     /admin/contact/delete/:id   controllers.BackOffice.deleteContact(id : Integer)
+
 
 # Liste utilisateurs
 GET     /admin/users             	controllers.BackOffice.users()

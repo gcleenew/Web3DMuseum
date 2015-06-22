@@ -1,0 +1,90 @@
+@(message: String, feedbacks: List[Feedback])
+
+@mainAdmin("Liste feedbacks"){
+  
+} {
+<script> 
+      $('.delete').click(function() {
+            $.ajax({
+                url: "/admin/contact/delete/"+$(this).parents().parents().attr("id"),
+                type: 'GET',
+                success: function (response) {
+                    document.location.href = "/admin/contact/"+response;
+                }
+            });
+      });
+</script>
+}{
+<!-- Page heading starts -->
+<div class="page-head">
+  <div class="container">
+      @Html(message)
+  </div>
+</div>
+<!--/ Page Heading ends -->
+
+<!-- Page content starts -->
+<div class="content blog">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <h4 class="title">Liste des feedbacks</h4>
+          <div class="row">
+            <div class="col-md-12">
+              <table class="table">
+                <theader>
+
+                    <th>
+                          #
+                    </th>
+                    <th>
+                          Contenu
+                    </th>
+                    <th>
+                          Email
+                    </th>
+                    <th>
+                          Date de création
+                    </th>
+                    <th>
+                          Répondre
+                    </th>
+                    <th>
+                          Supprimer
+                    </th>
+                </tr>
+                <tbody>
+                @for(feedback <- feedbacks) {
+
+                  <tr id="@feedback.id">
+                    
+                      <td>
+                            @feedback.id
+                      </td>
+                      <td>
+                            @feedback.contenu
+                      </td>
+                      <td>
+                            @feedback.email
+                      </td>
+                      <td>
+                            @feedback.creationDate
+                      </td>
+                      <td>
+                            <A HREF="mailto:@feedback.email"> 
+                              <i class="fa fa-envelope-o"></i>
+                            </A>
+                      </td>
+                      <td>
+                        <i class="fa fa-trash-o delete"></i>
+                      </td>
+                    </tr>
+
+                }
+              </tbody>
+              </table>
+            </div>
+          </div>
+      </div>
+    </div>
+</div>
+}
