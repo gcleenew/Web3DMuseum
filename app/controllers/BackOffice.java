@@ -419,6 +419,7 @@ public class BackOffice extends Controller {
 
         }
         return ok(proposition.render(proposition1, champvalue));
+        
     }
 
 
