@@ -16,12 +16,12 @@ public class Global extends GlobalSettings {
         return super.onRequest(request, actionMethod);
     }
   
-    @Override
-    public Promise<Result> onError(RequestHeader request, Throwable t) {
-        return Promise.<Result>pure(internalServerError(
-            views.html.errorPage.render()
-        ));
-    }
+    // @Override
+    // public Promise<Result> onError(RequestHeader request, Throwable t) {
+    //     return Promise.<Result>pure(internalServerError(
+    //         views.html.errorPage.render()
+    //     ));
+    // }
 
   	@Override
     public Promise<Result> onHandlerNotFound(RequestHeader request) {

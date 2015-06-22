@@ -106,6 +106,12 @@ GET     /mod/objet/:id            	controllers.BackOffice.objet(id : Integer)
 GET     /mod/addObjet             	controllers.BackOffice.addObjet()
 POST    /mod/addObjet             	controllers.BackOffice.addObjet()
 
+
+# Add Objet page
+GET     /mod/addPhoto            	controllers.BackOffice.addPhoto()
+POST    /mod/addPhoto           	controllers.BackOffice.addPhoto()
+
+
 # Modify text page
 GET     /mod/modifyText             controllers.BackOffice.modifyText()
 POST    /mod/modifyText             controllers.BackOffice.modifyText()
@@ -118,6 +124,10 @@ GET     /mod/searchAddResult       	controllers.BackOffice.searchAddResult()
 
 # Commentaire/Fait historique modification page
 GET     /mod/feedback             	controllers.BackOffice.feedback()
+
+# Add Objet page
+GET     /mod/addParcours            controllers.BackOffice.addParcours()
+POST    /mod/addParcours            controllers.BackOffice.addParcours()
 
 # Liste parcours page
 GET     /mod/listParcours          	controllers.BackOffice.listParcours()
