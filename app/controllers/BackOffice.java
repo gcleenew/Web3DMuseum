@@ -390,7 +390,7 @@ public class BackOffice extends Controller {
             video = new Video();
             video.nom = nom;
             video.objet = Objet.find.where().eq("nom", objet).findUnique();
-            video.lien = nom+".png";
+            video.lien = nom+".mp4";
             video.save();
        
             message = "<div id='retourFeedback' class='alert alert-success' role='alert'> La video : "+nom+" a été créé. </div>";
