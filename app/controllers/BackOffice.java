@@ -4,6 +4,8 @@ import play.*;
 import play.data.*;
 import play.data.Form;
 import play.data.DynamicForm;
+import play.mvc.Http.MultipartFormData;
+import play.mvc.Http.MultipartFormData.FilePart;
 import play.mvc.*;
 
 import java.lang.*;
@@ -12,6 +14,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.text.*;
+import java.io.File;
+import java.nio.file.*;
 import models.*;
 
 import views.html.*;
@@ -282,25 +286,62 @@ public class BackOffice extends Controller {
         String nom = requestData.get("nom");
         String objet = requestData.get("objet");
 
-
         play.mvc.Http.MultipartFormData body = request().body().asMultipartFormData();
-        if( body != null ){
-            play.mvc.Http.MultipartFormData.FilePart picture = body.getFile("image");
-            if (picture != null) {
-                String fileName = nom+".png";
-                String contentType = picture.getContentType();
-                java.io.File file = picture.getFile();
-                // added lines
-                String myUploadPath = Play.application().configuration().getString("myUploadPath");
-                file.renameTo(new java.io.File(myUploadPath, fileName));
 
-                return ok("file saved as " + myUploadPath + fileName );
-            } else {
-                flash("error", "Missing file");
-                return redirect("/mod/addPhoto");
+         if (body.getFile("image") != null) {
+            FilePart filePart = body.getFile("image");
+            String fileName = filePart.getFilename();
+            String contentType = filePart.getContentType(); 
+
+            try
+            {
+                File file = filePart.getFile();
+                // Replace the /public/ folder
+                String myUploadPath = Play.application().configuration().getString("myUploadPath");
+                File newFile=Play.application().getFile(myUploadPath + fileName);
+                // Move the tmp file to the final location
+                // Not the best way but it works !
+                file.renameTo(newFile);
+                file.delete();
+            }
+            catch(Exception ex)
+            {
+            //TO DO Exception ex 
             }
         }
+
+
+
+         
+        // if( body != null ){
+        //     play.mvc.Http.MultipartFormData.FilePart picture = body.getFile("image");
+        //     if (picture != null) {
+        //         String fileName = nom+".png";
+        //         String contentType = picture.getContentType();
+        //         File file = picture.getFile();
+        //         // added lines
+
+
+        //         String myUploadPath = Play.application().configuration().getString("myUploadPath");
+        //         // Replace the /public/ folder
+        //         File newFile=Play.application().getFile(myUploadPath + fileName);
+        //         // Move the tmp file to the final location
+        //         // Not the best way but it works !
+        //         file.renameTo(newFile);
+        //         file.delete();
+
+        //         return ok("file saved as " + myUploadPath + fileName );
+        //     } else {
+        //         flash("error", "Missing file");
+        //         return redirect("/mod/addPhoto");
+        //     }
+        // }
         
+
+
+
+
+
         Image image = Image.find.where().eq("nom", nom).findUnique();
 
         if( nom == null || objet == null || image == null ){
