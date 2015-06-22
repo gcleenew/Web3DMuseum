@@ -3,17 +3,7 @@
 @mainAdmin("Création d'un objet"){
   
 } {
-<script>    
-      $('.delete').click(function() {
-            $.ajax({
-                url: "/mod/objet/delete/"+$(this).parents().parents().attr("id"),
-                type: 'GET',
-                success: function (response) {
-                    document.location.href = "/mod/searchObject";
-                }
-            });
-      });
-  </script>
+
 }{
 <!-- Page heading starts -->
 <div class="page-head">
@@ -97,7 +87,7 @@
                           <a href="@routes.BackOffice.objet(objet.id)" role="button" class="modif btn btn-info">Modifier</a>
                     </td>
                     <td>
-                          <button type="button" class="delete btn btn-danger"> Supprimer </button>
+                          <a href="@routes.BackOffice.deleteObject(objet.id)" role="button" class="modif btn btn-danger">Supprimer</a>
                     </td>
                   </tr>
                 }

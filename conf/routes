@@ -111,7 +111,9 @@ GET     /mod/objet/:id            	controllers.BackOffice.objet(id : Integer)
 POST     /mod/objet/:id            	controllers.BackOffice.objet(id : Integer)
 
 # Delete Objet page
-GET     /mod/objet/delete/:id        controllers.BackOffice.deleteObjet(id : Integer)
+POST     /mod/deleteObjet/:id       controllers.BackOffice.deleteObject(id : Integer)
+GET     /mod/deleteObjet/:id       controllers.BackOffice.deleteObject(id : Integer)
+
 
 # Add Objet page
 GET     /mod/addObjet             	controllers.BackOffice.addObjet()
@@ -126,6 +128,13 @@ POST    /mod/addPhoto           	controllers.BackOffice.addPhoto()
 # Modify text page
 GET     /mod/modifyText             controllers.BackOffice.modifyText()
 POST    /mod/modifyText             controllers.BackOffice.modifyText()
+
+# Propositions management list page
+GET     /mod/listPropositions          	controllers.BackOffice.listPropositions()
+
+# Proposition management page
+GET      /mod/proposition/:id     	controllers.BackOffice.proposition(id : Long)
+POST     /mod/proposition/:id     	controllers.BackOffice.proposition(id : Long)
 
 # Faits historiques page
 GET     /mod/listFaits          	controllers.BackOffice.listFaits()
