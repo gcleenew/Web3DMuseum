@@ -255,16 +255,17 @@ public class BackOffice extends Controller {
 
         Parcours parcours = Parcours.find.where().eq("nom", nom).findUnique();
 
-        if( parcours == null ){
+        if( nom == null ){
+
+        }
+        else if( parcours == null ){
             parcours = new Parcours();
             parcours.nom = nom;
             parcours.save();
        
             message = "<div id='retourFeedback' class='alert alert-success' role='alert'> Le parcours : "+nom+" a été créé. </div>";
         }
-        else if( nom == null ){
-
-        }
+        
         else {
             message = "<div id='retourFeedback' class='alert alert-danger' role='alert'> Le parcours "+nom+" existe déjà. </div>";
         }
