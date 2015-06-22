@@ -613,8 +613,29 @@ public class BackOffice extends Controller {
         return ok(indexAdmin.render("This is the header !!!!!", "This is the body !!!!!"));
     }
 
-    public static Result stats() {
-        return ok(indexAdmin.render("This is the header !!!!!", "This is the body !!!!!"));
+     public static Result contact() {
+        List<Feedback> feedbacks = Feedback.find.all();
+
+        return ok(contact.render("", feedbacks));
+    }
+
+    public static Result contactMessage(String message) {
+        List<Feedback> feedbacks = Feedback.find.all();
+
+        if ( message.equals("delete")){
+            message = "<div id='retour' class='alert alert-success' role='alert'> Feedback supprimé </div>";
+        }
+        return ok(contact.render(message, feedbacks));
+    }
+
+    public static Result deleteContact(Integer id) {
+
+        Feedback feedback = Feedback.find.byId((long) (id));
+
+        feedback.delete();
+
+
+        return ok("delete");
     }
 
     public static Result users() {
