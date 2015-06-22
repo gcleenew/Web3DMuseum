@@ -1,0 +1,72 @@
+@(propositions: List[PropositionModification])
+
+@mainAdmin("Liste Propositions Modification"){
+  
+} {
+
+}{
+<!-- Page heading starts -->
+<div class="page-head">
+	<div class="container">
+      @Html(flash.get("valide"))
+      @Html(flash.get("delete"))
+	</div>
+</div>
+<!--/ Page Heading ends -->
+
+<!-- Page content starts -->
+<div class="content blog">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <h4 class="title">Liste des propositions de modification</h4>
+          <div class="row">
+            <div class="col-md-12">
+              <table class="table">
+                <theader>
+
+                    <th>
+                          #
+                    </th>
+                    <th>
+                          Utilisateur
+                    </th>
+                    <th>
+                          Objet
+                    </th>
+                    <th>
+                          Champ concerné
+                    </th>
+                    <th>
+                          Voir
+                    </th>
+                </tr>
+                <tbody>
+                @for(proposition <- propositions) {
+
+                  <tr id="@proposition.id">
+                    
+                      <td>
+                            @proposition.id
+                      </td>
+                      <td>
+                            @proposition.utilisateur.username
+                      </td>
+                      <td>
+                            @proposition.objet.nom
+                      </td>
+                      <td>
+                            @proposition.nomChamp
+                      </td>
+                      <td>
+                            <a href="@routes.BackOffice.proposition(proposition.id)" role="button" class="modif btn btn-info">voir</a>
+                      </td>
+                    </tr>
+                }
+              </tbody>
+              </table>
+            </div>
+          </div>
+      </div>
+    </div>
+</div>
+}

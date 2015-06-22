@@ -21,7 +21,7 @@ import views.html.BackOffice.*;
 public class BackOffice extends Controller {
 
     public static Result index() {
-        return ok(indexAdmin.render("This is the ADMIN header !", "This is the ADMIN body !"));
+        return ok(indexAdmin.render("", ""));
     }
 
     public static Result searchObject() {
@@ -45,6 +45,15 @@ public class BackOffice extends Controller {
     public static Result searchObjectResult(Integer id) {
         Objet objet = Objet.find.byId(id);
         return ok(searchObjectResult.render(objet));
+    }
+
+    public static Result deleteObject(Integer id) {
+        Objet objet = Objet.find.byId(id);
+        objet.delete();
+        String alert = "";
+        alert = "<div id='retour' class='alert alert-success' role='alert'> Objet supprimé </div>";
+        flash("delete", alert);
+        return redirect(controllers.routes.BackOffice.searchObject());
     }
 
     public static Result objet(Integer id) {
@@ -139,16 +148,6 @@ public class BackOffice extends Controller {
 
 
         return ok(objet.render(objet1));
-    }
-
-    public static Result deleteObjet(Integer id) {
-
-        Objet objet = Objet.find.byId(id);
-
-        objet.delete();
-        String message = "<div id='retour' class='alert alert-success' role='alert'> Objet supprimé </div>";
-        flash("delete", message);
-        return ok("delete");
     }
 
     public static Result addObjet() {
@@ -246,6 +245,62 @@ public class BackOffice extends Controller {
         
 
         return ok(addObjet.render("Ajout d'objet"));
+    }
+
+    public static Result listPropositions() {
+        List<PropositionModification> propositions = PropositionModification.find.all();
+        return ok(listPropositions.render(propositions));
+    }
+
+    public static Result proposition(Long id) {
+        DynamicForm requestData = Form.form().bindFromRequest();
+        PropositionModification proposition1 = PropositionModification.find.byId(id);
+        String alert;
+        String action = requestData.get("propositionAction");
+        Objet objet = proposition1.objet;
+
+        String champvalue = objet.getField(proposition1.nomChamp);
+
+        if (action != null && action.equals("valid")){
+
+            if (proposition1.nomChamp.equals("description")) {
+              objet.description = proposition1.nouveauContenu;
+            }
+            else if (proposition1.nomChamp.equals("type_objet")) {
+              objet.type_objet = proposition1.nouveauContenu;
+            }
+            else if (proposition1.nomChamp.equals("matiere")) {
+              objet.matiere = proposition1.nouveauContenu;
+            }
+            else if (proposition1.nomChamp.equals("localisationActuelle")) {
+              objet.localisationActuelle = proposition1.nouveauContenu;
+            }
+            else if (proposition1.nomChamp.equals("localisationOrigine")) {
+              objet.localisationOrigine = proposition1.nouveauContenu;
+            }
+            else if (proposition1.nomChamp.equals("archeologue")) {
+              objet.archeologue = proposition1.nouveauContenu;
+            }
+            else if (proposition1.nomChamp.equals("civilisation")) {
+              objet.civilisation = proposition1.nouveauContenu;
+            }
+
+            objet.save();
+            alert = "<div id='retour' class='alert alert-success' role='alert'> Propositon de modification validé </div>";
+            flash("valide", alert);
+            proposition1.delete();
+            return redirect(controllers.routes.BackOffice.listPropositions());
+        }
+        else if (action != null && action.equals("delete")){
+            proposition1.delete();
+            alert = "<div id='retour' class='alert alert-success' role='alert'> Proposition de modification supprimé </div>";
+            flash("delete", alert);
+            return redirect(controllers.routes.BackOffice.listPropositions());
+        }
+        else {
+
+        }
+        return ok(proposition.render(proposition1, champvalue));
     }
 
     public static Result modifyText() {

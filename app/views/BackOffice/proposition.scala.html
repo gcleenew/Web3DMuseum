@@ -1,0 +1,59 @@
+@(proposition: models.PropositionModification, champvalue: String)
+
+@mainAdmin("Proposition Modification") {
+  
+}{
+  
+}{
+<!-- Page heading starts -->
+<div class="page-head">
+	<div class="container">
+			@Html(flash.get("valide"))
+		  	@Html(flash.get("delete"))
+	</div>
+</div>
+<!--/ Page Heading ends -->
+
+<!-- Page content starts -->
+<div class="content blog">
+    
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+			<div class="col-md-12">
+				<h5>Proposition de Modification</h5>
+				Sur l'objet : <a href="@routes.Application.objet(proposition.objet.id)">@proposition.objet.nom</a> Champs : @proposition.nomChamp
+				
+				<div class="item-review">
+				  	<h5>Valeur du champ actuellement </h5>
+				  	<p>@(champvalue)</p>
+				</div>
+
+				<div class="item-review">
+				  	<h5>@(proposition.utilisateur.username) </h5>
+				  	<p>@(proposition.nouveauContenu)</p>
+				</div>
+
+				
+
+				<div class="col-md-offset-10"> 
+					<form id="valid" action="@routes.BackOffice.proposition(proposition.id)" method="post">
+						<input type="hidden" name="propositionAction" value="valid"/>
+					</form>
+					
+
+
+					<form id="delete" action="@routes.BackOffice.proposition(proposition.id)" method="post">
+						<input type="hidden" name="propositionAction" value="delete"/>
+					</form>
+					 <a href='#' onclick='document.getElementById("valid").submit()' role="button" class="modif btn btn-info">Valider</a>
+					<a href='#' onclick='document.getElementById("delete").submit()' role="button" class="modif btn btn-danger">Supprimer</a>
+
+				</div>
+			</div>
+			
+      </div>
+    </div>
+</div>
+<!--/ Page content ends -->
+
+}

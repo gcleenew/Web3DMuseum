@@ -112,27 +112,28 @@ public class Objet extends Model {
 
   public String getField(String field)
   {
-    if (field == "description") {
+    if (field.equals("description")) {
       return description;
     }
-    else if (field == "type_objet") {
+    else if (field.equals("type_objet")) {
       return type_objet;
     }
-    else if (field == "matiere") {
+    else if (field.equals("matiere")) {
       return matiere;
     }
-    else if (field == "localisationActuelle") {
+    else if (field.equals("localisationActuelle")) {
       return localisationActuelle;
     }
-    else if (field == "localisationOrigine") {
+    else if (field.equals("localisationOrigine")) {
       return localisationOrigine;
     }
-    else if (field == "archeologue") {
+    else if (field.equals("archeologue")) {
       return archeologue;
     }
-    else if (field == "civilisation") {
+    else if (field.equals("civilisation")) {
       return civilisation;
     }
     return null;
   }
+
 }
