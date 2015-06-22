@@ -300,57 +300,28 @@ public class BackOffice extends Controller {
         String objet = requestData.get("objet");
 
         play.mvc.Http.MultipartFormData body = request().body().asMultipartFormData();
-        
-         if (body.getFile("image") != null) {
-            FilePart filePart = body.getFile("image");
-            String fileName = filePart.getFilename();
-            String contentType = filePart.getContentType(); 
+               
+        if( body != null ){
+            play.mvc.Http.MultipartFormData.FilePart picture = body.getFile("image");
+            if (picture != null) {
+                String fileName = nom+".png";
+                File file = picture.getFile();
+                // added lines
 
-            try
-            {
-                File file = filePart.getFile();
+
+                String myUploadPath = Play.application().configuration().getString("myUploadPath");
                 // Replace the /public/ folder
-                File newFile=Play.application().getFile("/public/imgObjet/" + fileName);
+                File newFile=Play.application().getFile(myUploadPath + fileName);
                 // Move the tmp file to the final location
                 // Not the best way but it works !
                 boolean bool = file.renameTo(newFile);
-                //file.delete();
 
-                return ok(String.valueOf(bool));
-            }
-            catch(Exception ex)
-            {
-            //TO DO Exception ex 
+                return ok("file saved as " + myUploadPath + fileName + " le resultat est :"+String.valueOf(bool));
+            } else {
+                flash("error", "Missing file");
+                return redirect("/mod/addPhoto");
             }
         }
-         
-
-
-
-         
-        // if( body != null ){
-        //     play.mvc.Http.MultipartFormData.FilePart picture = body.getFile("image");
-        //     if (picture != null) {
-        //         String fileName = nom+".png";
-        //         String contentType = picture.getContentType();
-        //         File file = picture.getFile();
-        //         // added lines
-
-
-        //         String myUploadPath = Play.application().configuration().getString("myUploadPath");
-        //         // Replace the /public/ folder
-        //         File newFile=Play.application().getFile(myUploadPath + fileName);
-        //         // Move the tmp file to the final location
-        //         // Not the best way but it works !
-        //         file.renameTo(newFile);
-        //         file.delete();
-
-        //         return ok("file saved as " + myUploadPath + fileName );
-        //     } else {
-        //         flash("error", "Missing file");
-        //         return redirect("/mod/addPhoto");
-        //     }
-        // }
         
 
 
