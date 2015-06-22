@@ -25,7 +25,7 @@ import views.html.BackOffice.*;
 public class BackOffice extends Controller {
 
     public static Result index() {
-        return ok(indexAdmin.render("This is the ADMIN header !", "This is the ADMIN body !"));
+        return ok(indexAdmin.render("", ""));
     }
 
     public static Result searchObject() {
@@ -525,11 +525,45 @@ public class BackOffice extends Controller {
     }
 
     public static Result listParcours() {
-        return ok(indexAdmin.render("This is the header !!!!!", "This is the body !!!!!"));
+        List<Parcours> parcours = Parcours.find.all();
+        return ok(listParcours.render(parcours));
     }
 
-    public static Result parcours(Integer id) {
-        return ok(indexAdmin.render("This is the header !!!!!", "This is the body !!!!!"));
+    public static Result parcour(Integer id) {
+        Parcours parcours1 = Parcours.find.byId(id);
+        DynamicForm requestData = Form.form().bindFromRequest();
+
+        String reference = requestData.get("reference");
+
+        Objet objet = Objet.find.where().eq("reference", reference).findUnique();
+        String alert = "";
+        if (objet == null ) 
+        {
+            if (reference != "" && reference != null)
+                alert = "<div id='retourRecherche' class='alert alert-danger' role='alert'> Aucun objet sur le site est atribué à cette référence, veuillez vérifier si cette référence à bien été entrée et que l'objet existe bien sur le site. </div>";
+            flash("fail", alert);
+        }
+        else {
+            ParcoursObjet parcoursObjet = new ParcoursObjet();
+            parcoursObjet.objet = objet;
+            parcoursObjet.parcours = parcours1;
+
+            parcoursObjet.save();
+            alert = "<div id='retour' class='alert alert-success' role='alert'> Objet ajouté </div>";
+            flash("valide", alert);
+        }
+
+        return ok(parcour.render(parcours1));
+    }
+
+    public static Result deleteObjetParcours(Long id) {
+        ParcoursObjet parcoursObjet = ParcoursObjet.find.byId(id);
+        Parcours parcours1 = parcoursObjet.parcours;
+        parcoursObjet.delete();
+        String alert = "";
+        alert = "<div id='retour' class='alert alert-success' role='alert'> Objet supprimé </div>";
+        flash("delete", alert);
+        return redirect(controllers.routes.BackOffice.parcour(parcours1.id));
     }
 
     public static Result stats() {

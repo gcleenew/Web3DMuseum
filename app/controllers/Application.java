@@ -280,20 +280,26 @@ public class Application extends Controller {
 
     public static Result parcoursList() {
         List<Parcours> parcours = Parcours.find.all();
-
+        Image missing = Image.find.byId(0L);
         //Create a HashMap with mutable key
         HashMap<Parcours, List<Image>> listParcours = new HashMap<Parcours, List<Image>>();
         for (int i = 0; i < parcours.size(); i++) {
             Parcours uniqueParcours = parcours.get(i);
             List<ParcoursObjet> parcoursObjets = uniqueParcours.parcoursObjets;
-            List<Image> images = new ArrayList<Image>();
+            List<Image> imagesList = new ArrayList<Image>();
             //remplissage de la liste d'image avec la liste des objets dans le parcours
             for (int j = 0; j < parcoursObjets.size(); j++) {
                 if (j < 5) {
-                    images.add(parcoursObjets.get(j).objet.images.get(0));
+                    if (parcoursObjets.get(j).objet.images.isEmpty()) {
+                        imagesList.add(missing);
+                    }
+                    else {
+                        imagesList.add(parcoursObjets.get(j).objet.images.get(0));
+                    }
+                    
                 }
             }
-            listParcours.put(uniqueParcours, images);
+            listParcours.put(uniqueParcours, imagesList);
 
         }
         return ok(parcoursList.render("Liste des parcours", listParcours));
@@ -301,7 +307,9 @@ public class Application extends Controller {
 
     public static Result parcours(Integer id) {
         // création de la liste d'image
-        List<Image> images = new ArrayList<Image>();
+        Image missing = Image.find.byId(0L);
+        List<Image> imagesList = new ArrayList<Image>();
+        
         // récupération du parcours et de ses données
         Parcours parcours1 = Parcours.find.byId(id);
         // création de la liste des liaison entre parcours et objet
@@ -309,9 +317,14 @@ public class Application extends Controller {
 
         //remplissage de la liste d'image avec la liste des objets dans le parcours
         for (int i = 0; i < parcoursObjets.size(); i++) {
-            images.add(parcoursObjets.get(i).objet.images.get(0));
+            if (parcoursObjets.get(i).objet.images.isEmpty()) {
+               
+            }
+            else {
+                imagesList.add(parcoursObjets.get(i).objet.images.get(0));
+            }
         }
-        return ok(parcours.render("Parcours", parcours1, images));
+        return ok(parcours.render("Parcours", parcours1, imagesList));
     }
 
     public static Result random() {

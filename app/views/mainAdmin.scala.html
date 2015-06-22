@@ -34,94 +34,83 @@
 
     </head>
     <body>
+		<div class="wrapper">
+			<!-- Header starts -->
+			<header>
+				<div class="container">
+					<div class="row">
+						<div class="col-md-4">
+							<!-- Logo. Use class "color" to add color to the text. -->
+							<div class="logo">
+								<h1><a href="#">WEB3D<span class="color bold">Museum</span></a></h1>
+								<p class="meta">You are in the admin zone</p>
+							</div>
+						</div>
+						<div class="col-md-4 col-md-offset-4">
+		  
+							<!-- Search form -->
+							<form role="form">
+								<div class="input-group">
+									<input type="email" class="form-control" id="search1" placeholder="Search">
+									<span class="input-group-btn">
+										<button type="submit" class="btn btn-default">Search</button>
+									</span>
+								</div>
+							</form>
 
-		<!-- Header starts -->
-		<header>
-			<div class="container">
-				<div class="row">
-					<div class="col-md-4">
-						<!-- Logo. Use class "color" to add color to the text. -->
-						<div class="logo">
-							<h1><a href="#">WEB3D<span class="color bold">Museum</span></a></h1>
-							<p class="meta">You are in the admin zone</p>
 						</div>
 					</div>
-					<div class="col-md-4 col-md-offset-4">
-	  
-						<!-- Search form -->
-						<form role="form">
-							<div class="input-group">
-								<input type="email" class="form-control" id="search1" placeholder="Search">
-								<span class="input-group-btn">
-									<button type="submit" class="btn btn-default">Search</button>
-								</span>
-							</div>
-						</form>
+				</div>
+			</header>
+			<!--/ Header ends -->
 
+			<!-- Navigation -->
+			<div class="navbar bs-docs-nav" role="banner">
+				<div class="container">
+					<div class="navbar-header">
+						<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
 					</div>
+					<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+						<ul class="nav navbar-nav">              
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Ajouter élément <b class="caret"></b></a>
+								<ul class="dropdown-menu">
+									<li><a href="/mod/addObjet">Objet</a></li>
+									<li><a href="/mod/addPhoto">Photo</a></li>
+									<li><a href="/mod/addAudio">Audio</a></li>
+									<li><a href="/mod/addVideo">Vidéo</a></li>
+									<li><a href="/mod/addParcours">Parcours</a></li>
+								</ul>
+							</li>           
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Gérer éléments <b class="caret"></b></a>
+								<ul class="dropdown-menu">
+									<li><a href="/mod/searchObject">Objet</a></li>
+									<li><a href="/mod/listParcours">Parcours</a></li>
+									<li><a href="/mod/listCommentaires">Commentaires</a></li>
+									<li><a href="/mod/listFaits">Faits historiques</a></li>
+									<li><a href="/mod/listPropositions">Propositions de modification</a></li>
+								</ul>
+							</li>      
+							<li><a href="/mod/modifyText">Textes</a></li>
+							<li><a href="/admin/users">Utilisateurs</a></li>
+							<li><a href="/admin/stats">Statistiques</a></li>
+							<li><a href="/">Revenir sur le site</a></li>      
+						</ul>
+					</nav>
 				</div>
 			</div>
-		</header>
-		<!--/ Header ends -->
-
-		<!-- Navigation -->
-		<div class="navbar bs-docs-nav" role="banner">
-			<div class="container">
-				<div class="navbar-header">
-					<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-				</div>
-				<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
-					<ul class="nav navbar-nav">              
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Ajouter élément <b class="caret"></b></a>
-							<ul class="dropdown-menu">
-								<li><a href="/mod/addObjet">Objet</a></li>
-								<li><a href="/mod/addPhoto">Photo</a></li>
-								<li><a href="/mod/addAudio">Audio</a></li>
-								<li><a href="/mod/addVideo">Vidéo</a></li>
-								<li><a href="/mod/addParcours">Parcours</a></li>
-							</ul>
-						</li>           
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Gérer éléments <b class="caret"></b></a>
-							<ul class="dropdown-menu">
-								<li><a href="/mod/searchObject">Objet</a></li>
-								<li><a href="/mod/listParcours">Parcours</a></li>
-								<li><a href="/mod/listCommentaires">Commentaires</a></li>
-								<li><a href="/mod/listFaits">Faits historiques</a></li>
-								<li><a href="/mod/listPropositions">Propositions de modification</a></li>
-							</ul>
-						</li>      
-						<li><a href="/mod/modifyText">Textes</a></li>
-						<li><a href="/admin/users">Utilisateurs</a></li>
-						<li><a href="/admin/stats">Statistiques</a></li>
-						<li><a href="/">Revenir sur le site</a></li>      
-					</ul>
-				</nav>
-			</div>
+			<div class="push"></div>
 		</div>
 		<!--/ Navigation End -->
 
         @content
 		
-		<!-- Footer starts -->
-		<footer>
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						
-						<!-- Copyright info -->
-						<p class="copy">Copyright &copy; 2015 | <a href="/FAQ">FAQ</a> | <a href="#">Service</a> | <a href="#">Contact Us</a></p>
-					</div>
-				</div>
-				<div class="clearfix"></div>
-			</div>
-		</footer> 
 
 
 				
@@ -143,6 +132,6 @@
 
         @javascript
 
-
+	
     </body>
 </html>
