@@ -42,6 +42,7 @@
 						<h4>Login</h4>
 					</div>
 					<div class="modal-body">
+						<div id='loginFail' class='alert alert-danger' role='alert' style="display: none"> L'utilisateur ou le mot de passe est éroné, veuillez recommencer. </div>
 						<div class="form">
 							<form class="form-horizontal" id="loginform" method="post" action="@routes.User.login()">   
 							  <div class="form-group">
@@ -308,12 +309,18 @@
 		<script>
 		
 		    $("#loginform").submit(function () {
+		        $('#loginFail').hide();
 		        $.ajax({
 		            url: "/login",
 		            data:  $(this).serialize(),
 		            type: 'POST',
 		            success: function (response) {
-		                $('#login').modal('hide');
+		            	if( response == "failed" ){
+		            		$('#loginFail').delay(400).show();
+		            	}
+		            	else {
+		            		location.reload();
+		            	}
 		            }
 		        });
 		        return false;

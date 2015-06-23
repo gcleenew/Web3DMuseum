@@ -22,7 +22,6 @@ public class User extends Controller {
         DynamicForm requestData = Form.form().bindFromRequest();
         String username = requestData.get("username");
         String password = requestData.get("password");
-        String message = "";
         Utilisateur user = Utilisateur.find.where().eq("username", username).findUnique();
         if (user != null) {
             if (Crypt.checkPassword(password, user.password)) {
@@ -33,22 +32,18 @@ public class User extends Controller {
                     session("right", user.rights);
                 }
 
-                message = "Vous avez été connecté";
-                
             }
             else {
-                message = "Ce nom d'utilisateur ou ce mot de passe n'est pas correct";
-                return ok(message);
+                return ok("failed");
             }
         }
         else {
-            message = "Ce nom d'utilisateur ou ce mot de passe n'est pas correct";
-            return ok(message);
+            return ok("failed");
         }
-        
-        return redirect(routes.Application.index());
-        
-        
+
+        return ok("done");
+
+
     }
 
     public static Result register() {
@@ -105,9 +100,9 @@ public class User extends Controller {
         List<Commentaire> liste_com = Commentaire.find
             .where()
                 .eq("utilisateur_id", user.id)
-                
+
             .findList();
-        
+
         String liste_result = "";
 
         for (Commentaire com : liste_com) {
@@ -120,11 +115,11 @@ public class User extends Controller {
                 }
 
                 liste_result += "<a href=\"/objet/"+com.objet+"\"><div class=\"panel panel-default searchPanel\"><div class=\"panel-heading\">Commentaire datant du "+com.creationDate+"  sur l'objet "+nom_objet+"</div><div class=\"panel-body\"><div class=\"col-md-2\"><img class=\"searchImage\" src=\"/assets/imgObjet/"+image+"\"></div><div class=\"col-md-9\">"+com.contenu+"</div><div class=\"col-md-1\">"+val+"</div></div></div></a>";
-               
+
             }
         // Information compte
-        
-        
+
+
         return ok(profil.render(user, liste_result));
     }
 
@@ -165,14 +160,14 @@ public class User extends Controller {
         if (message.equals("")) {
             message = "Rien n'as été changé";
         }
-        
+
 
         return ok(proposeModification.render("Proposition de modification", objet1, message));
     }
 
     public static Result createCommentaire(Integer id) {
         DynamicForm requestData = Form.form().bindFromRequest();
-        
+
         Objet objet1 = Objet.find.byId(id);
         String contenu = requestData.get("contenu");
 
@@ -180,7 +175,7 @@ public class User extends Controller {
         Utilisateur utilisateur = Utilisateur.find.where().eq("username", user).findUnique();
 
         String alert = "";
-        // Fait une alerte si le contenu est sauvegardé 
+        // Fait une alerte si le contenu est sauvegardé
         if( contenu != null ){
 
             Commentaire commentaire = new Commentaire();
@@ -196,13 +191,13 @@ public class User extends Controller {
 
         }
         flash("success", alert);
-        // TO DO : create feedback 
+        // TO DO : create feedback
         return redirect(controllers.routes.Application.objet(id));
     }
 
     public static Result createFait(Integer id) {
         DynamicForm requestData = Form.form().bindFromRequest();
-        
+
         Objet objet1 = Objet.find.byId(id);
         String contenu = requestData.get("contenu");
 
@@ -210,7 +205,7 @@ public class User extends Controller {
         Utilisateur utilisateur = Utilisateur.find.where().eq("username", user).findUnique();
 
         String alert = "";
-        // Fait une alerte si le contenu est sauvegardé 
+        // Fait une alerte si le contenu est sauvegardé
         if( contenu != null ){
 
             FaitHistorique fait = new FaitHistorique();
@@ -226,7 +221,7 @@ public class User extends Controller {
 
         }
         flash("success", alert);
-        // TO DO : create feedback 
+        // TO DO : create feedback
         return redirect(controllers.routes.Application.objet(id));
     }
 
@@ -242,7 +237,7 @@ public class User extends Controller {
         Utilisateur user = Utilisateur.find.where().eq("username", username).findUnique();
 
         DynamicForm requestData = Form.form().bindFromRequest();
-        
+
         System.out.println(requestData);
 
         String newMail = requestData.get("mail");
@@ -260,8 +255,8 @@ public class User extends Controller {
                 String echec = "<div id='echecMail' class='alert alert-danger' role='alert'>Une erreur s'est produite veuillez réessayer.</div>";
                 flash("echecMail", echec);
             }
-        } 
-        
+        }
+
 
         return ok(changeMail.render(user));
     }
@@ -295,7 +290,7 @@ public class User extends Controller {
                 String echec = "<div id='echecPass' class='alert alert-danger' role='alert'>Une erreur s'est produite veuillez réessayer.</div>";
                 flash("echecPass", echec);
             }
-        } 
+        }
 
 
 
