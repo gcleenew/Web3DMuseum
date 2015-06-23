@@ -1,4 +1,4 @@
-@(user : models.Utilisateur, com : String )
+@(user : models.Utilisateur, com : String, fh : String )
 
 
 
@@ -12,6 +12,7 @@
 <div class="page-head">
 	<div class="container">
     	<h4>Profil de @(user.username)</h4>
+    	<a href="/mod">Back-office</a>
 	</div>
 </div>
 <!--/ Page Heading ends -->
@@ -25,7 +26,7 @@
 			<ul class="nav nav-tabs">
 			  <!-- Use uniqe name for "href" in below anchor tags -->
 			  <li class="active"><a href="#tab1" data-toggle="tab">Commentaire(s)</a></li>
-			  <li><a href="#tab2" data-toggle="tab">Historique</a></li>
+			  <li><a href="#tab2" data-toggle="tab">Fait historique</a></li>
 			  <li><a href="#tab3" data-toggle="tab">Favoris</a></li>
 			  <li><a href="#tab4" data-toggle="tab">Compte</a></li>
 			</ul>
@@ -37,7 +38,7 @@
 
 				</div>
 				<div class="tab-pane" id="tab2">
-					<h5>Hist</h5>
+					@Html(fh)
 				</div>
 				<div class="tab-pane" id="tab3">
 					<h5>Fav</h5>

@@ -108,7 +108,7 @@ public class User extends Controller {
                 
             .findList();
         
-        String liste_result = "";
+        String liste_result_com = "";
 
         for (Commentaire com : liste_com) {
                 String val = "Non validé";
@@ -119,13 +119,36 @@ public class User extends Controller {
                     val = "Validé";
                 }
 
-                liste_result += "<a href=\"/objet/"+com.objet+"\"><div class=\"panel panel-default searchPanel\"><div class=\"panel-heading\">Commentaire datant du "+com.creationDate+"  sur l'objet "+nom_objet+"</div><div class=\"panel-body\"><div class=\"col-md-2\"><img class=\"searchImage\" src=\"/assets/imgObjet/"+image+"\"></div><div class=\"col-md-9\">"+com.contenu+"</div><div class=\"col-md-1\">"+val+"</div></div></div></a>";
+                liste_result_com += "<a href=\"/objet/"+com.objet+"\"><div class=\"panel panel-default searchPanel\"><div class=\"panel-heading\">Commentaire datant du "+com.creationDate+"  sur l'objet "+nom_objet+"</div><div class=\"panel-body\"><div class=\"col-md-2\"><img class=\"searchImage\" src=\"/assets/imgObjet/"+image+"\"></div><div class=\"col-md-9\">"+com.contenu+"</div><div class=\"col-md-1\">"+val+"</div></div></div></a>";
                
             }
+        //Recherche des fit historique associé à cet utilisateur
+
+        List<FaitHistorique> liste_fh = FaitHistorique.find
+            .where()
+                .eq("utilisateur_id", user.id)
+                
+            .findList();
+        
+        String liste_result_fh = "";
+
+        for (FaitHistorique fh : liste_fh) {
+                String val = "Non validé";
+                String nom_objet = Objet.find.select("nom").where().eq("id", fh.objet.id).findUnique().nom;
+                String image = Image.find.select("lien").where().eq("objet_id", fh.objet.id).findUnique().lien;
+
+                if(fh.valide){
+                    val = "Validé";
+                }
+
+                liste_result_fh += "<a href=\"/objet/"+fh.objet+"\"><div class=\"panel panel-default searchPanel\"><div class=\"panel-heading\">Fait historique datant du "+fh.creationDate+"  sur l'objet "+nom_objet+"</div><div class=\"panel-body\"><div class=\"col-md-2\"><img class=\"searchImage\" src=\"/assets/imgObjet/"+image+"\"></div><div class=\"col-md-9\">"+fh.contenu+"</div><div class=\"col-md-1\">"+val+"</div></div></div></a>";
+               
+            }
+
         // Information compte
         
         
-        return ok(profil.render(user, liste_result));
+        return ok(profil.render(user, liste_result_com, liste_result_fh));
     }
 
     public static Result proposeModification(Integer id){

@@ -107,13 +107,16 @@
 						</tr>                                                                                                
 					  </tbody>
 					</table>
-
+				@if(session.isEmpty){
+					
+				}else{
 				<div class="col-md-offset-9">
-
+					
 					<div class="hlinks">
 						<span class="lr"><a href="@routes.User.proposeModification(objet.id)" role="button" data-toggle="modal">+Enrichir l'oeuvre</a></span>
 					</div>
 				</div>
+				}
 
 			</div>
 
@@ -193,6 +196,9 @@
 						}
 						
 						<hr />
+						@if(session.isEmpty){
+	
+						}else{
 						<h5 class="title">Ecrire un fait Historique</h5>
 						<div class="form form-small">
 						  	<!-- Review form (not working)-->
@@ -213,7 +219,8 @@
 									</div>
 							  	</div>
 						  	</form>
-						</div> 
+						</div>
+						}
 					</div>
 					<div class="tab-pane" id="tab4">
 						<h5>Commentaires</h5>
@@ -227,6 +234,9 @@
 						}
 						
 						<hr />
+						@if(session.isEmpty){
+							
+						}else{
 						<h5 class="title">Ecrire un commentaire</h5>
 						<div class="form form-small">
 						  	<!-- Review form (not working)-->
@@ -247,7 +257,8 @@
 									</div>
 							  	</div>
 						  	</form>
-						</div> 
+						</div>
+						}
 					</div>
 				</div>
 
