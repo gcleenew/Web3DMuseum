@@ -287,10 +287,17 @@ public class Application extends Controller {
             Parcours uniqueParcours = parcours.get(i);
             List<ParcoursObjet> parcoursObjets = uniqueParcours.parcoursObjets;
             List<Image> images = new ArrayList<Image>();
+            Image imagePrincipale = new Image();
             //remplissage de la liste d'image avec la liste des objets dans le parcours
             for (int j = 0; j < parcoursObjets.size(); j++) {
                 if (j < 5) {
-                    images.add(parcoursObjets.get(j).objet.images.get(0));
+                  if( parcoursObjets.get(j).objet.images.isEmpty() ) {
+                      imagePrincipale = Image.find.where().eq("nom", "missing").findUnique();
+                  }
+                  else {
+                      imagePrincipale = parcoursObjets.get(j).objet.images.get(0);
+                  }
+                  images.add(imagePrincipale);
                 }
             }
             listParcours.put(uniqueParcours, images);

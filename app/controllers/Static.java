@@ -30,7 +30,7 @@ public class Static extends Controller {
 
     public static Result informations() {
         String content   = ContenuSite.find.where().eq("emplacement", "informations").findUnique().contenu;
-        return ok(conditionsGenerales.render(content));
+        return ok(informations.render(content));
     }
 
     public static Result conditionsGenerales() {
