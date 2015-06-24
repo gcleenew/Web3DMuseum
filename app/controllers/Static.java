@@ -19,19 +19,22 @@ import views.html.Static.*;
 public class Static extends Controller {
 
     public static Result aboutUs() {
-        return ok(index.render("This is the header !!!!!", "This is the body !!!!!"));
+        String content   = ContenuSite.find.where().eq("emplacement", "aboutUs").findUnique().contenu;
+        return ok(aboutUs.render(content));
     }
 
     public static Result faq() {
         String content   = ContenuSite.find.where().eq("emplacement", "faq").findUnique().contenu;
-        return ok(faq.render("Foire aux questions", content));
+        return ok(faq.render(content));
     }
-    
+
     public static Result informations() {
-        return ok(index.render("This is the header !!!!!", "This is the body !!!!!"));
+        String content   = ContenuSite.find.where().eq("emplacement", "informations").findUnique().contenu;
+        return ok(informations.render(content));
     }
 
     public static Result conditionsGenerales() {
-        return ok(index.render("This is the header !!!!!", "This is the body !!!!!"));
+        String content   = ContenuSite.find.where().eq("emplacement", "conditionsGenerales").findUnique().contenu;
+        return ok(conditionsGenerales.render(content));
     }
 }
