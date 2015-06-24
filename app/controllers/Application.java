@@ -335,10 +335,25 @@ public class Application extends Controller {
         int objetsSize = Collections.max(objets, new ObjetComparator()).id;
 
         Objet objet1 = Objet.find.byId( (int)(Math.random()*8000) % objetsSize + 1);
+        while( objet1 == null ){
+          objet1 = Objet.find.byId( (int)(Math.random()*8000) % objetsSize + 1);
+        }
         Objet objet2 = Objet.find.byId( (int)(Math.random()*8000) % objetsSize + 1);
+        while( objet2 == null ){
+          objet2 = Objet.find.byId( (int)(Math.random()*8000) % objetsSize + 1);
+        }
         Objet objet3 = Objet.find.byId( (int)(Math.random()*8000) % objetsSize + 1);
+        while( objet3 == null ){
+          objet3 = Objet.find.byId( (int)(Math.random()*8000) % objetsSize + 1);
+        }
         Objet objet4 = Objet.find.byId( (int)(Math.random()*8000) % objetsSize + 1);
+        while( objet4 == null ){
+          objet4 = Objet.find.byId( (int)(Math.random()*8000) % objetsSize + 1);
+        }
         Objet objet5 = Objet.find.byId( (int)(Math.random()*8000) % objetsSize + 1);
+        while( objet5 == null ){
+          objet5 = Objet.find.byId( (int)(Math.random()*8000) % objetsSize + 1);
+        }
         Objet objet6 = Objet.find.byId( (int)(Math.random()*8000) % objetsSize + 1);
         Objet objet7 = Objet.find.byId( (int)(Math.random()*8000) % objetsSize + 1);
         Objet objet8 = Objet.find.byId( (int)(Math.random()*8000) % objetsSize + 1);
@@ -467,15 +482,6 @@ public class Application extends Controller {
         if( !objet4.images.isEmpty() & objet4.id != objet2.id & objet4.id != objet3.id ){
             recommandations += "<a href='/objet/"+objet4.id+"'><div class='col-md-3'> <img src='/assets/imgObjet/"+objet4.images.get(0).lien+"' class='img-responsive' alt='Responsive image'> </div></a>";
         }
-
-
-
-        // un objet pris aléatoirement
-        Objet objet5 = Objet.find.byId( (int)(Math.random()*8000) % objetsSize + 1);
-        while( objet5.images.isEmpty() || objet5.id == objet2.id || objet5.id == objet3.id || objet5.id == objet4.id){
-            objet5 = Objet.find.byId( (int)(Math.random()*8000) % objetsSize + 1);
-        }
-        recommandations += "<a href='/objet/"+objet5.id+"'><div class='col-md-3'> <img src='/assets/imgObjet/"+objet5.images.get(0).lien+"' class='img-responsive' alt='Responsive image'> </div> </a>";
 
 
 
