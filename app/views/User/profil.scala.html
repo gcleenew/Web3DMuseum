@@ -12,7 +12,10 @@
 <div class="page-head">
 	<div class="container">
     	<h4>Profil de @(user.username)</h4>
-    	<a href="/mod">Back-office</a>
+    	@if(session.get("right") == "mod" || session.get("right") == "admin"){
+    		<a href="/mod">Back-office</a>
+    	}else{}
+    	
 	</div>
 </div>
 <!--/ Page Heading ends -->
@@ -27,8 +30,7 @@
 			  <!-- Use uniqe name for "href" in below anchor tags -->
 			  <li class="active"><a href="#tab1" data-toggle="tab">Commentaire(s)</a></li>
 			  <li><a href="#tab2" data-toggle="tab">Fait historique</a></li>
-			  <li><a href="#tab3" data-toggle="tab">Favoris</a></li>
-			  <li><a href="#tab4" data-toggle="tab">Compte</a></li>
+			  <li><a href="#tab3" data-toggle="tab">Compte</a></li>
 			</ul>
 
 			<!-- Tab Content -->
@@ -41,9 +43,6 @@
 					@Html(fh)
 				</div>
 				<div class="tab-pane" id="tab3">
-					<h5>Fav</h5>
-				</div>
-				<div class="tab-pane" id="tab4">
 				<div class="col-md-6">
 
 					<table class="table table-striped tcart">

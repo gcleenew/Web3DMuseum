@@ -34,64 +34,75 @@
 <!--/ Page Heading ends -->
 
 <!-- Page content starts -->
-<div class="content blog">
-  <div class="row">
-    <div class="col-md-10 col-md-offset-1">
-      <table class="table">
-        <theader>
 
-            <th>
-                  #
-            </th>
-            <th>
-                  Nom
-            </th>
-            <th>
-                  Email
-            </th>
-            <th>
-                  Date d'arrivée
-            </th>
-            <th>
-                  Droits
-            </th>
-            <th>
-                  Promotion
-            </th>
-            <th>
-                  Supression
-            </th>
-        </tr>
-        <tbody>
-        @for(utilisateur <- Utilisateurs) {
-          <tr id="@utilisateur.id">
+@if(session.get("right") == "admin"){
+  <div class="content blog">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <table class="table">
+          <theader>
 
-            <td>
-                  @utilisateur.id
-            </td>
-            <td>
-                  @utilisateur.username
-            </td>
-            <td>
-                  @utilisateur.email
-            </td>
-            <td>
-                  @utilisateur.creationDate
-            </td>
-            <td>
-                  @utilisateur.rights
-            </td>
-            <td>
-                  <button type="button" class="promote btn btn-info"> promote </button>
-            </td>
-            <td>
-                  <button type="button" class="delete btn btn-danger"> delete </button>
-            </td>
+              <th>
+                    #
+              </th>
+              <th>
+                    Nom
+              </th>
+              <th>
+                    Email
+              </th>
+              <th>
+                    Date d'arrivée
+              </th>
+              <th>
+                    Droits
+              </th>
+              <th>
+                    Promotion
+              </th>
+              <th>
+                    Supression
+              </th>
           </tr>
-        }
-      </tbody>
-      </table>
+          <tbody>
+          @for(utilisateur <- Utilisateurs) {
+            <tr id="@utilisateur.id">
+
+              <td>
+                    @utilisateur.id
+              </td>
+              <td>
+                    @utilisateur.username
+              </td>
+              <td>
+                    @utilisateur.email
+              </td>
+              <td>
+                    @utilisateur.creationDate
+              </td>
+              <td>
+                    @utilisateur.rights
+              </td>
+              <td>
+                    <button type="button" class="promote btn btn-info"> promote </button>
+              </td>
+              <td>
+                    <button type="button" class="delete btn btn-danger"> delete </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+        </table>
+      </div>
     </div>
   </div>
-</div>
+}else{
+  <div class="content blog">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-3">
+        <p>Vous devez disposez des droit d'administrateur pour accèder au contenu de cette page.</p>
+      </div>
+    </div>
+  </div>
+}
 }

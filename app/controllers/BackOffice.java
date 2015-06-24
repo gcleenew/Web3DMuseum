@@ -701,7 +701,8 @@ public class BackOffice extends Controller {
         Utilisateur utilisateur = Utilisateur.find.byId((long) (id));
 
         if( utilisateur.rights.equals("admin") ){
-            return ok("admin");
+            utilisateur.rights = "user";
+            
         }
         else if( !utilisateur.rights.equals("mod") ){
             utilisateur.rights = "mod";

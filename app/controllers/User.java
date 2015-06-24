@@ -109,13 +109,14 @@ public class User extends Controller {
         for (Commentaire com : liste_com) {
                 String val = "Non validé";
                 String nom_objet = Objet.find.select("nom").where().eq("id", com.objet.id).findUnique().nom;
-                String image = Image.find.select("lien").where().eq("objet_id", com.objet.id).findUnique().lien;
-
+                List<Image> imageList = Image.find.select("lien").where().eq("objet_id", com.objet.id).setMaxRows(1).findList();
+                
+                
                 if(com.valide){
                     val = "Validé";
                 }
 
-                liste_result_com += "<a href=\"/objet/"+com.objet+"\"><div class=\"panel panel-default searchPanel\"><div class=\"panel-heading\">Commentaire datant du "+com.creationDate+"  sur l'objet "+nom_objet+"</div><div class=\"panel-body\"><div class=\"col-md-2\"><img class=\"searchImage\" src=\"/assets/imgObjet/"+image+"\"></div><div class=\"col-md-9\">"+com.contenu+"</div><div class=\"col-md-1\">"+val+"</div></div></div></a>";
+                liste_result_com += "<a href=\"/objet/"+com.objet.id+"\"><div class=\"panel panel-default searchPanel\"><div class=\"panel-heading\">Commentaire datant du "+com.creationDate+"  sur l'objet "+nom_objet+"</div><div class=\"panel-body\"><div class=\"col-md-2\"><img class=\"searchImage\" src=\"/assets/imgObjet/"+imageList.get(0).lien+"\"></div><div class=\"col-md-9\">"+com.contenu+"</div><div class=\"col-md-1\">"+val+"</div></div></div></a>";
 
             }
         //Recherche des fit historique associé à cet utilisateur
@@ -131,13 +132,13 @@ public class User extends Controller {
         for (FaitHistorique fh : liste_fh) {
                 String val = "Non validé";
                 String nom_objet = Objet.find.select("nom").where().eq("id", fh.objet.id).findUnique().nom;
-                String image = Image.find.select("lien").where().eq("objet_id", fh.objet.id).findUnique().lien;
+                List<Image> imageList = Image.find.select("lien").where().eq("objet_id", fh.objet.id).setMaxRows(1).findList();
 
                 if(fh.valide){
                     val = "Validé";
                 }
 
-                liste_result_fh += "<a href=\"/objet/"+fh.objet+"\"><div class=\"panel panel-default searchPanel\"><div class=\"panel-heading\">Fait historique datant du "+fh.creationDate+"  sur l'objet "+nom_objet+"</div><div class=\"panel-body\"><div class=\"col-md-2\"><img class=\"searchImage\" src=\"/assets/imgObjet/"+image+"\"></div><div class=\"col-md-9\">"+fh.contenu+"</div><div class=\"col-md-1\">"+val+"</div></div></div></a>";
+                liste_result_fh += "<a href=\"/objet/"+fh.objet.id+"\"><div class=\"panel panel-default searchPanel\"><div class=\"panel-heading\">Fait historique datant du "+fh.creationDate+"  sur l'objet "+nom_objet+"</div><div class=\"panel-body\"><div class=\"col-md-2\"><img class=\"searchImage\" src=\"/assets/imgObjet/"+imageList.get(0).lien+"\"></div><div class=\"col-md-9\">"+fh.contenu+"</div><div class=\"col-md-1\">"+val+"</div></div></div></a>";
                
             }
 
