@@ -78,6 +78,8 @@ public class BackOffice extends Controller {
         String stringlong = requestData.get("longueur");
         String stringhaut = requestData.get("hauteur");
         String stringpoids = requestData.get("poids");
+        String stringparentid = requestData.get("parentid");
+        Int parentid = 0;
         Double largeur = 0d;
         Double longueur = 0d;
         Double hauteur = 0d;
@@ -95,6 +97,9 @@ public class BackOffice extends Controller {
         }
         if (stringpoids != null && stringpoids != "") {
             poids = Double.parseDouble(stringpoids);
+        }
+        if (stringparentid != null && stringparentid != "") {
+            parentid = Integer.parseInt(stringparentid);
         }
 
         // (1) create a SimpleDateFormat object with the desired format.
@@ -136,9 +141,20 @@ public class BackOffice extends Controller {
             objet1.longueur = longueur;
             objet1.hauteur = hauteur;
             objet1.poids = poids;
+            if (parentid.equals("")) {
+                
+            }else{
+                objet1.compositeParentId = parentid;
+            }
+            
             objet1.dateDecouverte = dateDecouverte;
             objet1.localisationActuelle = localisationActuelle;
-            objet1.localisationOrigine = localisationOrigine;
+            if (localisationOrigine.equals("")) {
+                
+            }
+            else{
+                objet.localisationOrigine = localisationOrigine;
+            }
             objet1.archeologue = archeologue;
             objet1.civilisation = civilisation;
             objet1.model3D = model3D;
@@ -181,6 +197,11 @@ public class BackOffice extends Controller {
         String stringlong = requestData.get("longueur");
         String stringhaut = requestData.get("hauteur");
         String stringpoids = requestData.get("poids");
+        String stringparentid = requestData.get("parentid");
+        Int parentid = 0;
+        if (stringparentid != null && stringparentid != "") {
+            parentid = Integer.parseInt(stringparentid);
+        }
         Double largeur = 0d;
         Double longueur = 0d;
         Double hauteur = 0d;
@@ -237,6 +258,11 @@ public class BackOffice extends Controller {
             objet.reference = reference;
             objet.description = description;
             objet.type_objet = type_objet;
+            if (parentid.equals("")) {
+                
+            }else{
+                objet1.compositeParentId = parentid;
+            }
             objet.matiere = matiere;
             objet.largeur = largeur;
             objet.longueur = longueur;
@@ -245,7 +271,12 @@ public class BackOffice extends Controller {
 
             objet.dateDecouverte = dateDecouverte;
             objet.localisationActuelle = localisationActuelle;
-            objet.localisationOrigine = localisationOrigine;
+            if (localisationOrigine.equals("")) {
+                
+            }
+            else{
+                objet.localisationOrigine = localisationOrigine;
+            }
             objet.archeologue = archeologue;
             objet.civilisation = civilisation;
             objet.model3D = model3D;
