@@ -79,7 +79,7 @@ public class BackOffice extends Controller {
         String stringhaut = requestData.get("hauteur");
         String stringpoids = requestData.get("poids");
         String stringparentid = requestData.get("parentid");
-        Int parentid = 0;
+        Integer parentid = 0;
         Double largeur = 0d;
         Double longueur = 0d;
         Double hauteur = 0d;
@@ -153,7 +153,7 @@ public class BackOffice extends Controller {
                 
             }
             else{
-                objet.localisationOrigine = localisationOrigine;
+                objet1.localisationOrigine = localisationOrigine;
             }
             objet1.archeologue = archeologue;
             objet1.civilisation = civilisation;
@@ -198,7 +198,7 @@ public class BackOffice extends Controller {
         String stringhaut = requestData.get("hauteur");
         String stringpoids = requestData.get("poids");
         String stringparentid = requestData.get("parentid");
-        Int parentid = 0;
+        Integer parentid = 0;
         if (stringparentid != null && stringparentid != "") {
             parentid = Integer.parseInt(stringparentid);
         }
@@ -261,7 +261,7 @@ public class BackOffice extends Controller {
             if (parentid.equals("")) {
                 
             }else{
-                objet1.compositeParentId = parentid;
+                objet.compositeParentId = parentid;
             }
             objet.matiere = matiere;
             objet.largeur = largeur;

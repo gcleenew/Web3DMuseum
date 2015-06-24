@@ -448,21 +448,21 @@ public class Application extends Controller {
          // trois objets pris dans les similaires
         Objet objet2 = Objet.find.byId( (int)(Math.random()*8000) % objetsSize + 1);
         while( objet2 == null ){
-          Objet objet2 = Objet.find.byId( (int)(Math.random()*8000) % objetsSize + 1);
+          objet2 = Objet.find.byId( (int)(Math.random()*8000) % objetsSize + 1);
         }
         if( !objet2.images.isEmpty() ){
             recommandations += "<a href='/objet/"+objet2.id+"'> <div class='col-md-3'> <img src='/assets/imgObjet/"+objet2.images.get(0).lien+"' class='img-responsive' alt='Responsive image'> </div> </a>";
         }
         Objet objet3 = Objet.find.byId( (int)(Math.random()*8000) % objetsSize + 1);
         while( objet3 == null ){
-          Objet objet3 = Objet.find.byId( (int)(Math.random()*8000) % objetsSize + 1);
+          objet3 = Objet.find.byId( (int)(Math.random()*8000) % objetsSize + 1);
         }
         if( !objet3.images.isEmpty() & objet3.id != objet2.id ){
             recommandations += "<a href='/objet/"+objet3.id+"'><div class='col-md-3'> <img src='/assets/imgObjet/"+objet3.images.get(0).lien+"' class='img-responsive' alt='Responsive image'> </div></a>";
         }
         Objet objet4 = Objet.find.byId( (int)(Math.random()*8000) % objetsSize + 1);
         while( objet4 == null ){
-          Objet objet4 = Objet.find.byId( (int)(Math.random()*8000) % objetsSize + 1);
+          objet4 = Objet.find.byId( (int)(Math.random()*8000) % objetsSize + 1);
         }
         if( !objet4.images.isEmpty() & objet4.id != objet2.id & objet4.id != objet3.id ){
             recommandations += "<a href='/objet/"+objet4.id+"'><div class='col-md-3'> <img src='/assets/imgObjet/"+objet4.images.get(0).lien+"' class='img-responsive' alt='Responsive image'> </div></a>";
