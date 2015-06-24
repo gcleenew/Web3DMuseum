@@ -300,72 +300,41 @@ public class BackOffice extends Controller {
         String objet = requestData.get("objet");
 
         play.mvc.Http.MultipartFormData body = request().body().asMultipartFormData();
-        
-         if (body.getFile("image") != null) {
-            FilePart filePart = body.getFile("image");
-            String fileName = filePart.getFilename();
-            String contentType = filePart.getContentType(); 
+               
+        if( body != null ){
+            play.mvc.Http.MultipartFormData.FilePart picture = body.getFile("image");
+            if (picture != null) {
+                String fileName = nom+".png";
+                File file = picture.getFile();
+                // added lines
 
-            try
-            {
-                File file = filePart.getFile();
+
+                String myUploadPath = Play.application().configuration().getString("myUploadPathPhoto");
                 // Replace the /public/ folder
-                File newFile=Play.application().getFile("/public/imgObjet/" + fileName);
+                File newFile=Play.application().getFile(myUploadPath + fileName);
                 // Move the tmp file to the final location
                 // Not the best way but it works !
                 boolean bool = file.renameTo(newFile);
-                //file.delete();
 
-                return ok(String.valueOf(bool));
-            }
-            catch(Exception ex)
-            {
-            //TO DO Exception ex 
+            } else {
+                flash("error", "Missing file");
             }
         }
-         
-
-
-
-         
-        // if( body != null ){
-        //     play.mvc.Http.MultipartFormData.FilePart picture = body.getFile("image");
-        //     if (picture != null) {
-        //         String fileName = nom+".png";
-        //         String contentType = picture.getContentType();
-        //         File file = picture.getFile();
-        //         // added lines
-
-
-        //         String myUploadPath = Play.application().configuration().getString("myUploadPath");
-        //         // Replace the /public/ folder
-        //         File newFile=Play.application().getFile(myUploadPath + fileName);
-        //         // Move the tmp file to the final location
-        //         // Not the best way but it works !
-        //         file.renameTo(newFile);
-        //         file.delete();
-
-        //         return ok("file saved as " + myUploadPath + fileName );
-        //     } else {
-        //         flash("error", "Missing file");
-        //         return redirect("/mod/addPhoto");
-        //     }
-        // }
         
-
-
-
-
 
         Image image = Image.find.where().eq("nom", nom).findUnique();
 
-        if( nom == null || objet == null || image == null ){
+        if( nom == null && objet == null){
+
+        }
+        else if( nom.equals("") || objet.equals("") ){
             message = "<div id='retourFeedback' class='alert alert-danger' role='alert'> La photo "+nom+" n'a pas été créé car un des champs n'était pas rempli.</div>";
         }
         else if( image == null ){
             image = new Image();
             image.nom = nom;
             image.objet = Objet.find.where().eq("nom", objet).findUnique();
+            image.lien = nom+".png";
             image.save();
        
             message = "<div id='retourFeedback' class='alert alert-success' role='alert'> La photo : "+nom+" a été créé. </div>";
@@ -376,6 +345,118 @@ public class BackOffice extends Controller {
         
 
         return ok(addPhoto.render(message));
+    }
+
+    public static Result addVideo() {
+        // initialisation du message d'erreur
+        String message = "";
+        // création des différentes variable et remplissage avec les variables du formulaire
+        DynamicForm requestData = Form.form().bindFromRequest();
+        String nom = requestData.get("nom");
+        String objet = requestData.get("objet");
+
+        play.mvc.Http.MultipartFormData body = request().body().asMultipartFormData();
+               
+        if( body != null ){
+            play.mvc.Http.MultipartFormData.FilePart videoFile = body.getFile("video");
+            if (videoFile != null) {
+                String fileName = nom+".mp4";
+                File file = videoFile.getFile();
+                // added lines
+
+
+                String myUploadPath = Play.application().configuration().getString("myUploadPathVideo");
+                // Replace the /public/ folder
+                File newFile=Play.application().getFile(myUploadPath + fileName);
+                // Move the tmp file to the final location
+                // Not the best way but it works !
+                boolean bool = file.renameTo(newFile);
+
+            } else {
+                flash("error", "Missing file");
+            }
+        }
+        
+
+        Video video = Video.find.where().eq("nom", nom).findUnique();
+
+        if( nom == null && objet == null){
+
+        }
+        else if( nom.equals("") || objet.equals("") ){
+            message = "<div id='retourFeedback' class='alert alert-danger' role='alert'> La vidéo "+nom+" n'a pas été créé car un des champs n'était pas rempli.</div>";
+        }
+        else if( video == null ){
+            video = new Video();
+            video.nom = nom;
+            video.objet = Objet.find.where().eq("nom", objet).findUnique();
+            video.lien = nom+".png";
+            video.save();
+       
+            message = "<div id='retourFeedback' class='alert alert-success' role='alert'> La video : "+nom+" a été créé. </div>";
+        }        
+        else {
+            message = "<div id='retourFeedback' class='alert alert-danger' role='alert'> La video "+nom+" n'a pas été créé car elle existe déjà </div>";
+        }
+        
+
+        return ok(addVideo.render(message));
+    }
+
+    public static Result addAudio() {
+        // initialisation du message d'erreur
+        String message = "";
+        // création des différentes variable et remplissage avec les variables du formulaire
+        DynamicForm requestData = Form.form().bindFromRequest();
+        String nom = requestData.get("nom");
+        String objet = requestData.get("objet");
+
+        play.mvc.Http.MultipartFormData body = request().body().asMultipartFormData();
+               
+        if( body != null ){
+            play.mvc.Http.MultipartFormData.FilePart audioFile = body.getFile("audio");
+            if (audioFile != null) {
+                String fileName = nom+".mp3";
+                File file = audioFile.getFile();
+                // added lines
+
+
+                String myUploadPath = Play.application().configuration().getString("myUploadPathAudio");
+                // Replace the /public/ folder
+                File newFile=Play.application().getFile(myUploadPath + fileName);
+                // Move the tmp file to the final location
+                // Not the best way but it works !
+                boolean bool = file.renameTo(newFile);
+
+            } else {
+                flash("error", "Missing file");
+            }
+        }
+        
+
+        Audio audio = Audio.find.where().eq("nom", nom).findUnique();
+
+        if( nom == null && objet == null){
+
+        }
+        else if( nom.equals("") || objet.equals("") ){
+            message = "<div id='retourFeedback' class='alert alert-danger' role='alert'> L'audio "+nom+" n'a pas été créé car un des champs n'était pas rempli.</div>";
+        }
+        else if( audio == null ){
+            audio = new Audio();
+            audio.nom = nom;
+            audio.objet = Objet.find.where().eq("nom", objet).findUnique();
+            audio.lien = nom+".png";
+            audio.save();
+       
+            message = "<div id='retourFeedback' class='alert alert-success' role='alert'> L'audio : "+nom+" a été créé. </div>";
+        }        
+        else {
+            message = "<div id='retourFeedback' class='alert alert-danger' role='alert'> L'audio "+nom+" n'a pas été créé car elle existe déjà </div>";
+        }
+        
+
+        return ok(addAudio.render(message));
     }
 
     public static Result listPropositions() {
@@ -566,8 +647,29 @@ public class BackOffice extends Controller {
         return redirect(controllers.routes.BackOffice.parcour(parcours1.id));
     }
 
-    public static Result stats() {
-        return ok(indexAdmin.render("This is the header !!!!!", "This is the body !!!!!"));
+     public static Result contact() {
+        List<Feedback> feedbacks = Feedback.find.all();
+
+        return ok(contact.render("", feedbacks));
+    }
+
+    public static Result contactMessage(String message) {
+        List<Feedback> feedbacks = Feedback.find.all();
+
+        if ( message.equals("delete")){
+            message = "<div id='retour' class='alert alert-success' role='alert'> Feedback supprimé </div>";
+        }
+        return ok(contact.render(message, feedbacks));
+    }
+
+    public static Result deleteContact(Integer id) {
+
+        Feedback feedback = Feedback.find.byId((long) (id));
+
+        feedback.delete();
+
+
+        return ok("delete");
     }
 
     public static Result users() {

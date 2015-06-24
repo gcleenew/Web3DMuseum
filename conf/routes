@@ -120,9 +120,17 @@ GET     /mod/addObjet             	controllers.BackOffice.addObjet()
 POST    /mod/addObjet             	controllers.BackOffice.addObjet()
 
 
-# Add Objet page
+# Add Photo objet page
 GET     /mod/addPhoto            	controllers.BackOffice.addPhoto()
 POST    /mod/addPhoto           	controllers.BackOffice.addPhoto()
+
+# Add Video objet page
+GET     /mod/addVideo            	controllers.BackOffice.addVideo()
+POST    /mod/addVideo           	controllers.BackOffice.addVideo()
+
+# Add Audio objet page
+GET     /mod/addAudio           	controllers.BackOffice.addAudio()
+POST    /mod/addAudio           	controllers.BackOffice.addAudio()
 
 
 # Modify text page
@@ -165,8 +173,13 @@ POST    /mod/parcour/:id           controllers.BackOffice.parcour(id : Integer)
 GET     /mod/deleteObjetParcours/:id    controllers.BackOffice.deleteObjetParcours(id : Long)
 
 
-# Liste parcours page
-GET     /admin/stats             	controllers.BackOffice.stats()
+# Contact admin page
+GET     /admin/contact/:message     controllers.BackOffice.contactMessage(message: String)
+GET     /admin/contact     			controllers.BackOffice.contact()
+
+# Delete utilisateurs
+GET     /admin/contact/delete/:id   controllers.BackOffice.deleteContact(id : Integer)
+
 
 # Liste utilisateurs
 GET     /admin/users             	controllers.BackOffice.users()

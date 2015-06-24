@@ -27,12 +27,12 @@ import core.*;
 
 public class Application extends Controller {
 
-    
+
     public static Result index() {
-       
+
         SimpleDateFormat d = new SimpleDateFormat ("yyyyMMdd");
         String date = d.format(new Date());
-        int aleatoireCarrousel = Integer.parseInt(date)/2400000; 
+        int aleatoireCarrousel = Integer.parseInt(date)/2400000;
 
         List<Objet> objets = Objet.find.all();
         int objetsSize = 5;
@@ -59,56 +59,56 @@ public class Application extends Controller {
             i = i + aleatoireCarrousel + y;
             aleatoireCarrousel = aleatoireCarrousel+i;
             Objet firstObjet = Objet.find.byId( (aleatoireCarrousel) % objetsSize + 1);
-            y++;    
+            y++;
             if( firstObjet == null ){
                 continue;
-            }     
+            }
             if( firstObjet.images.isEmpty() ){
                 continue;
-            }     
-            firstLink  = "/objet/"+firstObjet.id;   
+            }
+            firstLink  = "/objet/"+firstObjet.id;
             firstImage = firstObjet.images.get(0).lien;
         }
         while( secondImage == "" || secondImage.equals(firstImage) ){
             i = i + aleatoireCarrousel + y;
             aleatoireCarrousel = aleatoireCarrousel+i;
             Objet secondObjet = Objet.find.byId((aleatoireCarrousel) % objetsSize + 1);
-            y++;    
+            y++;
             if( secondObjet == null ){
                 continue;
-            }  
+            }
             if( secondObjet.images.isEmpty() ){
                 continue;
-            }      
-            secondLink  = "/objet/"+secondObjet.id; 
+            }
+            secondLink  = "/objet/"+secondObjet.id;
             secondImage = secondObjet.images.get(0).lien;
         }
         while( thirdImage == "" || thirdImage.equals(firstImage) || thirdImage.equals(secondImage) ){
             i = i + aleatoireCarrousel + y;
             aleatoireCarrousel = aleatoireCarrousel+i;
             Objet thirdObjet = Objet.find.byId((aleatoireCarrousel) % objetsSize + 1);
-            y++;    
+            y++;
             if( thirdObjet == null ){
                 continue;
-            } 
+            }
             if( thirdObjet.images.isEmpty() ){
                 continue;
-            }            
-            thirdLink  = "/objet/"+thirdObjet.id; 
+            }
+            thirdLink  = "/objet/"+thirdObjet.id;
             thirdImage = thirdObjet.images.get(0).lien;
         }
         while( fourthImage == "" || fourthImage.equals(firstImage) || fourthImage.equals(secondImage) || fourthImage.equals(thirdImage) ){
             i = i + aleatoireCarrousel + y;
             aleatoireCarrousel = aleatoireCarrousel+i;
             Objet fourthObjet = Objet.find.byId((aleatoireCarrousel) % objetsSize + 1);
-            y++;    
+            y++;
             if( fourthObjet == null ){
                 continue;
-            } 
+            }
             if( fourthObjet.images.isEmpty() ){
                 continue;
-            }  
-            fourthLink  = "/objet/"+fourthObjet.id;         
+            }
+            fourthLink  = "/objet/"+fourthObjet.id;
             fourthImage = fourthObjet.images.get(0).lien;
         }
 
@@ -130,7 +130,7 @@ public class Application extends Controller {
                 addCivList += "<option value="+obj.civilisation+">"+obj.civilisation+"</option>";
             }
         }
-        
+
 
 
     	// Récupération des données du formulaire de recherche
@@ -148,16 +148,16 @@ public class Application extends Controller {
         String civilisation = requestData.get("civilisation");
         String locationAct = requestData.get("location-act");
         String locationTr = requestData.get("location-tr");
-        
+
 
         String liste_result = "";
         Boolean launch = false;
-        
+
         // Passage de la variable launch à "true" si une des variable est différent d'une chaine vide.
 
         nom = Verification.verifParam(nom);
         launch = Verification.verifBool(nom, launch);
-        
+
         reference = Verification.verifParam(reference);
         launch = Verification.verifBool(reference, launch);
 
@@ -196,7 +196,7 @@ public class Application extends Controller {
 
 
     	// On effectue la requête, si un des paramètre est fourni par l'utilisateur.
-        
+
         if(launch){
         	List<Objet> liste_objet = Objet.find
             .where()
@@ -215,19 +215,19 @@ public class Application extends Controller {
             .findList();
 
 	        for (Objet obj : liste_objet) {
-	            String image = Image.find.select("lien").where().eq("objet_id", obj.id).findUnique().lien;
-                
-                liste_result += "<a href=\"/objet/"+obj.id+"\"><div class=\"panel panel-default searchPanel\"><div class=\"panel-heading\">"+obj.nom+"</div><div class=\"panel-body\"><div class=\"col-md-2\"><img class=\"searchImage\" src=\"/assets/imgObjet/"+image+"\"></div><div class=\"col-md-3\">Référence :"+obj.reference+"</div><div class=\"col-md-4 col-md-offset-0\">"+obj.description+"</div><div class=\"col-md-3 col-md-offset-0\">Type : "+obj.type_objet+"<br>Matière : "+obj.matiere+"<br>Poids : "+obj.poids+" gramme(s)<br></div></div></div></a>";
-	           
-            }
-            
+	            String image = Image.find.select("lien").where().eq("objet_id", obj.id).findList().get(0).lien;
 
-            
+                liste_result += "<a href=\"/objet/"+obj.id+"\"><div class=\"panel panel-default searchPanel\"><div class=\"panel-heading\">"+obj.nom+"</div><div class=\"panel-body\"><div class=\"col-md-2\"><img class=\"searchImage\" src=\"/assets/imgObjet/"+image+"\"></div><div class=\"col-md-3\">Référence :"+obj.reference+"</div><div class=\"col-md-4 col-md-offset-0\">"+obj.description+"</div><div class=\"col-md-3 col-md-offset-0\">Type : "+obj.type_objet+"<br>Matière : "+obj.matiere+"<br>Poids : "+obj.poids+" gramme(s)<br></div></div></div></a>";
+
+            }
+
+
+
         }
 
         nom = Verification.eraser(nom);
-        
-            
+
+
         return ok(search.render(nom, liste_result, addCivList));
         //return ok(search.render("This is the header !", "This is the body !"));
     }
@@ -286,20 +286,22 @@ public class Application extends Controller {
         for (int i = 0; i < parcours.size(); i++) {
             Parcours uniqueParcours = parcours.get(i);
             List<ParcoursObjet> parcoursObjets = uniqueParcours.parcoursObjets;
-            List<Image> imagesList = new ArrayList<Image>();
+
+            List<Image> images = new ArrayList<Image>();
+            Image imagePrincipale = new Image();
             //remplissage de la liste d'image avec la liste des objets dans le parcours
             for (int j = 0; j < parcoursObjets.size(); j++) {
                 if (j < 5) {
-                    if (parcoursObjets.get(j).objet.images.isEmpty()) {
-                        imagesList.add(missing);
-                    }
-                    else {
-                        imagesList.add(parcoursObjets.get(j).objet.images.get(0));
-                    }
-                    
+                  if( parcoursObjets.get(j).objet.images.isEmpty() ) {
+                      imagePrincipale = missing;
+                  }
+                  else {
+                      imagePrincipale = parcoursObjets.get(j).objet.images.get(0);
+                  }
+                  images.add(imagePrincipale);
                 }
             }
-            listParcours.put(uniqueParcours, imagesList);
+            listParcours.put(uniqueParcours, images);
 
         }
         return ok(parcoursList.render("Liste des parcours", listParcours));
@@ -380,11 +382,11 @@ public class Application extends Controller {
         if(objet1.model3D != null && objet1.model3D != ""){
             imagePrincipale = objet1.model3D;
         }
-        else if(objet1.images.get(0).lien != null) {
-            imagePrincipale = objet1.images.get(0).lien;
+        else if( objet1.images.isEmpty() ) {
+            imagePrincipale = "missing.jpg";
         }
         else {
-            imagePrincipale = "missing.jpg";
+          imagePrincipale = objet1.images.get(0).lien;
         }
 
         // si parcours alors on parcours la liste d'objet
@@ -414,10 +416,10 @@ public class Application extends Controller {
                         previous = parcoursObjets.get(i-1).objet.id;
                         next = parcoursObjets.get(i+1).objet.id;
                     }
-                    
+
                 }
             }
-            
+
         }
 
         List<Objet> objets = Objet.find.all();
@@ -472,7 +474,7 @@ public class Application extends Controller {
         String message = requestData.get("message");
         String alert = "";
 
-        // Fait une alerte si le message est sauvegardé 
+        // Fait une alerte si le message est sauvegardé
         if( email != null && message != null ){
 
             Feedback feedback = new Feedback();
@@ -486,7 +488,7 @@ public class Application extends Controller {
 
         }
 
-        // TO DO : create feedback 
+        // TO DO : create feedback
 
         return ok(contact.render(alert));
     }
