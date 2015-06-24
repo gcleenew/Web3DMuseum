@@ -85,6 +85,7 @@ create table objet (
   date_decouverte           datetime,
   civilisation              varchar(255),
   model3d                   varchar(255),
+  composite_parent_id       integer,
   creation_date             datetime,
   constraint pk_objet primary key (id))
 ;
@@ -136,12 +137,6 @@ create table statistique_objet (
   objet2                         integer not null,
   constraint pk_statistique_objet primary key (objet1, objet2))
 ;
-
-create table oeuvre_composite (
-  oeuvre_principale              integer not null,
-  oeuvre_inspiree                integer not null,
-  constraint pk_oeuvre_composite primary key (oeuvre_principale, oeuvre_inspiree))
-;
 alter table audio add constraint fk_audio_objet_1 foreign key (objet_id) references objet (id) on delete restrict on update restrict;
 create index ix_audio_objet_1 on audio (objet_id);
 alter table commentaire add constraint fk_commentaire_utilisateur_2 foreign key (utilisateur_id) references utilisateur (id) on delete restrict on update restrict;
@@ -179,10 +174,6 @@ alter table statistique_objet add constraint fk_statistique_objet_objet_01 forei
 
 alter table statistique_objet add constraint fk_statistique_objet_objet_02 foreign key (objet2) references objet (id) on delete restrict on update restrict;
 
-alter table oeuvre_composite add constraint fk_oeuvre_composite_objet_01 foreign key (oeuvre_principale) references objet (id) on delete restrict on update restrict;
-
-alter table oeuvre_composite add constraint fk_oeuvre_composite_objet_02 foreign key (oeuvre_inspiree) references objet (id) on delete restrict on update restrict;
-
 # --- !Downs
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -206,8 +197,6 @@ drop table image;
 drop table objet;
 
 drop table statistique_objet;
-
-drop table oeuvre_composite;
 
 drop table parcours;
 

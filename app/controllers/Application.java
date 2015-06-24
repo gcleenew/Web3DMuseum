@@ -310,7 +310,7 @@ public class Application extends Controller {
         // création de la liste d'image
         Image missing = Image.find.byId(0L);
         List<Image> imagesList = new ArrayList<Image>();
-        
+
         // récupération du parcours et de ses données
         Parcours parcours1 = Parcours.find.byId(id);
         // création de la liste des liaison entre parcours et objet
@@ -319,7 +319,7 @@ public class Application extends Controller {
         //remplissage de la liste d'image avec la liste des objets dans le parcours
         for (int i = 0; i < parcoursObjets.size(); i++) {
             if (parcoursObjets.get(i).objet.images.isEmpty()) {
-               
+
             }
             else {
                 imagesList.add(parcoursObjets.get(i).objet.images.get(0));
@@ -430,6 +430,14 @@ public class Application extends Controller {
             .add(Expr.eq("localisationOrigine",objet1.localisationOrigine))
             .add(Expr.eq("civilisation",objet1.civilisation)).findList();
 
+        Objet objetOriginel = null;
+        if( objet1.compositeParentId != 0 ){
+          objetOriginel = Objet.find.byId(objet1.compositeParentId);
+        }
+      List<Objet> objetsLies = Objet.find.where().eq("compositeParentId", objet1.id ).findList();
+
+
+
         int objetsSimilaireSize = Collections.max(objetsSimilaires, new ObjetComparator()).id;
 
 
@@ -439,14 +447,23 @@ public class Application extends Controller {
 
          // trois objets pris dans les similaires
         Objet objet2 = Objet.find.byId( (int)(Math.random()*8000) % objetsSize + 1);
+        while( objet2 == null ){
+          Objet objet2 = Objet.find.byId( (int)(Math.random()*8000) % objetsSize + 1);
+        }
         if( !objet2.images.isEmpty() ){
             recommandations += "<a href='/objet/"+objet2.id+"'> <div class='col-md-3'> <img src='/assets/imgObjet/"+objet2.images.get(0).lien+"' class='img-responsive' alt='Responsive image'> </div> </a>";
         }
         Objet objet3 = Objet.find.byId( (int)(Math.random()*8000) % objetsSize + 1);
+        while( objet3 == null ){
+          Objet objet3 = Objet.find.byId( (int)(Math.random()*8000) % objetsSize + 1);
+        }
         if( !objet3.images.isEmpty() & objet3.id != objet2.id ){
             recommandations += "<a href='/objet/"+objet3.id+"'><div class='col-md-3'> <img src='/assets/imgObjet/"+objet3.images.get(0).lien+"' class='img-responsive' alt='Responsive image'> </div></a>";
         }
         Objet objet4 = Objet.find.byId( (int)(Math.random()*8000) % objetsSize + 1);
+        while( objet4 == null ){
+          Objet objet4 = Objet.find.byId( (int)(Math.random()*8000) % objetsSize + 1);
+        }
         if( !objet4.images.isEmpty() & objet4.id != objet2.id & objet4.id != objet3.id ){
             recommandations += "<a href='/objet/"+objet4.id+"'><div class='col-md-3'> <img src='/assets/imgObjet/"+objet4.images.get(0).lien+"' class='img-responsive' alt='Responsive image'> </div></a>";
         }
@@ -463,7 +480,7 @@ public class Application extends Controller {
 
 
 
-        return ok(objet.render("Objet", objet1, imagePrincipale, previous, next, parcour, recommandations));
+        return ok(objet.render("Objet", objet1, imagePrincipale, previous, next, parcour, recommandations, objetOriginel, objetsLies));
     }
 
     public static Result contact() {
