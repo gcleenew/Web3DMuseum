@@ -9,6 +9,8 @@ body{
 	border-top: 3px solid #eee;
 	-webkit-font-smoothing: antialiased;
 	background-color: #f9f9f9;
+	height: 100%;
+
 }
 
 h1,h2,h3,h4,h5,h6{
@@ -525,6 +527,10 @@ header form input, header form button{
 
 .content {
 	margin: 20px 0px;
+	min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto 300px; /* the bottom margin is the negative value of the footer's height */
 }
 
 .content ul li{
@@ -1356,11 +1362,25 @@ footer{
 	background: #65605c url("../img/footer.png") repeat;
 	padding-top: 20px;
 	padding-bottom: 0px;
-	margin-top: 10px;
+	margin-top: 0px;
 	color: #aaa;
 	font-size: 12px;
 	box-shadow: inset 0px 0px 10px #000;
+	position: relative;
+	bottom: 0;
+	width: 100%;
 }
+
+.wrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -300px; /* the bottom margin is the negative value of the footer's height */
+}
+footer, .push {
+	height: 300px; 
+}
+
 
 footer a, footer a:visited{
 	color: #ddd;
@@ -1438,6 +1458,8 @@ footer .payment-icons img{
 		box-shadow:none;
 	}
 	.tp-banner .img-tag { display: none; }
+
+
 }
 
 @media (max-width: 767px){
@@ -1544,4 +1566,40 @@ footer .payment-icons img{
  	.sitem img{
  		max-width: 35px;
  	}
+
+ 	.content {
+ 		margin: 20px 0px;
+ 		min-height: 100%;
+ 	    height: auto !important;
+ 	    height: 100%;
+ 	    margin: 0 auto 500px; /* the bottom margin is the negative value of the footer's height */
+ 	}
+ 	.wrapper {
+ 	    min-height: 100%;
+ 	    height: auto !important;
+ 	    height: 100%;
+ 	    margin: 0 auto -500px; /* the bottom margin is the negative value of the footer's height */
+ 	}
+ 	footer, .push {
+ 		height: 500px; 
+ 	}
+}
+
+@media (max-width: 480px){
+	.content {
+		margin: 20px 0px;
+		min-height: 100%;
+	    height: auto !important;
+	    height: 100%;
+	    margin: 0 auto 650px; /* the bottom margin is the negative value of the footer's height */
+	}
+	.wrapper {
+	    min-height: 100%;
+	    height: auto !important;
+	    height: 100%;
+	    margin: 0 auto -650px; /* the bottom margin is the negative value of the footer's height */
+	}
+	footer, .push {
+		height: 650px; 
+	}
 }

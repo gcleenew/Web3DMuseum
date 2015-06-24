@@ -32,6 +32,9 @@
 
     </head>
     <body>
+		<div class="wrapper">
+			
+
 
 		<!-- Login Modal starts -->
 		<div id="login" class="modal fade">
@@ -82,143 +85,145 @@
 				</div>
 			</div>
 		</div>
-		<!--/ Login modal ends -->
+			<!--/ Login modal ends -->
 
-		<!-- Register Modal starts -->
-		<div id="register" class="modal fade">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-						<h4>Register</h4>
-					</div>
-
-
-					<div class="modal-body">
-						
-						<div id="registerAnswer"> </div>
-
-						<div id="registerAnswer"> </div>
-						<div class="form">
-							<form class="form-horizontal" id="registerform" method="post" action="@routes.User.register()">
-							  <div class="form-group">
-								<label class="control-label col-md-3" for="name">Nom d'utilisateur</label>
-								<div class="col-md-7">
-								  <input type="text" class="form-control" id="name" name="username">
-								</div>
-							  </div>   
-							  <div class="form-group">
-								<label class="control-label col-md-3" for="email">Email</label>
-								<div class="col-md-7">
-								  <input type="email" class="form-control" id="email" name="email">
-								</div>
-							  </div>
-							  <div class="form-group">
-								<label class="control-label col-md-3" for="password1">Password</label>
-								<div class="col-md-7">
-								  <input type="password" class="form-control" id="password1" name="password">
-								</div>
-							  </div>
-
-							  <div class="form-group">
-								<label class="control-label col-md-3" for="password1">Confirm Password</label>
-								<div class="col-md-7">
-								  <input type="password" class="form-control" id="password2">
-								</div>
-							  </div>
-							  <div class="form-group">
-							  <div class="col-md-7 col-md-offset-3">
-								 <div class="checkbox inline">
-									<label>
-									   <input type="checkbox" id="conditions" name="conditions"> Agree with Terms and Conditions
-									</label>
-								 </div>
-								</div>
-							  </div> 
-							  
-							  <div class="form-group">
-								<div class="col-md-9 col-md-offset-3">
-								<button type="submit" class="btn btn-default" id="registerSubmit" disabled>Register</button>
-								<button type="reset" class="btn btn-default" id="resetRegister">Reset</button>
-								</div>
-							  </div>
-							</form>
+			<!-- Register Modal starts -->
+			<div id="register" class="modal fade">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+							<h4>Register</h4>
 						</div>
-					</div>
-					<div class="modal-footer">
-						<p>Already have account? <a id="goToLogin">Login</a> here.</p>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!--/ Register modal ends -->
 
 
-
-		<!-- Header starts -->
-		<header>
-			<div class="container">
-				<div class="row">
-					<div class="col-md-4">
-						<!-- Logo. Use class "color" to add color to the text. -->
-						<div class="logo">
-							<h1><a href="/">WEB3D<span class="color bold">Museum</span></a></h1>
-							<p class="meta">Your new online museum</p>
-						</div>
-					</div>
-					<div class="col-md-4 col-md-offset-4">
-	  
-						<!-- Search form -->
-						<form role="form">
-							<div class="input-group">
-								<input type="email" class="form-control" id="search1" placeholder="Search">
-								<span class="input-group-btn">
-									<button type="submit" class="btn btn-default">Search</button>
-								</span>
-							</div>
-						</form>
-
-						<div class="hlinks">
-							<!-- Login and Register link -->
-							@if(session.isEmpty){
-								<span class="lr"><a href="#login" role="button" data-toggle="modal">Login</a>
-								or <a href="#register" role="button" data-toggle="modal">Register</a></span>
-							}else{
-								<span class="lr"><a href="/profil" role="button">Profil</a>
-								 / <a href="/logout" role="button" >Se deconnecter</a></span>
-							}
+						<div class="modal-body">
 							
-						</div>
+							<div id="registerAnswer"> </div>
 
+							<div id="registerAnswer"> </div>
+							<div class="form">
+								<form class="form-horizontal" id="registerform" method="post" action="@routes.User.register()">
+								  <div class="form-group">
+									<label class="control-label col-md-3" for="name">Nom d'utilisateur</label>
+									<div class="col-md-7">
+									  <input type="text" class="form-control" id="name" name="username">
+									</div>
+								  </div>   
+								  <div class="form-group">
+									<label class="control-label col-md-3" for="email">Email</label>
+									<div class="col-md-7">
+									  <input type="email" class="form-control" id="email" name="email">
+									</div>
+								  </div>
+								  <div class="form-group">
+									<label class="control-label col-md-3" for="password1">Password</label>
+									<div class="col-md-7">
+									  <input type="password" class="form-control" id="password1" name="password">
+									</div>
+								  </div>
+
+								  <div class="form-group">
+									<label class="control-label col-md-3" for="password1">Confirm Password</label>
+									<div class="col-md-7">
+									  <input type="password" class="form-control" id="password2">
+									</div>
+								  </div>
+								  <div class="form-group">
+								  <div class="col-md-7 col-md-offset-3">
+									 <div class="checkbox inline">
+										<label>
+										   <input type="checkbox" id="conditions" name="conditions"> Agree with Terms and Conditions
+										</label>
+									 </div>
+									</div>
+								  </div> 
+								  
+								  <div class="form-group">
+									<div class="col-md-9 col-md-offset-3">
+									<button type="submit" class="btn btn-default" id="registerSubmit" disabled>Register</button>
+									<button type="reset" class="btn btn-default" id="resetRegister">Reset</button>
+									</div>
+								  </div>
+								</form>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<p>Already have account? <a id="goToLogin">Login</a> here.</p>
+						</div>
 					</div>
 				</div>
 			</div>
-		</header>
-		<!--/ Header ends -->
+			<!--/ Register modal ends -->
 
-		<!-- Navigation -->
-		<div class="navbar bs-docs-nav" role="banner">
-			<div class="container">
-				<div class="navbar-header">
-					<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
+
+
+			<!-- Header starts -->
+			<header>
+				<div class="container">
+					<div class="row">
+						<div class="col-md-4">
+							<!-- Logo. Use class "color" to add color to the text. -->
+							<div class="logo">
+								<h1><a href="/">WEB3D<span class="color bold">Museum</span></a></h1>
+								<p class="meta">Your new online museum</p>
+							</div>
+						</div>
+						<div class="col-md-4 col-md-offset-4">
+		  
+							<!-- Search form -->
+							<form role="form">
+								<div class="input-group">
+									<input type="email" class="form-control" id="search1" placeholder="Search">
+									<span class="input-group-btn">
+										<button type="submit" class="btn btn-default">Search</button>
+									</span>
+								</div>
+							</form>
+
+							<div class="hlinks">
+								<!-- Login and Register link -->
+								@if(session.isEmpty){
+									<span class="lr"><a href="#login" role="button" data-toggle="modal">Login</a>
+									or <a href="#register" role="button" data-toggle="modal">Register</a></span>
+								}else{
+									<span class="lr"><a href="/profil" role="button">Profil</a>
+									 / <a href="/logout" role="button" >Se deconnecter</a></span>
+								}
+								
+							</div>
+
+						</div>
+					</div>
 				</div>
-				<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
-					<ul class="nav navbar-nav">                                  
-						<li><a href="/">Accueil</a></li>
-						<li><a href="/search">Recherche</a></li>          
-						<li><a href="/map">Carte du monde</a></li>
-						<li><a href="/parcoursList">Visite guidée</a></li>          
-						<li><a href="/random">Nuage de mots</a></li>
-						<li><a href="/aboutUs">A propos</a></li>          
-						<li><a href="/contact">Contact</a></li>
-					</ul>
-				</nav>
+			</header>
+			<!--/ Header ends -->
+
+			<!-- Navigation -->
+			<div class="navbar bs-docs-nav" role="banner">
+				<div class="container">
+					<div class="navbar-header">
+						<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+					</div>
+					<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+						<ul class="nav navbar-nav">                                  
+							<li><a href="/">Accueil</a></li>
+							<li><a href="/search">Recherche</a></li>          
+							<li><a href="/map">Carte du monde</a></li>
+							<li><a href="/parcoursList">Visite guidée</a></li>          
+							<li><a href="/random">Nuage de mots</a></li>
+							<li><a href="/aboutUs">A propos</a></li>          
+							<li><a href="/contact">Contact</a></li>
+						</ul>
+					</nav>
+				</div>
 			</div>
+			<div class="push"></div>
 		</div>
 		<!--/ Navigation End -->
 		

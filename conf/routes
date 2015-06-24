@@ -166,7 +166,11 @@ POST    /mod/addParcours            controllers.BackOffice.addParcours()
 GET     /mod/listParcours          	controllers.BackOffice.listParcours()
 
 # Search parcours page
-GET     /mod/parcours/:id           controllers.BackOffice.parcours(id : Integer)
+GET     /mod/parcour/:id           controllers.BackOffice.parcour(id : Integer)
+POST    /mod/parcour/:id           controllers.BackOffice.parcour(id : Integer)
+
+# delete objet parcours
+GET     /mod/deleteObjetParcours/:id    controllers.BackOffice.deleteObjetParcours(id : Long)
 
 
 # Contact admin page
