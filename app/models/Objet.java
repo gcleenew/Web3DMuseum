@@ -10,13 +10,13 @@ import play.data.validation.*;
 import com.avaje.ebean.annotation.Sql;
 
 
-@Entity 
+@Entity
 public class Objet extends Model {
 
   @Id
   @Constraints.Min(10)
   public int id;
-  
+
   @Constraints.Required
   public String nom;
 
@@ -34,15 +34,15 @@ public class Objet extends Model {
   public Double largeur;
 
   public Double longueur;
-  
+
   public Double hauteur;
-  
+
   public Double poids;
 
   public String localisationActuelle;
-  
+
   public String localisationOrigine;
-  
+
   public String archeologue;
 
   public Date dateDecouverte;
@@ -50,6 +50,8 @@ public class Objet extends Model {
   public String civilisation;
 
   public String model3D;
+
+  public int compositeParentId;
 
   @ManyToMany
   @JoinTable(name="statistique_objet",
@@ -64,21 +66,6 @@ public class Objet extends Model {
    inverseJoinColumns=@JoinColumn(name="objet1")
   )
   public List<Objet> statParents;
-
-
-  @ManyToMany
-  @JoinTable(name="oeuvre_composite",
-   joinColumns=@JoinColumn(name="oeuvre_principale"),
-   inverseJoinColumns=@JoinColumn(name="oeuvre_inspiree")
-  )
-  public List<Objet> enfants;
-
-  @ManyToMany
-  @JoinTable(name="oeuvre_composite",
-   joinColumns=@JoinColumn(name="oeuvre_inspiree"),
-   inverseJoinColumns=@JoinColumn(name="oeuvre_principale")
-  )
-  public List<Objet> parents;
 
   @OneToMany(cascade=CascadeType.ALL, mappedBy="objet")
   public List<Favori> favoris = new ArrayList<Favori>();
@@ -105,10 +92,10 @@ public class Objet extends Model {
 
   @Formats.DateTime(pattern="dd/MM/yyyy")
   public Date creationDate = new Date();
-  
+
   public static Finder<Integer,Objet> find = new Finder<Integer,Objet>(
     Integer.class, Objet.class
-  ); 
+  );
 
   public String getField(String field)
   {

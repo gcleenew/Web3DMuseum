@@ -1,14 +1,14 @@
-@(header: String,objet: models.Objet, imagePrincipale: String, previous: Integer, next: Integer, parcour: Integer, recommandations: String)
+@(header: String,objet: models.Objet, imagePrincipale: String, previous: Integer, next: Integer, parcour: Integer, recommandations: String, objetOriginel : Objet, objetsLies : List[Objet])
 
 @main(objet.nom){
-  
+
 }{
-  
+
 }{
 
 <!-- Page heading starts -->
 <div class="page-head">
-	<div class="container"> 
+	<div class="container">
     	@Html(flash.get("success"))
 	</div>
 </div>
@@ -16,7 +16,7 @@
 
 <!-- Page content starts -->
 <div class="content blog">
-    
+
     <div class="row">
       <div class="col-md-2" style="text-align: center; font-size: 45px; padding-top: 50px;">
       	@if(previous != 0){
@@ -26,7 +26,7 @@
       		<a href='#' onclick='document.getElementById("previous").submit()'><i class="fa fa-angle-left"></i> <div style="font-size: 25px"> Objet précédent </div> </a>
       	}
       </div>
-      <div class="col-md-8">
+      <div class="col-md-8"><br>
 			<div class="col-md-6 col-sm-6">
 				<img src="@routes.Assets.at("imgObjet/")@(imagePrincipale)" class="img-responsive" alt="Responsive image">
 			</div>
@@ -86,25 +86,25 @@
 						  <td>
 						  	@(objet.localisationOrigine)
 						  </td>
-						</tr>  
+						</tr>
 						<tr>
 						  <td><strong>Archéologue</strong></td>
 						  <td>
 						  	@(objet.archeologue)
 						  </td>
-						</tr>  
+						</tr>
 						<tr>
 						  <td><strong>Date de découverte</strong></td>
 						  <td>
 						  	@(objet.dateDecouverte)
 						  </td>
-						</tr>  
+						</tr>
 						<tr>
 						  <td><strong>Civilisation</strong></td>
 						  <td>
 						  	@(objet.civilisation)
 						  </td>
-						</tr>                                                                                                
+						</tr>
 					  </tbody>
 					</table>
 				@if(session.isEmpty){
@@ -120,7 +120,7 @@
 
 			</div>
 
-			<div class="col-md-10 col-md-offset-1" style="margin-top: 35px; margin-bottom: 35px;"> 
+			<div class="col-md-10 col-md-offset-1" style="margin-top: 35px; margin-bottom: 35px;">
 				<h2>Recommandations</h2>
 				@Html(recommandations)
 			</div>
@@ -133,6 +133,7 @@
 				  <li><a href="#tab2" data-toggle="tab">Medias</a></li>
 				  <li><a href="#tab3" data-toggle="tab">Faits historiques</a></li>
 				  <li><a href="#tab4" data-toggle="tab">Commentaires</a></li>
+				  <li><a href="#tab5" data-toggle="tab">Oeuvres composites</a></li>
 				</ul>
 
 				<!-- Tab Content -->
@@ -143,8 +144,8 @@
 					</div>
 					<div class="tab-pane" id="tab2">
 						<h5>Medias</h5>
-						
-						<div class="col-md-12"> 
+
+						<div class="col-md-12">
 
 						<h6> Photos </h6>
 						@for(image <- objet.images) {
@@ -182,7 +183,7 @@
 
 						</div>
 
-						
+
 					</div>
 					<div class="tab-pane" id="tab3">
 						<h5>Faits Historique</h5>
@@ -194,7 +195,7 @@
 								</div>
 							}
 						}
-						
+
 						<hr />
 						@if(session.isEmpty){
 	
@@ -220,7 +221,9 @@
 							  	</div>
 						  	</form>
 						</div>
+
 						}
+
 					</div>
 					<div class="tab-pane" id="tab4">
 						<h5>Commentaires</h5>
@@ -232,7 +235,7 @@
 								</div>
 							}
 						}
-						
+
 						<hr />
 						@if(session.isEmpty){
 							
@@ -258,9 +261,36 @@
 							  	</div>
 						  	</form>
 						</div>
+
 						}
+
 					</div>
+
+
+          <div class="tab-pane" id="tab5">
+            @if( objetOriginel != null ){
+              <h5>Oeuvre Originelle</h5>
+              @if( objetOriginel.images.isEmpty() ){
+                <a href="/objet/@objetOriginel.id" ><img src="@routes.Assets.at("imgObjet/missing.jpg")" class="img-responsive" alt="Responsive image"></a>
+              } else{
+                <a href="/objet/@objetOriginel.id" ><img src="@routes.Assets.at("imgObjet/")@(objetOriginel.images.get(0).lien)" class="img-responsive" alt="Responsive image"></a>
+              }
+              @objetOriginel.nom
+            }
+
+            <h5>Oeuvres inspirées</h5>
+            @for(oeuvreInspire <- objetsLies) {
+                @if( oeuvreInspire.images.isEmpty() ){
+                  <a href="/objet/@oeuvreInspire.id" ><img src="@routes.Assets.at("imgObjet/missing.jpg")" class="img-responsive" alt="Responsive image"></a>
+                } else{
+                  <a href="/objet/@oeuvreInspire.id" ><img src="@routes.Assets.at("imgObjet/")@(oeuvreInspire.images.get(0).lien)" class="img-responsive" alt="Responsive image"></a>
+                }
+							@oeuvreInspire.nom
+						}
+          </div>
 				</div>
+
+
 
 
 			</div>
