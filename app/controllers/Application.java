@@ -229,7 +229,6 @@ public class Application extends Controller {
 
 
         return ok(search.render(nom, liste_result, addCivList));
-        //return ok(search.render("This is the header !", "This is the body !"));
     }
 
     public static Result map() {
