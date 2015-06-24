@@ -272,7 +272,7 @@ text-decoration:none;
 	display: inline;
 	float: right;
 }
-   
+
 .aligncenter, img.aligncenter {
 	margin-right: auto;
 	margin-left: auto;
@@ -378,7 +378,7 @@ header form input, header form button{
    margin:0px;
 }
 
-.navbar .container>.navbar-header, 
+.navbar .container>.navbar-header,
 .navbar .container>.navbar-collapse {
 	padding-left: 0px;
 }
@@ -397,7 +397,7 @@ header form input, header form button{
 
 
 .navbar{
-   border-radius:0px; 
+   border-radius:0px;
    background-image: none;
    background-repeat: no-repeat;
    filter: none !important;
@@ -530,14 +530,14 @@ header form input, header form button{
 	min-height: 100%;
     height: auto !important;
     height: 100%;
-    margin: 0 auto 300px; /* the bottom margin is the negative value of the footer's height */
+    margin: 0 auto 200px; /* the bottom margin is the negative value of the footer's height */
 }
 
 .content ul li{
 	list-style-type: circle;
 	padding: 1px 0px;
 	margin:0px;
-	
+
 }
 
 .lists ul{
@@ -674,7 +674,7 @@ header form input, header form button{
 	-webkit-transition:box-shadow 1s ease;
    	-moz-transition:box-shadow 1s ease;
    	-o-transition:box-shadow 1s ease;
-   	transition:box-shadow 1s ease;	
+   	transition:box-shadow 1s ease;
 }
 
 .items .item .ico{
@@ -752,7 +752,7 @@ header form input, header form button{
 }
 
 .recent-news .item{
-	margin:5px;	
+	margin:5px;
 	padding:15px 10px;
 	background:#fcfcfc;
 	border:1px solid #eee;
@@ -863,7 +863,7 @@ font-family: 'Open Sans', Arial, Helvetica, sans-serif !important;
 .flex-main .flex-caption h3 span{
    padding-bottom:3px;
 }
-	
+
 .flex-main .flex-caption p {
 	margin:0;
 	font-size: 13px;
@@ -1100,7 +1100,7 @@ border-bottom:1px solid #eee;
 .widget ul{
 	margin:0px;
 	margin-left:-15px;
-	
+
 }
 
 .sidebar .widget{
@@ -1124,7 +1124,7 @@ padding:6px 0;
 line-height:17px;
 font-size:13px;
 }
- 
+
 .paging span, .paging a {
 display:block;
 float:left;
@@ -1137,11 +1137,11 @@ background: #fff;
 border:1px solid #ddd;
 font-weight:normal;
 }
- 
+
 .paging a:hover{
 color:#fff;
 }
- 
+
 .paging .current{
 padding:5px 8px;
 color:#fff;
@@ -1204,8 +1204,8 @@ color:#fff;
   list-style-type: none;
 }
 
-#navi > li > a { 
-  display: block; 
+#navi > li > a {
+  display: block;
   padding: 10px 10px;
   color: #777;
   text-decoration: none;
@@ -1213,7 +1213,7 @@ color:#fff;
   background-color: #fafafa;
 }
 
-#navi > li > a:hover{ 
+#navi > li > a:hover{
   color: #666;
   background-color: #f3f3f3;
   border-bottom: 1px solid #ddd;
@@ -1322,7 +1322,7 @@ header .hlinks { margin-top: 8px; }
 	padding-top:10px;
 	line-height:20px;
 	color:#666;
-}	
+}
 
 .tp-banner .img-tag {
 	width: 40px;
@@ -1335,22 +1335,22 @@ header .hlinks { margin-top: 8px; }
 	border-radius: 100px;
 	font-weight:bold;
 }
-.tp-banner .large_bold_white { 
-	font-family: 'Open Sans', sans-serif; 
-	font-size:45px; 
+.tp-banner .large_bold_white {
+	font-family: 'Open Sans', sans-serif;
+	font-size:45px;
 	color:#666;
 }
 
-.tp-banner .medium_light_white { 
+.tp-banner .medium_light_white {
 	font-size: 18px;
 	line-height:28px;
 	color:#888;
 }
 
-.tp-banner a.btn { 
-	border:0px; 
-	padding: 9px 14px; 
-	color: #fff; 
+.tp-banner a.btn {
+	border:0px;
+	padding: 9px 14px;
+	color: #fff;
 	font-size: 14px;
 	border-radius: 0;
 	font-family: 'Open Sans', sans-serif;
@@ -1378,7 +1378,7 @@ footer{
     margin: 0 auto -300px; /* the bottom margin is the negative value of the footer's height */
 }
 footer, .push {
-	height: 300px; 
+	height: 300px;
 }
 
 
@@ -1445,7 +1445,7 @@ footer .payment-icons img{
 		width: 100%;
 		float: none;
 		margin-top: 10px;
-	}	
+	}
 	.promo .pcol-right{
 		text-align: center;
 	}
@@ -1500,12 +1500,12 @@ footer .payment-icons img{
 		text-align: center;
 		margin-bottom:10px;
 	}
-	
+
 	header form{
 		width:100%;
 		margin:0px auto;
 		max-width:300px;
-		
+
 	}
 	header .lr{
 		display: block;
@@ -1516,7 +1516,7 @@ footer .payment-icons img{
 	.hlinks{
 		margin-left: auto;
 		margin-right: auto;
-		width: 135px;
+		width: 155px;
 		height: 26px;
 	}
    .navbar .nav{
@@ -1525,14 +1525,14 @@ footer .payment-icons img{
    }
    .navbar .nav > li > a{
       border:0px !important;
-   }	
+   }
  	.dropdown-menu{
  		border: 0px !important;
- 	}	
+ 	}
  	.navbar .nav{
  		border-left: 0px !important;
  	}
-	
+
  	.flex-caption{
 		display: none;
 	}
@@ -1556,12 +1556,12 @@ footer .payment-icons img{
 		text-align: center;
 		margin-bottom:10px;
 	}
-	
+
 	header form{
 		width:100%;
 		margin:0px auto;
 		max-width:300px;
-		
+
 	}
  	.sitem img{
  		max-width: 35px;
@@ -1581,7 +1581,7 @@ footer .payment-icons img{
  	    margin: 0 auto -500px; /* the bottom margin is the negative value of the footer's height */
  	}
  	footer, .push {
- 		height: 500px; 
+ 		height: 500px;
  	}
 }
 
@@ -1600,6 +1600,6 @@ footer .payment-icons img{
 	    margin: 0 auto -650px; /* the bottom margin is the negative value of the footer's height */
 	}
 	footer, .push {
-		height: 650px; 
+		height: 650px;
 	}
 }
