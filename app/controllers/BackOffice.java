@@ -34,7 +34,7 @@ public class BackOffice extends Controller {
         List<Objet> objets = Objet.find.all();
         Objet objet = Objet.find.where().eq("reference", reference).findUnique();
         String alert = "";
-        if (objet == null ) 
+        if (objet == null )
         {
             if (reference != "" && reference != null)
                 alert = "<div id='retourRecherche' class='alert alert-danger' role='alert'> Aucun objet sur le site est atribué à cette référence, veuillez vérifier si cette référence à bien été entrée et que l'objet existe bien sur le site. </div>";
@@ -43,7 +43,7 @@ public class BackOffice extends Controller {
         }
         else {
             return redirect(controllers.routes.BackOffice.searchObjectResult(objet.id));
-        }   
+        }
     }
 
     public static Result searchObjectResult(Integer id) {
@@ -59,7 +59,7 @@ public class BackOffice extends Controller {
         alert = "<div id='retour' class='alert alert-success' role='alert'> Objet supprimé </div>";
         flash("delete", alert);
         return redirect(controllers.routes.BackOffice.searchObject());
-        
+
     }
 
 
@@ -126,7 +126,7 @@ public class BackOffice extends Controller {
         String model3D = requestData.get("model3D");
         // si les trois première informations de l'objet sont remplies alors création de l'objet
         if (description == null) {
-            
+
         }
         else if (description != "" && description != null) {
             objet1.description = description;
@@ -229,7 +229,7 @@ public class BackOffice extends Controller {
         String model3D = requestData.get("model3D");
         // si les trois première informations de l'objet sont remplies alors création de l'objet
         if (description == null) {
-            
+
         }
         else if (nom != "" && nom != null && reference != "" && reference != null && description != "" && description != null) {
             Objet objet = new Objet();
@@ -259,7 +259,7 @@ public class BackOffice extends Controller {
             message = "<div id='retourRecherche' class='alert alert-danger' role='alert'> Les trois premiers champs n'ont pas été remplis.</div>";
             flash("fail", message);
         }
-        
+
         return ok(addObjet.render(message));
     }
 
@@ -279,14 +279,14 @@ public class BackOffice extends Controller {
             parcours = new Parcours();
             parcours.nom = nom;
             parcours.save();
-       
+
             message = "<div id='retourFeedback' class='alert alert-success' role='alert'> Le parcours : "+nom+" a été créé. </div>";
         }
-        
+
         else {
             message = "<div id='retourFeedback' class='alert alert-danger' role='alert'> Le parcours "+nom+" existe déjà. </div>";
         }
-        
+
 
         return ok(addParcours.render(message));
     }
@@ -300,7 +300,7 @@ public class BackOffice extends Controller {
         String objet = requestData.get("objet");
 
         play.mvc.Http.MultipartFormData body = request().body().asMultipartFormData();
-               
+
         if( body != null ){
             play.mvc.Http.MultipartFormData.FilePart picture = body.getFile("image");
             if (picture != null) {
@@ -320,7 +320,7 @@ public class BackOffice extends Controller {
                 flash("error", "Missing file");
             }
         }
-        
+
 
         Image image = Image.find.where().eq("nom", nom).findUnique();
 
@@ -336,13 +336,13 @@ public class BackOffice extends Controller {
             image.objet = Objet.find.where().eq("nom", objet).findUnique();
             image.lien = nom+".png";
             image.save();
-       
+
             message = "<div id='retourFeedback' class='alert alert-success' role='alert'> La photo : "+nom+" a été créé. </div>";
-        }        
+        }
         else {
             message = "<div id='retourFeedback' class='alert alert-danger' role='alert'> La photo "+nom+" n'a pas été créé car elle existe déjà </div>";
         }
-        
+
 
         return ok(addPhoto.render(message));
     }
@@ -356,7 +356,7 @@ public class BackOffice extends Controller {
         String objet = requestData.get("objet");
 
         play.mvc.Http.MultipartFormData body = request().body().asMultipartFormData();
-               
+
         if( body != null ){
             play.mvc.Http.MultipartFormData.FilePart videoFile = body.getFile("video");
             if (videoFile != null) {
@@ -376,7 +376,7 @@ public class BackOffice extends Controller {
                 flash("error", "Missing file");
             }
         }
-        
+
 
         Video video = Video.find.where().eq("nom", nom).findUnique();
 
@@ -390,15 +390,15 @@ public class BackOffice extends Controller {
             video = new Video();
             video.nom = nom;
             video.objet = Objet.find.where().eq("nom", objet).findUnique();
-            video.lien = nom+".png";
+            video.lien = nom+".mp4";
             video.save();
-       
+
             message = "<div id='retourFeedback' class='alert alert-success' role='alert'> La video : "+nom+" a été créé. </div>";
-        }        
+        }
         else {
             message = "<div id='retourFeedback' class='alert alert-danger' role='alert'> La video "+nom+" n'a pas été créé car elle existe déjà </div>";
         }
-        
+
 
         return ok(addVideo.render(message));
     }
@@ -412,7 +412,7 @@ public class BackOffice extends Controller {
         String objet = requestData.get("objet");
 
         play.mvc.Http.MultipartFormData body = request().body().asMultipartFormData();
-               
+
         if( body != null ){
             play.mvc.Http.MultipartFormData.FilePart audioFile = body.getFile("audio");
             if (audioFile != null) {
@@ -432,7 +432,7 @@ public class BackOffice extends Controller {
                 flash("error", "Missing file");
             }
         }
-        
+
 
         Audio audio = Audio.find.where().eq("nom", nom).findUnique();
 
@@ -448,13 +448,13 @@ public class BackOffice extends Controller {
             audio.objet = Objet.find.where().eq("nom", objet).findUnique();
             audio.lien = nom+".png";
             audio.save();
-       
+
             message = "<div id='retourFeedback' class='alert alert-success' role='alert'> L'audio : "+nom+" a été créé. </div>";
-        }        
+        }
         else {
             message = "<div id='retourFeedback' class='alert alert-danger' role='alert'> L'audio "+nom+" n'a pas été créé car elle existe déjà </div>";
         }
-        
+
 
         return ok(addAudio.render(message));
     }
@@ -539,7 +539,7 @@ public class BackOffice extends Controller {
 
         for(ContenuSite cont: ContenuSite.find.select("emplacement").findList()) {
             select += "<option value="+cont.emplacement+">"+cont.emplacement+"</option>";
-            
+
         }
 
         return ok(modifyText.render(alert, select));
@@ -618,7 +618,7 @@ public class BackOffice extends Controller {
 
         Objet objet = Objet.find.where().eq("reference", reference).findUnique();
         String alert = "";
-        if (objet == null ) 
+        if (objet == null )
         {
             if (reference != "" && reference != null)
                 alert = "<div id='retourRecherche' class='alert alert-danger' role='alert'> Aucun objet sur le site est atribué à cette référence, veuillez vérifier si cette référence à bien été entrée et que l'objet existe bien sur le site. </div>";
