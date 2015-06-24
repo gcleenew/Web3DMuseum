@@ -41,17 +41,49 @@
         <li><a href="/objet/@objet3.id">@objet3.nom</a></li>
         <li><a href="/objet/@objet4.id">@objet4.nom</a></li>
         <li><a href="/objet/@objet5.id">@objet5.nom</a></li>
-        <li><a href="/objet/@objet6.id">@objet6.nom</a></li>
-        <li><a href="/objet/@objet7.id">@objet7.nom</a></li>
-        <li><a href="/objet/@objet8.id">@objet8.nom</a></li>
-        <li><a href="/objet/@objet9.id">@objet9.nom</a></li>
-        <li><a href="/objet/@objet10.id">@objet10.nom</a></li>
-        <li><a href="/objet/@objet11.id">@objet11.nom</a></li>
-        <li><a href="/objet/@objet12.id">@objet12.nom</a></li>
-        <li><a href="/parcours/@parcours1.id">@parcours1.nom</a></li>
-        <li><a href="/parcours/@parcours2.id">@parcours2.nom</a></li>
-        <li><a href="/parcours/@parcours3.id">@parcours3.nom</a></li>
-        <li><a href="/parcours/@parcours4.id">@parcours4.nom</a></li>
+        @if( objet6 != null ){
+            <li><a href="/objet/@objet6.id">@objet6.nom</a></li>
+        }
+        @if( objet7 != null ){
+            <li><a href="/objet/@objet7.id">@objet7.nom</a></li>
+        }
+
+        @if( objet8 != null ){
+            <li><a href="/objet/@objet8.id">@objet8.nom</a></li>
+        }
+
+        @if( objet9 != null ){
+            <li><a href="/objet/@objet9.id">@objet9.nom</a></li>
+        }
+
+        @if( objet10 != null ){
+            <li><a href="/objet/@objet10.id">@objet10.nom</a></li>
+        }
+
+        @if( objet11 != null ){
+            <li><a href="/objet/@objet11.id">@objet11.nom</a></li>
+        }
+
+        @if( objet12 != null ){
+            <li><a href="/objet/@objet12.id">@objet12.nom</a></li>
+        }
+    
+        
+        @if( parcours1 != null ){
+            <li><a href="/parcours/@parcours1.id">@parcours1.nom</a></li>
+        }
+        
+        @if( parcours2 != null ){
+            <li><a href="/parcours/@parcours2.id">@parcours2.nom</a></li>
+        }
+        
+        @if( parcours3 != null ){
+            <li><a href="/parcours/@parcours3.id">@parcours3.nom</a></li>
+        }
+        
+        @if( parcours4 != null ){
+            <li><a href="/parcours/@parcours4.id">@parcours4.nom</a></li>
+        }
       </ul>
     </div>
 
