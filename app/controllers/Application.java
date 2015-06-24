@@ -310,7 +310,7 @@ public class Application extends Controller {
         // création de la liste d'image
         Image missing = Image.find.byId(0L);
         List<Image> imagesList = new ArrayList<Image>();
-        
+
         // récupération du parcours et de ses données
         Parcours parcours1 = Parcours.find.byId(id);
         // création de la liste des liaison entre parcours et objet
@@ -319,7 +319,7 @@ public class Application extends Controller {
         //remplissage de la liste d'image avec la liste des objets dans le parcours
         for (int i = 0; i < parcoursObjets.size(); i++) {
             if (parcoursObjets.get(i).objet.images.isEmpty()) {
-               
+
             }
             else {
                 imagesList.add(parcoursObjets.get(i).objet.images.get(0));
@@ -430,6 +430,14 @@ public class Application extends Controller {
             .add(Expr.eq("localisationOrigine",objet1.localisationOrigine))
             .add(Expr.eq("civilisation",objet1.civilisation)).findList();
 
+        Objet objetOriginel = null;
+        if( objet1.compositeParentId != 0 ){
+          objetOriginel = Objet.find.byId(objet1.compositeParentId);
+        }
+      List<Objet> objetsLies = Objet.find.where().eq("compositeParentId", objet1.id ).findList();
+
+
+
         int objetsSimilaireSize = Collections.max(objetsSimilaires, new ObjetComparator()).id;
 
 
@@ -463,7 +471,7 @@ public class Application extends Controller {
 
 
 
-        return ok(objet.render("Objet", objet1, imagePrincipale, previous, next, parcour, recommandations));
+        return ok(objet.render("Objet", objet1, imagePrincipale, previous, next, parcour, recommandations, objetOriginel, objetsLies));
     }
 
     public static Result contact() {
